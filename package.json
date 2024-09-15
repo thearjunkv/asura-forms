@@ -1,48 +1,57 @@
 {
-    "name": "form-alchemist",
-    "private": true,
-    "version": "0.0.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "tsc -b && vite build",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "preview": "vite preview"
-    },
-    "dependencies": {
-        "antd": "^5.20.3",
-        "nanoid": "^5.0.7",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "styled-components": "^6.1.13"
-    },
-    "devDependencies": {
-        "@types/node": "^22.5.4",
-        "@types/react": "^18.3.3",
-        "@types/react-dom": "^18.3.0",
-        "@typescript-eslint/eslint-plugin": "^7.15.0",
-        "@typescript-eslint/parser": "^7.15.0",
-        "@vitejs/plugin-react-swc": "^3.5.0",
-        "eslint": "^8.57.0",
-        "eslint-plugin-react-hooks": "^4.6.2",
-        "eslint-plugin-react-refresh": "^0.4.7",
-        "typescript": "^5.2.2",
-        "vite": "^5.3.4"
-    },
-    "main": "dist/form-alchemist.cjs.js",
-    "module": "dist/form-alchemist.es.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
-    "peerDependencies": {
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1"
-    },
-    "exports": {
-        ".": {
-            "import": "./dist/index.es.js",
-            "require": "./dist/index.cjs.js"
-        }
-    }
+	"name": "form-alchemist",
+	"version": "0.0.1",
+	"description": "A React form builder with a drag-and-drop interface, featuring a Builder component to create customizable forms and a Render component to display and validate them dynamically.",
+	"type": "module",
+	"main": "dist/index.js",
+	"module": "dist/index.es.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"require": "./dist/index.js",
+			"import": "./dist/index.es.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"scripts": {
+		"rollup": "rollup -c --bundleConfigAsCjs"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"keywords": [
+		"form",
+		"builder",
+		"react"
+	],
+	"author": "Arjun KV",
+	"license": "ISC",
+	"dependencies": {
+		"crypto-browserify": "^3.12.0",
+		"nanoid": "^5.0.7"
+	},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^26.0.1",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-terser": "^0.4.4",
+		"@rollup/plugin-typescript": "^11.1.6",
+		"@types/react": "^18.3.5",
+		"antd": "^5.20.6",
+		"react": "^18.3.1",
+		"rollup": "^4.21.3",
+		"rollup-plugin-dts": "^6.1.1",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-svg": "^2.0.0",
+		"styled-components": "^6.1.13",
+		"tslib": "^2.7.0",
+		"typescript": "^5.6.2"
+	},
+	"peerDependencies": {
+		"antd": "^5.0.0",
+		"react": ">=16.8",
+		"styled-components": "^6.0.0",
+		"typescript": "^5.0.0"
+	}
 }

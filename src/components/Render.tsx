@@ -20,7 +20,9 @@ const Render: React.FC<RenderProps> = props => {
 		props.onSubmit(values);
 	};
 
-	// const onFinishFailed = (data: unknown) => console.log(data);
+	const onFinishFailed = (data: unknown) => {
+		// console.log(data);
+	};
 
 	return (
 		<>

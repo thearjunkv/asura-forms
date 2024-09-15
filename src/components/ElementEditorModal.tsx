@@ -124,7 +124,7 @@ function ElementEditorModal(props: ElementEditorModalProps) {
 		} else props.onSubmit(element);
 	};
 
-	const onFinishFailed = data => {
+	const onFinishFailed = (data: any) => {
 		setIsFormSubmittedOnce(true);
 		if (data.errorFields[0].name[0].includes('label')) setActiveKey('2');
 		else if (data.errorFields[0].name[0].includes('value')) setActiveKey('2');
