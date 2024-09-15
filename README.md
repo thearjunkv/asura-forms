@@ -1,6 +1,14 @@
 # Form Alchemist
 
-Form alchemist provides a form builder component for React that allows users to create forms via a drag-and-drop interface and a form render component to render the created form with dynamic validation.
+A customizable React form builder with a drag-and-drop interface. The library provides a `Builder` component for building forms and a `Render` component for rendering and validating them dynamically. You can create, edit, and save forms with ease using JSON data.
+
+## Features
+
+-   Drag-and-drop interface for building forms
+-   Support for various form elements like inputs, checkboxes, radio buttons, etc.
+-   Dynamic form rendering with validation
+-   Ability to save and load form data in JSON format
+-   Easy integration with your existing React project
 
 ## Installation
 
@@ -14,12 +22,23 @@ npm install form-alchemist
 
 ```javascript
 import { Builder } from 'form-alchemist';
+
 function App() {
-	// the form data is passed as a parameter to the build function
-	const build = formData => {
-		localStorage.setItem('formData', JSON.stringify(formData));
+	// Initial form data (optional), used to edit an existing form
+	const formData = [];
+
+	// Callback function to handle form saving
+	const onSave = formJsonData => {
+		console.log('Form saved:', formJsonData);
+		// Handle or store form JSON data
 	};
-	return <Builder build={build} />;
+
+	return (
+		<Builder
+			formData={formData}
+			onSave={onSave}
+		/>
+	);
 }
 ```
 
@@ -27,15 +46,18 @@ function App() {
 
 ```javascript
 import { Render } from 'form-alchemist';
+
 function App() {
-	// the form data created from the builder component
-	form = JSON.stringify(localStorage.getItem('formData'));
-	// the form values are passed as a parameter to the submit function
-	const submit = formValues => {
+	// Form data generated from the Builder component, passed as a prop to Render.
+	const formData = [];
+
+	// Callback function to handle form submission; formValues contains the user's input data.
+	const onSubmit = formValues => {
 		console.log(formValues);
 	};
+
 	return (
-		// the rendered form takes 100% width, so you can insert it inside a div to adjust the layout
+		// The Rendered form takes up full width, so it’s wrapped in a container to control layout and styling.
 		<div
 			style={{
 				margin: '40px auto',
@@ -46,8 +68,8 @@ function App() {
 			}}
 		>
 			<Render
-				form={form}
-				submit={submit}
+				formData={formData}
+				onSubmit={onSubmit}
 			/>
 		</div>
 	);

@@ -1,6 +1,6 @@
 {
 	"name": "form-alchemist",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A React form builder with a drag-and-drop interface, featuring a Builder component to create customizable forms and a Render component to display and validate them dynamically.",
 	"type": "module",
 	"main": "dist/index.js",
@@ -24,7 +24,10 @@
 	"keywords": [
 		"form",
 		"builder",
-		"react"
+		"react",
+		"drag-and-drop",
+		"dynamic",
+		"validation"
 	],
 	"author": "Arjun KV",
 	"license": "ISC",
@@ -53,5 +56,16 @@
 		"react": ">=16.8",
 		"styled-components": "^6.0.0",
 		"typescript": "^5.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/arjunkv145/form-alchemist.git"
+	},
+	"homepage": "https://github.com/arjunkv145/form-alchemist#readme",
+	"bugs": {
+		"url": "https://github.com/arjunkv145/form-alchemist/issues"
+	},
+	"engines": {
+		"node": ">=14.0.0"
 	}
 }
