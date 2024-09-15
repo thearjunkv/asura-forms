@@ -1,6 +1,6 @@
 {
 	"name": "form-alchemist",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "A React form builder with a drag-and-drop interface, featuring a Builder component to create customizable forms and a Render component to display and validate them dynamically.",
 	"type": "module",
 	"main": "dist/index.js",
