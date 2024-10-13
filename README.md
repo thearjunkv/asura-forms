@@ -24,21 +24,21 @@ npm install form-alchemist
 import { Builder } from 'form-alchemist';
 
 function App() {
-	// Initial form data (optional), used to edit an existing form
-	const formData = [];
+    // Initial form data (optional), used to edit an existing form
+    const formData = [];
+  
+    // Callback function to handle form saving
+    const onSave = formJsonData => {
+	    console.log('Form saved:', formJsonData);
+	    // Handle or store form JSON data
+    };
 
-	// Callback function to handle form saving
-	const onSave = formJsonData => {
-		console.log('Form saved:', formJsonData);
-		// Handle or store form JSON data
-	};
-
-	return (
-		<Builder
-			formData={formData}
-			onSave={onSave}
-		/>
-	);
+    return (
+        <Builder
+            formData={formData}
+            onSave={onSave}
+        />
+    );
 }
 ```
 
@@ -48,30 +48,30 @@ function App() {
 import { Render } from 'form-alchemist';
 
 function App() {
-	// Form data generated from the Builder component, passed as a prop to Render.
-	const formData = [];
+    // Form data generated from the Builder component, passed as a prop to Render.
+    const formData = [];
 
-	// Callback function to handle form submission; formValues contains the user's input data.
-	const onSubmit = formValues => {
-		console.log(formValues);
-	};
+    // Callback function to handle form submission; formValues contains the user's input data.
+    const onSubmit = formValues => {
+        console.log(formValues);
+    };
 
-	return (
-		// The Rendered form takes up full width, so it’s wrapped in a container to control layout and styling.
-		<div
-			style={{
-				margin: '40px auto',
-				padding: '.5em 1em',
-				width: '400px',
-				border: '1px solid lightgrey',
-				borderRadius: '5px',
-			}}
-		>
-			<Render
-				formData={formData}
-				onSubmit={onSubmit}
-			/>
-		</div>
-	);
+    return (
+        // The Rendered form takes up full width, so it’s wrapped in a container to control layout and styling.
+        <div
+            style={{
+                margin: '40px auto',
+                padding: '.5em 1em',
+                width: '400px',
+                border: '1px solid lightgrey',
+                borderRadius: '5px',
+            }}
+        >
+            <Render
+                formData={formData}
+                onSubmit={onSubmit}
+            />
+        </div>
+    );
 }
 ```

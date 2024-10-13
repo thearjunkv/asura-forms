@@ -1,4 +1,4 @@
-type TextAttributes = {
+export type TTextAttrs = {
     type: string;
     id: string;
     name: string;
@@ -9,7 +9,7 @@ type TextAttributes = {
     maxLength: number;
 };
 
-type NumberAttributes = {
+export type TNumberAttrs = {
     type: string;
     id: string;
     name: string;
@@ -20,7 +20,7 @@ type NumberAttributes = {
     max: number;
 };
 
-type TextareaAttributes = {
+export type TTextareaAttrs = {
     id: string;
     name: string;
     placeholder: string;
@@ -32,33 +32,24 @@ type TextareaAttributes = {
     cols: number;
 };
 
-type SelectAttributes = {
+export type TDropdownAttrs = {
     id: string;
     name: string;
     disabled: boolean;
-    multiple: boolean;
 };
 
-type CheckboxAttributes = {
+export type TCheckboxAttrs = {
     type: string;
     name: string;
 };
 
-type RadioAttributes = {
+export type TRadioAttrs = {
     type: string;
     name: string;
     disabled: boolean;
 };
 
-export type DateAttributes = {
-    type: string;
-    id: string;
-    name: string;
-    readOnly: boolean;
-    disabled: boolean;
-};
-
-export type TimeAttributes = {
+export type TDateAttrs = {
     type: string;
     id: string;
     name: string;
@@ -66,190 +57,230 @@ export type TimeAttributes = {
     disabled: boolean;
 };
 
-export type ButtonAttributes = {
+export type TTimeAttrs = {
+    type: string;
+    id: string;
+    name: string;
+    readOnly: boolean;
+    disabled: boolean;
+};
+
+export type TButtonAttrs = {
     type: 'button' | 'reset' | 'submit';
     id: string;
     disabled: boolean;
     placeholder: string;
 };
 
-export type NameElement = {
-    elementType: 'name';
+export type TName = {
+    elementType: 'Name';
+    attributes: TTextAttrs;
+
     label: string;
-    attributes: TextAttributes;
-    uid: string;
     labelPosition: 'top' | 'left';
+
     labelStyles: string;
     elementStyles: string;
+
+    uid: string;
     required: boolean;
 };
 
-export type EmailElement = {
-    elementType: 'email';
+export type TEmail = {
+    elementType: 'Email';
+    attributes: TTextAttrs;
+
     label: string;
-    attributes: TextAttributes;
-    uid: string;
     labelPosition: 'top' | 'left';
+
     labelStyles: string;
     elementStyles: string;
+
+    uid: string;
     required: boolean;
 };
 
-export type PhoneNumberElement = {
-    elementType: 'phone number';
+export type TPhoneNumber = {
+    elementType: 'Phone number';
+    attributes: Omit<TNumberAttrs, 'min' | 'max'>;
+
+    label: string;
+    labelPosition: 'top' | 'left';
+
+    labelStyles: string;
+    elementStyles: string;
+
+    uid: string;
+    required: boolean;
     requireCountryCode: boolean;
+};
+
+export type TText = {
+    elementType: 'Text';
+    attributes: TTextAttrs;
+
     label: string;
-    attributes: Omit<NumberAttributes, 'min' | 'max'>;
-    uid: string;
     labelPosition: 'top' | 'left';
+
     labelStyles: string;
     elementStyles: string;
+
+    uid: string;
     required: boolean;
 };
 
-export type TextElement = {
-    elementType: 'text';
+export type TNumber = {
+    elementType: 'Number';
+    attributes: TNumberAttrs;
+
     label: string;
-    attributes: TextAttributes;
-    uid: string;
     labelPosition: 'top' | 'left';
+
     labelStyles: string;
     elementStyles: string;
+
+    uid: string;
     required: boolean;
 };
 
-export type NumberElement = {
-    elementType: 'number';
+export type TTextarea = {
+    elementType: 'Textarea';
+    attributes: TTextareaAttrs;
+
     label: string;
-    attributes: NumberAttributes;
-    uid: string;
     labelPosition: 'top' | 'left';
+
     labelStyles: string;
     elementStyles: string;
+
+    uid: string;
     required: boolean;
 };
 
-export type TextareaElement = {
-    elementType: 'textarea';
+type TDropdownOptions =
+    | {
+          dataSourceType: 'values';
+          options: {
+              label: string;
+              value: string;
+              selected: boolean;
+              disabled: boolean;
+          }[];
+      }
+    | {
+          dataSourceType: 'api';
+          apiConfig: {
+              url: string;
+              requestHeaders: { [key: string]: string | number | boolean }[];
+              dataPath: string;
+              labelKey: string;
+              valueKey: string;
+          };
+      };
+
+export type TDropdown = {
+    elementType: 'Dropdown';
+    attributes: TDropdownAttrs;
+
     label: string;
-    attributes: TextareaAttributes;
-    uid: string;
     labelPosition: 'top' | 'left';
+
     labelStyles: string;
     elementStyles: string;
+
+    uid: string;
+    required: boolean;
+} & TDropdownOptions;
+
+export type TCheckbox = {
+    elementType: 'Checkbox';
+    attributes: TCheckboxAttrs;
+
+    label: string;
+    labelPosition: 'top' | 'left';
+
+    labelStyles: string;
+    elementStyles: string;
+
+    uid: string;
+    required: boolean;
+    options: {
+        label: string;
+        value: string;
+        checked: boolean;
+        disabled: boolean;
+    }[];
+};
+
+export type TRadio = {
+    elementType: 'Radio';
+    attributes: TRadioAttrs;
+
+    label: string;
+    labelPosition: 'top' | 'left';
+
+    labelStyles: string;
+    elementStyles: string;
+
+    uid: string;
+    required: boolean;
+    options: {
+        label: string;
+        value: string;
+        checked: boolean;
+        disabled: boolean;
+    }[];
+};
+
+export type TDate = {
+    elementType: 'Date';
+    attributes: TDateAttrs;
+
+    label: string;
+    labelPosition: 'top' | 'left';
+
+    labelStyles: string;
+    elementStyles: string;
+
+    required: boolean;
+    uid: string;
+};
+
+export type TTime = {
+    elementType: 'Time';
+    attributes: TTimeAttrs;
+
+    label: string;
+    labelPosition: 'top' | 'left';
+
+    labelStyles: string;
+    elementStyles: string;
+
+    uid: string;
     required: boolean;
 };
 
-export type OptionsApiConfig = {
-    url: string;
-    requestHeaders: { [key: string]: string | number | boolean }[];
-    dataPath: string;
-    labelKey: string;
-    valueKey: string;
-};
+export type TButton = {
+    elementType: 'Button';
+    attributes: TButtonAttrs;
 
-type SelectOptions = {
-    label: string;
-    value: string;
-    selected: boolean;
-    disabled: boolean;
-};
-
-export type SelectElement = {
-    elementType: 'select';
-    label: string;
-    attributes: SelectAttributes;
-    uid: string;
-    labelPosition: 'top' | 'left';
-    labelStyles: string;
     elementStyles: string;
-    dataSourceType: 'values' | 'api';
-    options: SelectOptions[];
-    apiOptions: OptionsApiConfig;
-    required: boolean;
-};
 
-type CheckboxOptions = {
-    label: string;
-    value: string;
-    checked: boolean;
-    disabled: boolean;
-};
-
-export type CheckboxElement = {
-    elementType: 'checkbox';
-    label: string;
-    attributes: CheckboxAttributes;
     uid: string;
-    labelPosition: 'top' | 'left';
-    labelStyles: string;
-    elementStyles: string;
-    dataSourceType: 'values' | 'api';
-    options: CheckboxOptions[];
-    apiOptions: OptionsApiConfig;
-    required: boolean;
 };
 
-type RadioOptions = {
-    label: string;
-    value: string;
-    checked: boolean;
-    disabled: boolean;
-};
+type Temp =
+    | TName
+    | TEmail
+    | TPhoneNumber
+    | TText
+    | TNumber
+    | TTextarea
+    | TDropdown
+    | TCheckbox
+    | TRadio
+    | TDate
+    | TTime
+    | TButton;
 
-export type RadioElement = {
-    elementType: 'radio';
-    label: string;
-    attributes: RadioAttributes;
-    uid: string;
-    labelPosition: 'top' | 'left';
-    labelStyles: string;
-    elementStyles: string;
-    dataSourceType: 'values' | 'api';
-    options: RadioOptions[];
-    apiOptions: OptionsApiConfig;
-    required: boolean;
-};
-
-export type DateElement = {
-    elementType: 'date';
-    label: string;
-    uid: string;
-    labelPosition: 'top' | 'left';
-    labelStyles: string;
-    elementStyles: string;
-    attributes: DateAttributes;
-    required: boolean;
-};
-
-export type TimeElement = {
-    elementType: 'time';
-    label: string;
-    uid: string;
-    labelPosition: 'top' | 'left';
-    labelStyles: string;
-    elementStyles: string;
-    attributes: TimeAttributes;
-    required: boolean;
-};
-
-export type ButtonElement = {
-    elementType: 'button';
-    attributes: ButtonAttributes;
-    uid: string;
-    elementStyles: string;
-};
-
-export type FormElement =
-    | NameElement
-    | EmailElement
-    | PhoneNumberElement
-    | TextElement
-    | NumberElement
-    | TextareaElement
-    | SelectElement
-    | CheckboxElement
-    | RadioElement
-    | DateElement
-    | TimeElement
-    | ButtonElement;
+export type FormElement = Partial<Temp>;

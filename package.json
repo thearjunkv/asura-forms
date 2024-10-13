@@ -14,7 +14,11 @@
 		}
 	},
 	"scripts": {
-		"rollup": "rollup -c --bundleConfigAsCjs"
+		"rollup": "rollup -c --bundleConfigAsCjs",
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"lint": "eslint .",
+		"preview": "vite preview"
 	},
 	"files": [
 		"dist",
@@ -31,29 +35,35 @@
 	],
 	"author": "Arjun KV",
 	"license": "ISC",
-	"dependencies": {
-		"crypto-browserify": "^3.12.0",
-		"nanoid": "^5.0.7"
-	},
+	"dependencies": {},
 	"devDependencies": {
+		"@eslint/js": "^9.11.1",
 		"@rollup/plugin-commonjs": "^26.0.1",
 		"@rollup/plugin-node-resolve": "^15.2.3",
 		"@rollup/plugin-terser": "^0.4.4",
 		"@rollup/plugin-typescript": "^11.1.6",
-		"@types/react": "^18.3.5",
-		"antd": "^5.20.6",
+		"@types/react": "^18.3.10",
+		"@types/react-dom": "^18.3.0",
+		"@vitejs/plugin-react-swc": "^3.5.0",
+		"eslint": "^9.11.1",
+		"eslint-plugin-react-hooks": "^5.1.0-rc.0",
+		"eslint-plugin-react-refresh": "^0.4.12",
+		"globals": "^15.9.0",
 		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
 		"rollup": "^4.21.3",
 		"rollup-plugin-dts": "^6.1.1",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-svg": "^2.0.0",
 		"styled-components": "^6.1.13",
 		"tslib": "^2.7.0",
-		"typescript": "^5.6.2"
+		"typescript": "^5.5.3",
+		"typescript-eslint": "^8.7.0",
+		"vite": "^5.4.8"
 	},
 	"peerDependencies": {
-		"antd": "^5.0.0",
 		"react": ">=16.8",
+		"react-dom": ">=16.8",
 		"styled-components": "^6.0.0",
 		"typescript": "^5.0.0"
 	},

@@ -1,8 +1,8 @@
-import { FormElement } from '../types/FormElements';
+import { FormElement } from './types/FormElements';
 
-const formElements: FormElement[] = [
+const template: FormElement[] = [
     {
-        elementType: 'name',
+        elementType: 'Name',
         uid: '',
         label: 'Name',
         labelPosition: 'top',
@@ -21,7 +21,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'email',
+        elementType: 'Email',
         uid: '',
         label: 'Email',
         labelPosition: 'top',
@@ -40,7 +40,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'phone number',
+        elementType: 'Phone number',
         uid: '',
         requireCountryCode: false,
         label: 'Phone number',
@@ -58,7 +58,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'text',
+        elementType: 'Text',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -77,7 +77,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'number',
+        elementType: 'Number',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -96,7 +96,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'textarea',
+        elementType: 'Textarea',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -116,7 +116,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'select',
+        elementType: 'Dropdown',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -126,21 +126,13 @@ const formElements: FormElement[] = [
         attributes: {
             id: '',
             name: '',
-            disabled: false,
-            multiple: false
+            disabled: false
         },
         dataSourceType: 'values',
-        options: [],
-        apiOptions: {
-            url: '',
-            requestHeaders: [],
-            dataPath: '',
-            labelKey: '',
-            valueKey: ''
-        }
+        options: []
     },
     {
-        elementType: 'checkbox',
+        elementType: 'Checkbox',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -151,18 +143,10 @@ const formElements: FormElement[] = [
             type: 'checkbox',
             name: ''
         },
-        dataSourceType: 'values',
-        options: [],
-        apiOptions: {
-            url: '',
-            requestHeaders: [],
-            dataPath: '',
-            labelKey: '',
-            valueKey: ''
-        }
+        options: []
     },
     {
-        elementType: 'radio',
+        elementType: 'Radio',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -174,18 +158,10 @@ const formElements: FormElement[] = [
             name: '',
             disabled: false
         },
-        dataSourceType: 'values',
-        options: [],
-        apiOptions: {
-            url: '',
-            requestHeaders: [],
-            dataPath: '',
-            labelKey: '',
-            valueKey: ''
-        }
+        options: []
     },
     {
-        elementType: 'date',
+        elementType: 'Date',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -201,7 +177,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'time',
+        elementType: 'Time',
         uid: '',
         label: '',
         labelPosition: 'top',
@@ -217,7 +193,7 @@ const formElements: FormElement[] = [
         }
     },
     {
-        elementType: 'button',
+        elementType: 'Button',
         uid: '',
         elementStyles: '',
         attributes: {
@@ -229,4 +205,4 @@ const formElements: FormElement[] = [
     }
 ];
 
-export default formElements;
+export default template;

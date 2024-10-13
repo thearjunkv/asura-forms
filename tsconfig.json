@@ -1,21 +1,32 @@
 {
 	"compilerOptions": {
-		"declaration": true, // Generate .d.ts files
+		"declaration": true,
+		"emitDeclarationOnly": true,
 		"declarationDir": "./dist/types",
+
 		"target": "es5",
+		"useDefineForClassFields": true,
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
+		"module": "esnext",
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
+
+		/* Linting */
 		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
-		"module": "esnext",
+
+		/* Bundler mode */
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
 		"isolatedModules": true,
-		"noEmit": true,
+		"moduleDetection": "force",
+		// "noEmit": true,
 		"jsx": "react-jsx"
 	},
 	"include": ["src"]
