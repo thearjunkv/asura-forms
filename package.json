@@ -35,7 +35,9 @@
 	],
 	"author": "Arjun KV",
 	"license": "ISC",
-	"dependencies": {},
+	"dependencies": {
+		"react-select": "^5.8.1"
+	},
 	"devDependencies": {
 		"@eslint/js": "^9.11.1",
 		"@rollup/plugin-commonjs": "^26.0.1",

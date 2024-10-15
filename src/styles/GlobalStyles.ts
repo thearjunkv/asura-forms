@@ -1,13 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    :root {
-        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-
+    .form-alcmst {
         --white: hsl(0, 0%, 100%);
         --black: hsl(0, 0%, 0%);
 
@@ -22,100 +16,105 @@ const GlobalStyle = createGlobalStyle`
         --grey-800: hsl(0, 0%, 25%);
         --grey-900: hsl(0, 0%, 13%);
         --grey-1000: hsl(0, 0%, 4%);
-    }
 
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    p,
-    figure,
-    blockquote,
-    dl,
-    dd {
-        margin: 0;
-    }
-
-    ul[role='list'],
-    ol[role='list'] {
-        list-style: none;
-    }
-
-    html:focus-within {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        text-rendering: optimizeSpeed;
-        line-height: 1.5;
-        letter-spacing: 0.5px;
+        background-color: var(--white);
+        color: var(--grey-900);
+        border: 1px solid var(--grey-200);
+        border-radius: 6px;
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
         font-size: 1rem;
         font-weight: 400;
-        background-color: var(--white);
+        font-synthesis: none;
+
+        overflow: hidden;
+
+        text-rendering: optimizeSpeed;
+        line-height: 1.5;
 
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-    }
 
-    a:not([class]) {
-        text-decoration-skip-ink: auto;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    img,
-    picture {
-        max-width: 100%;
-        display: block;
-    }
-
-    input,
-    button,
-    textarea,
-    select {
-        font: inherit;
-        letter-spacing: inherit;
-    }
-
-    ::-webkit-input-placeholder {
-        color: var(--grey-600);
-    }
-
-    :-ms-input-placeholder {
-        color: var(--grey-600);
-    }
-
-    ::-moz-placeholder {
-        color: var(--grey-600);
-    }
-
-    ::placeholder {
-        color: var(--grey-600);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        html:focus-within {
-            scroll-behavior: auto;
+        & *,
+        & *::before,
+        & *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
+        & body,
+        & h1,
+        & h2,
+        & h3,
+        & h4,
+        & p,
+        & figure,
+        & blockquote,
+        & dl,
+        & dd {
+            margin: 0;
+        }
+
+        & ul[role='list'],
+        & ol[role='list'] {
+            list-style: none;
+        }
+
+        & html:focus-within {
+            scroll-behavior: smooth;
+        }
+
+        & a:not([class]) {
+            text-decoration-skip-ink: auto;
+        }
+
+        & a {
+            text-decoration: none;
+        }
+
+        & img,
+        & picture {
+            max-width: 100%;
+            display: block;
+        }
+
+        & input,
+        & button,
+        & textarea,
+        & select {
+            font: inherit;
+            letter-spacing: inherit;
+        }
+
+        & ::-webkit-input-placeholder {
+            color: var(--grey-600);
+        }
+
+        & :-ms-input-placeholder {
+            color: var(--grey-600);
+        }
+
+        & ::-moz-placeholder {
+            color: var(--grey-600);
+        }
+
+        & ::placeholder {
+            color: var(--grey-600);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            & html:focus-within {
+                scroll-behavior: auto;
+            }
+
+            & *,
+            & *::before,
+            & *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     }
 `;

@@ -1,55 +1,28 @@
+import reactSelect from 'react-select';
 import styled from 'styled-components';
 
-export const StyledPhoneNumber = styled.div<{
-    $labelstyles?: string;
-    $elementstyles?: string;
-    labelPos: 'top' | 'left';
-}>``;
+type Styles = { $styles?: string };
 
-export const StyledText = styled.div<{
-    $labelstyles?: string;
-    $elementstyles?: string;
-    labelPos: 'top' | 'left';
-}>``;
+const BaseInput = styled.input``;
 
-export const StyledInputNumber = styled.div<{
-    $labelstyles?: string;
-    $elementstyles?: string;
-    labelPos: 'top' | 'left';
-}>``;
+export const StyledPhoneNumberWrapper = styled.div<Styles>``;
 
-export const StyledTextarea = styled.div<{
-    $labelstyles?: string;
-    $elementstyles?: string;
-    labelPos: 'top' | 'left';
-}>``;
+export const StyledTel = styled(BaseInput).attrs({ type: 'tel' })<Styles>``;
 
-export const StyledDropdown = styled.div<{
-    $labelstyles?: string;
-    $elementstyles?: string;
-    labelPos: 'top' | 'left';
-}>``;
+export const StyledText = styled(BaseInput).attrs({ type: 'text' })<Styles>``;
 
-export const StyledCheckbox = styled.div<{
-    $elementstyles?: string;
-}>``;
+export const StyledInputNumber = styled(BaseInput).attrs({ type: 'number' })<Styles>``;
 
-export const StyledRadio = styled.div<{
-    $elementstyles?: string;
-}>``;
+export const StyledTextarea = styled.textarea<Styles>``;
 
-export const StyledDate = styled.div<{
-    $labelstyles?: string;
-    $elementstyles?: string;
-    labelPos: 'top' | 'left';
-}>``;
+export const StyledDropdown = styled(reactSelect)<{ $styles?: string }>``;
 
-export const StyledTime = styled.div<{
-    $labelstyles?: string;
-    $elementstyles?: string;
-    labelPos: 'top' | 'left';
-}>``;
+export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })<{ $styles?: string }>``;
 
-export const StyledButton = styled.div<{
-    $elementstyles?: string;
-}>``;
+export const StyledRadio = styled.input.attrs({ type: 'radio' })<{ $styles?: string }>``;
+
+export const StyledDate = styled.input.attrs({ type: 'date' })<{ $styles?: string }>``;
+
+export const StyledTime = styled.input.attrs({ type: 'time' })<{ $styles?: string }>``;
+
+export const StyledButton = styled.button<{ $styles?: string }>``;
