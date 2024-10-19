@@ -1,5 +1,3 @@
-export function generateUniqueId() {
-	return 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-}
+export const genId = () => Date.now() + '-' + Math.random().toString(36).slice(2, 11);
 
-export const generateUniqueHtmlId = (name: string) => `${name}-${generateUniqueId()}`;
+export const genHtmlId = (name: string) => `${name}-${genId()}`;

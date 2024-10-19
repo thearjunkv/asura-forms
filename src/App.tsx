@@ -1,16 +1,24 @@
-import Builder from './Builder';
-import GlobalStyle from './styles/GlobalStyles';
+import AlchemyLab from './components/alchemy-lab';
+import { AlchemyLabProvider } from './alchemy-lab';
 
 function App() {
 	return (
-		<div className='form-alcmst'>
-			<GlobalStyle />
-			<Builder
-				onSave={v => {
-					console.log(v);
-					localStorage.setItem('data', JSON.stringify(v));
-				}}
-			/>
+		<div
+			style={{
+				padding: '1em'
+				// backgroundColor: 'grey'
+			}}
+		>
+			<AlchemyLabProvider>
+				<AlchemyLab
+					// paletteGridView={true}
+					height={600}
+					onSave={data => {
+						console.log(data);
+						localStorage.setItem('data', JSON.stringify(data));
+					}}
+				/>
+			</AlchemyLabProvider>
 		</div>
 	);
 }

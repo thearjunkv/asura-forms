@@ -1,6 +1,35 @@
-import { FormElement } from './types/FormElements';
+import { Element } from '../../types';
 
-const template: FormElement[] = [
+const cleanState: Element[] = [
+	{
+		elementType: 'Title',
+		text: 'Title Field',
+		styles: '',
+		uid: ''
+	},
+	{
+		elementType: 'Paragraph',
+		text: 'Paragraph Field',
+		styles: '',
+		uid: ''
+	},
+	{
+		elementType: 'Separator',
+		styles: '',
+		uid: ''
+	},
+	{
+		elementType: 'Spacer',
+		height: '20',
+		styles: '',
+		uid: ''
+	},
+	{
+		elementType: 'Section',
+		children: [],
+		styles: '',
+		uid: ''
+	},
 	{
 		elementType: 'Name',
 		attributes: {
@@ -11,13 +40,13 @@ const template: FormElement[] = [
 			readOnly: false,
 			disabled: false,
 			minLength: 0,
-			maxLength: 100,
+			maxLength: 100
 		},
 		label: 'Name',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'Address',
@@ -30,13 +59,13 @@ const template: FormElement[] = [
 			minLength: 0,
 			maxLength: 100,
 			rows: 5,
-			cols: 40,
+			cols: 40
 		},
 		label: '',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'Email',
@@ -48,13 +77,13 @@ const template: FormElement[] = [
 			readOnly: false,
 			disabled: false,
 			minLength: 0,
-			maxLength: 100,
+			maxLength: 100
 		},
 		label: 'Email',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'PhoneNumber',
@@ -66,14 +95,14 @@ const template: FormElement[] = [
 			readOnly: false,
 			disabled: false,
 			minLength: 10,
-			maxLength: 15,
+			maxLength: 15
 		},
 		label: 'Phone number',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
 		required: true,
-		includeCountryCode: false,
+		includeCountryCode: false
 	},
 	{
 		elementType: 'Text',
@@ -85,13 +114,13 @@ const template: FormElement[] = [
 			readOnly: false,
 			disabled: false,
 			minLength: 0,
-			maxLength: 100,
+			maxLength: 100
 		},
-		label: '',
+		label: 'Text',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'TextArea',
@@ -104,13 +133,13 @@ const template: FormElement[] = [
 			minLength: 0,
 			maxLength: 100,
 			rows: 5,
-			cols: 40,
+			cols: 40
 		},
-		label: '',
+		label: 'Textarea',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'Number',
@@ -122,22 +151,22 @@ const template: FormElement[] = [
 			readOnly: false,
 			disabled: false,
 			min: 0,
-			max: 100,
+			max: 100
 		},
-		label: '',
+		label: 'Number',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'Dropdown',
 		attributes: {
 			id: '',
 			name: '',
-			disabled: false,
+			disabled: false
 		},
-		label: '',
+		label: 'Dropdown',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
@@ -149,15 +178,15 @@ const template: FormElement[] = [
 				label: 'Option 1',
 				value: 'option_1',
 				selected: false,
-				disabled: false,
-			},
-		],
+				disabled: false
+			}
+		]
 	},
 	{
 		elementType: 'Checkbox',
 		attributes: {
 			type: 'checkbox',
-			name: '',
+			name: ''
 		},
 		styles: '',
 		uid: '',
@@ -165,15 +194,15 @@ const template: FormElement[] = [
 		label: 'Option 1',
 		value: 'option_1',
 		checked: false,
-		disabled: false,
+		disabled: false
 	},
 	{
 		elementType: 'CheckboxGroup',
 		attributes: {
 			type: 'checkbox',
-			name: '',
+			name: ''
 		},
-		label: '',
+		label: 'Checkbox',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
@@ -183,18 +212,18 @@ const template: FormElement[] = [
 				label: 'Option 1',
 				value: 'option_1',
 				checked: false,
-				disabled: false,
-			},
-		],
+				disabled: false
+			}
+		]
 	},
 	{
 		elementType: 'Radio',
 		attributes: {
 			type: 'radio',
 			name: '',
-			disabled: false,
+			disabled: false
 		},
-		label: '',
+		label: 'Radio',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
@@ -204,9 +233,9 @@ const template: FormElement[] = [
 				label: 'Option 1',
 				value: 'option_1',
 				checked: false,
-				disabled: false,
-			},
-		],
+				disabled: false
+			}
+		]
 	},
 	{
 		elementType: 'Date',
@@ -215,13 +244,13 @@ const template: FormElement[] = [
 			id: '',
 			name: '',
 			readOnly: false,
-			disabled: false,
+			disabled: false
 		},
-		label: '',
+		label: 'Date',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'Time',
@@ -230,13 +259,13 @@ const template: FormElement[] = [
 			id: '',
 			name: '',
 			readOnly: false,
-			disabled: false,
+			disabled: false
 		},
-		label: '',
+		label: 'Time',
 		labelPosition: 'top',
 		styles: '',
 		uid: '',
-		required: true,
+		required: true
 	},
 	{
 		elementType: 'Button',
@@ -244,11 +273,11 @@ const template: FormElement[] = [
 			type: 'submit',
 			id: '',
 			disabled: false,
-			placeholder: 'submit',
+			placeholder: 'submit'
 		},
 		styles: '',
-		uid: '',
-	},
+		uid: ''
+	}
 ];
 
-export default template;
+export default cleanState;

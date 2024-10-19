@@ -1,3 +1,46 @@
+// Layout Elements
+
+export type TTitle = {
+	elementType: 'Title';
+	text: string;
+
+	styles: string;
+	uid: string;
+};
+
+export type TParagraph = {
+	elementType: 'Paragraph';
+	text: string;
+
+	styles: string;
+	uid: string;
+};
+
+export type TSeparator = {
+	elementType: 'Separator';
+
+	styles: string;
+	uid: string;
+};
+
+export type TSpacer = {
+	elementType: 'Spacer';
+	height: string;
+
+	styles: string;
+	uid: string;
+};
+
+export type TSection = {
+	elementType: 'Section';
+	children: Element[];
+
+	styles: string;
+	uid: string;
+};
+
+// Form Elements
+
 export type TextAttrs = {
 	type: 'text';
 	id: string;
@@ -129,17 +172,25 @@ export type TNumber = {
 	attributes: NumberAttrs;
 } & Common;
 
-type TDropdownOptions =
-	| {
+export type DropdownOptions = {
+	label: string;
+	value: string;
+	selected: boolean;
+	disabled: boolean;
+}[];
+
+export type TDropdown =
+	| ({
+			elementType: 'Dropdown';
+			attributes: SelectAttrs;
+			allowMultiSelect: boolean;
 			dataSourceType: 'values';
-			options: {
-				label: string;
-				value: string;
-				selected: boolean;
-				disabled: boolean;
-			}[];
-	  }
-	| {
+			options: DropdownOptions;
+	  } & Common)
+	| ({
+			elementType: 'Dropdown';
+			attributes: SelectAttrs;
+			allowMultiSelect: boolean;
 			dataSourceType: 'api';
 			apiConfig: {
 				url: string;
@@ -148,14 +199,7 @@ type TDropdownOptions =
 				labelKey: string;
 				valueKey: string;
 			};
-	  };
-
-export type TDropdown = {
-	elementType: 'Dropdown';
-	attributes: SelectAttrs;
-	allowMultiSelect: boolean;
-} & TDropdownOptions &
-	Common;
+	  } & Common);
 
 export type TCheckbox = {
 	elementType: 'Checkbox';
@@ -220,7 +264,12 @@ type Temp =
 	| TRadio
 	| TDate
 	| TTime
-	| TButton;
+	| TButton
+	| TTitle
+	| TParagraph
+	| TSeparator
+	| TSpacer
+	| TSection;
 
 // export type FormElement = Partial<
 // 	Temp & {
@@ -230,4 +279,4 @@ type Temp =
 // >;
 
 // export type FormElement = Partial<Temp>;
-export type FormElement = Temp;
+export type Element = Temp;
