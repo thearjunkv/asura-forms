@@ -1,6 +1,6 @@
 import { Element } from '../../types';
 
-export type AlchemyLabProps = {
+export type TAlchemyLab = {
 	title?: string;
 	paletteGridView?: boolean;
 	height?: number;

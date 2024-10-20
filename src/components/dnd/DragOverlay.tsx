@@ -4,29 +4,28 @@ import { PaletteElement } from '../palette-element';
 import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
 import cleanState from '../alchemy-lab/data';
 import { genId } from '../../utils';
+import CompileJsx from '../compile-jsx';
 
 function DragOverlayWrapper() {
-	const { draggedElement, setDraggedElement, setDragOver, setData } = useAlchemyLab();
+	const { data, draggedElement, setDraggedElement, setDraggedOver, setData } = useAlchemyLab();
 
 	useDndMonitor({
 		onDragStart: ({ active }) => {
 			if (!active.data.current) return;
-			const { elementId, elementType, isPaletteElement } = active.data.current;
+			const { elementType, isPaletteElement } = active.data.current;
 			setDraggedElement({
-				elementId,
+				elementId: active.id as string,
 				elementType,
 				isPaletteElement
 			});
 		},
 		onDragMove: ({ over }) => {
-			if (!over) {
-				setDragOver(null);
-			}
-			setDragOver(over);
+			console.log(over);
+			setDraggedOver(over);
 		},
 		onDragEnd: ({ active, over }) => {
-			console.log(active);
-			console.log(over);
+			setDraggedElement(null);
+			setDraggedOver(null);
 
 			if (!active.data.current) return;
 			if (!over) return;
@@ -38,28 +37,33 @@ function DragOverlayWrapper() {
 
 				setData(p => [...p, { ...element, uid: genId() }]);
 			}
-
-			setDraggedElement(null);
-			setDragOver(null);
 		},
 		onDragCancel: () => {
 			setDraggedElement(null);
-			setDragOver(null);
+			setDraggedOver(null);
 		}
 	});
 
 	if (draggedElement) {
-		const { elementType, isPaletteElement } = draggedElement;
-		if (!isPaletteElement) return null;
+		const { elementId, elementType, isPaletteElement } = draggedElement;
+		if (isPaletteElement) {
+			const element = elements.find(e => e.element === elementType);
+			if (!element) return null;
 
-		const element = elements.find(e => e.element === elementType);
-		if (!element) return null;
-
-		return (
-			<DragOverlay>
-				<PaletteElement {...element} />
-			</DragOverlay>
-		);
+			return (
+				<DragOverlay>
+					<PaletteElement {...element} />
+				</DragOverlay>
+			);
+		} else {
+			const element = data.find(e => e.uid === elementId);
+			if (!element) return;
+			return (
+				<DragOverlay>
+					<CompileJsx element={element} />
+				</DragOverlay>
+			);
+		}
 	}
 
 	return null;

@@ -1,3 +1,4 @@
+import { cn } from '../../utils';
 import { StyledPaletteElement } from './styles';
 
 export const PaletteElement: React.FC<{ icon: JSX.Element; text: string; gridView?: boolean }> = ({
@@ -7,7 +8,7 @@ export const PaletteElement: React.FC<{ icon: JSX.Element; text: string; gridVie
 }) => {
 	return (
 		<StyledPaletteElement
-			className={`form-alcmst__palette-element${gridView ? ' form-alcmst__palette-element--grid-layout' : ''}`}
+			className={cn('form-alcmst__palette-element', gridView && 'form-alcmst__palette-element--grid-layout')}
 		>
 			<div>{icon}</div>
 			<span>{text}</span>

@@ -3,10 +3,11 @@ import { StyledPalette } from './styles';
 import { PaletteElement } from '../palette-element';
 import { Draggable } from '../dnd/Draggable';
 import { TPalette } from './types';
+import { cn } from '../../utils';
 
 const Palette: React.FC<TPalette> = props => {
 	return (
-		<StyledPalette className={`form-alcmst__palette${props.gridView ? ' form-alcmst__palette--grid-layout' : ''}`}>
+		<StyledPalette className={cn('form-alcmst__palette', props.gridView && 'form-alcmst__palette--grid-layout')}>
 			<h2>Layout Elements</h2>
 			<div>
 				{layoutElements.map(el => (

@@ -1,12 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
     .form-alcmst__alchemy-lab,
     .form-alcmst__manifest {
         --white: hsl(0, 0%, 100%);
         --black: hsl(0, 0%, 0%);
 
-        --grey-50: hsl(0, 0%, 98%);
+        --grey-50: hsl(0, 0%, 97.5%);
         --grey-100: hsl(0, 0%, 95%);
         --grey-200: hsl(0, 0%, 88%);
         --grey-300: hsl(0, 0%, 82%);
@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
 
         text-rendering: optimizeSpeed;
         line-height: 1.5;
-        letter-spacing: 0.5px;
+        letter-spacing: .007em;
 
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -129,5 +129,3 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 `;
-
-export default GlobalStyle;

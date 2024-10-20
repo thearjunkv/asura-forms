@@ -15,8 +15,10 @@ export type TAlchemyLabContext = {
 			isPaletteElement: boolean;
 		} | null>
 	>;
-	dragOver: Over | null;
-	setDragOver: Dispatch<SetStateAction<Over | null>>;
+
+	draggedOver: Over | null;
+	setDraggedOver: Dispatch<SetStateAction<Over | null>>;
+
 	data: Element[];
 	setData: Dispatch<SetStateAction<Element[]>>;
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlchemyLabProps } from './types';
+import { TAlchemyLab } from './types';
 import { StyledAlchemyLab } from './styles';
 import { Element } from '../../types';
 import { PreviewIcon, SaveIcon } from '../../assets/Icons';
@@ -7,15 +7,15 @@ import { DndContextWrapper } from '../dnd/DndContext';
 import Properties from '../properties';
 import Palette from '../palette';
 import Workspace from '../workspace';
-import GlobalStyle from '../../styles';
+import { GlobalStyles } from '../../styles';
 import DragOverlayWrapper from '../dnd/DragOverlay';
 
-const AlchemyLab: React.FC<AlchemyLabProps> = props => {
+const AlchemyLab: React.FC<TAlchemyLab> = props => {
 	const [data, setData] = useState<Element[]>(() => props.data || []);
 
 	return (
 		<>
-			<GlobalStyle />
+			<GlobalStyles />
 			<StyledAlchemyLab
 				className='form-alcmst__alchemy-lab'
 				height={props.height}

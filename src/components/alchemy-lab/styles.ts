@@ -15,23 +15,23 @@ export const StyledAlchemyLab = styled.div<{ height?: number }>`
 		justify-content: space-between;
 		align-items: center;
 
-		& h1 {
+		h1 {
 			font-size: 0.9rem;
 			font-weight: normal;
 			color: var(--grey-700);
 		}
 
-		& h1 span {
+		h1 span {
 			font-size: 0.94rem;
 			font-weight: bold;
 			color: var(--grey-800);
 		}
 
-		& div {
+		div {
 			display: flex;
 		}
 
-		& div > button {
+		div button {
 			margin-left: 0.5em;
 		}
 	}
@@ -40,7 +40,7 @@ export const StyledAlchemyLab = styled.div<{ height?: number }>`
 		height: calc(100% - 50px);
 		display: flex;
 
-		& > .form-alcmst__workspace-wrapper {
+		.form-alcmst__workspace-wrapper {
 			width: calc(100% - 200px - 250px); // calc with with with of picker and properties
 			border-right: 1px solid var(--grey-100);
 			border-left: 1px solid var(--grey-100);

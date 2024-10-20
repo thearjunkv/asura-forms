@@ -14,15 +14,17 @@ export const StyledWorkspace = styled.div`
 		height: 100%;
 	}
 
-	& .form-alcmst__workspace-board {
+	.form-alcmst__workspace-board {
+		padding: 1em;
 		width: 100%;
 		height: 100%;
 		background-color: var(--white);
+		border: 1px solid var(--white);
 		border-radius: 6px;
 		overflow: auto;
 	}
 
-	& .form-alcmst__workspace-board--empty {
+	.form-alcmst__workspace-board--empty {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -35,7 +37,7 @@ export const StyledWorkspace = styled.div`
 		}
 	}
 
-	& .form-alcmst__workspace-board--hovered {
-		border: 1px solid var(--grey-500);
+	.form-alcmst__workspace-board--hovered {
+		border-color: var(--grey-500);
 	}
 `;

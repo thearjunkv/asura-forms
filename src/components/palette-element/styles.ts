@@ -12,26 +12,27 @@ export const StyledPaletteElement = styled.div`
 	align-items: center;
 	transition: background-color 120ms ease;
 	overflow: hidden;
+	cursor: grab;
 
 	&:hover {
 		background-color: var(--grey-100);
 	}
 
-	& div {
+	div {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
-	& svg {
+	svg {
 		width: 20px;
 	}
 
-	& svg path {
+	svg path {
 		fill: var(--grey-900);
 	}
 
-	& span {
+	span {
 		margin-left: 0.7em;
 		color: var(--grey-900);
 	}
@@ -43,7 +44,7 @@ export const StyledPaletteElement = styled.div`
 		flex-direction: column;
 		justify-content: center;
 
-		& span {
+		span {
 			margin-left: 0;
 			margin-top: 0.2em;
 			width: 100%;
