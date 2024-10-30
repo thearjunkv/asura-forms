@@ -11,6 +11,8 @@ export const AlchemyLabProvider: React.FC<{
 	const [draggedOver, setDraggedOver] = useState<Over | null>(null);
 	const [data, setData] = useState<Element[]>([]);
 
+	const [paletteGridView, setPaletteGridView] = useState<boolean>(false);
+
 	return (
 		<AlchemyLabContext.Provider
 			value={{
@@ -19,7 +21,9 @@ export const AlchemyLabProvider: React.FC<{
 				draggedOver,
 				setDraggedOver,
 				data,
-				setData
+				setData,
+				paletteGridView,
+				setPaletteGridView
 			}}
 		>
 			{children}

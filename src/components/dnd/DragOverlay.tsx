@@ -60,7 +60,10 @@ function DragOverlayWrapper() {
 			if (!element) return;
 			return (
 				<DragOverlay>
-					<CompileJsx element={element} />
+					<CompileJsx
+						element={element}
+						isOverlay={true}
+					/>
 				</DragOverlay>
 			);
 		}

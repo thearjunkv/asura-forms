@@ -15,7 +15,7 @@ export const StyledWorkspace = styled.div`
 	}
 
 	.form-alcmst__workspace-board {
-		padding: 1em;
+		padding: 0.5em 1em;
 		width: 100%;
 		height: 100%;
 		background-color: var(--white);
@@ -39,5 +39,9 @@ export const StyledWorkspace = styled.div`
 
 	.form-alcmst__workspace-board--hovered {
 		border-color: var(--grey-500);
+	}
+
+	.form-alcmst__board-element {
+		margin: 0.5em 0;
 	}
 `;

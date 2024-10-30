@@ -19,7 +19,11 @@ export const StyledPalette = styled.div`
 		width: 100%;
 	}
 
-	&.form-alcmst__palette--grid-layout > div {
+	& > div > div {
+		margin-top: 0.4em;
+	}
+
+	&.form-alcmst__palette--grid-view > div {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		place-items: center;

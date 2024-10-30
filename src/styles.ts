@@ -6,6 +6,8 @@ export const GlobalStyles = createGlobalStyle`
         --white: hsl(0, 0%, 100%);
         --black: hsl(0, 0%, 0%);
 
+        --red-color: #e30000;
+
         --grey-50: hsl(0, 0%, 97.5%);
         --grey-100: hsl(0, 0%, 95%);
         --grey-200: hsl(0, 0%, 88%);
@@ -50,20 +52,20 @@ export const GlobalStyles = createGlobalStyle`
             letter-spacing: inherit;
         }
 
-        ::-webkit-input-placeholder {
-            color: var(--grey-600);
+        ::-webkit-input-placeholder { // update config provider as well
+            color: var(--grey-500);
         }
 
         :-ms-input-placeholder {
-            color: var(--grey-600);
+            color: var(--grey-500);
         }
 
         ::-moz-placeholder {
-            color: var(--grey-600);
+            color: var(--grey-500);
         }
 
         ::placeholder {
-            color: var(--grey-600);
+            color: var(--grey-500);
         }
 
         @media (prefers-reduced-motion: reduce) {

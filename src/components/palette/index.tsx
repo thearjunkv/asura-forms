@@ -2,12 +2,13 @@ import { formElements, layoutElements } from './data';
 import { StyledPalette } from './styles';
 import { PaletteElement } from '../palette-element';
 import { Draggable } from '../dnd/Draggable';
-import { TPalette } from './types';
 import { cn } from '../../utils';
+import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
 
-const Palette: React.FC<TPalette> = props => {
+const Palette: React.FC = () => {
+	const { paletteGridView } = useAlchemyLab();
 	return (
-		<StyledPalette className={cn('form-alcmst__palette', props.gridView && 'form-alcmst__palette--grid-layout')}>
+		<StyledPalette className={cn('form-alcmst__palette', paletteGridView && 'form-alcmst__palette--grid-view')}>
 			<h2>Layout Elements</h2>
 			<div>
 				{layoutElements.map(el => (
@@ -17,10 +18,7 @@ const Palette: React.FC<TPalette> = props => {
 						elementType={el.element}
 						isPaletteElement={true}
 					>
-						<PaletteElement
-							{...el}
-							gridView={props.gridView}
-						/>
+						<PaletteElement {...el} />
 					</Draggable>
 				))}
 			</div>
@@ -33,10 +31,7 @@ const Palette: React.FC<TPalette> = props => {
 						elementType={el.element}
 						isPaletteElement={true}
 					>
-						<PaletteElement
-							{...el}
-							gridView={props.gridView}
-						/>
+						<PaletteElement {...el} />
 					</Draggable>
 				))}
 			</div>

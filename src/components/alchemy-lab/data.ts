@@ -4,6 +4,8 @@ const cleanState: Element[] = [
 	{
 		elementType: 'Title',
 		text: 'Title Field',
+		headingLevel: 'h2',
+
 		styles: '',
 		uid: ''
 	},
@@ -42,8 +44,7 @@ const cleanState: Element[] = [
 			minLength: 0,
 			maxLength: 100
 		},
-		label: 'Name',
-		labelPosition: 'top',
+		label: 'Name Field',
 		styles: '',
 		uid: '',
 		required: true
@@ -61,8 +62,7 @@ const cleanState: Element[] = [
 			rows: 5,
 			cols: 40
 		},
-		label: '',
-		labelPosition: 'top',
+		label: 'Address Field',
 		styles: '',
 		uid: '',
 		required: true
@@ -79,8 +79,7 @@ const cleanState: Element[] = [
 			minLength: 0,
 			maxLength: 100
 		},
-		label: 'Email',
-		labelPosition: 'top',
+		label: 'Email Field',
 		styles: '',
 		uid: '',
 		required: true
@@ -97,8 +96,7 @@ const cleanState: Element[] = [
 			minLength: 10,
 			maxLength: 15
 		},
-		label: 'Phone number',
-		labelPosition: 'top',
+		label: 'Phone number Field',
 		styles: '',
 		uid: '',
 		required: true,
@@ -116,8 +114,7 @@ const cleanState: Element[] = [
 			minLength: 0,
 			maxLength: 100
 		},
-		label: 'Text',
-		labelPosition: 'top',
+		label: 'Text Field',
 		styles: '',
 		uid: '',
 		required: true
@@ -135,8 +132,7 @@ const cleanState: Element[] = [
 			rows: 5,
 			cols: 40
 		},
-		label: 'Textarea',
-		labelPosition: 'top',
+		label: 'Textarea Field',
 		styles: '',
 		uid: '',
 		required: true
@@ -153,8 +149,7 @@ const cleanState: Element[] = [
 			min: 0,
 			max: 100
 		},
-		label: 'Number',
-		labelPosition: 'top',
+		label: 'Number Field',
 		styles: '',
 		uid: '',
 		required: true
@@ -166,8 +161,7 @@ const cleanState: Element[] = [
 			name: '',
 			disabled: false
 		},
-		label: 'Dropdown',
-		labelPosition: 'top',
+		label: 'Dropdown Field',
 		styles: '',
 		uid: '',
 		required: true,
@@ -202,8 +196,7 @@ const cleanState: Element[] = [
 			type: 'checkbox',
 			name: ''
 		},
-		label: 'Checkbox',
-		labelPosition: 'top',
+		label: 'Checkbox Group Field',
 		styles: '',
 		uid: '',
 		required: true,
@@ -223,8 +216,7 @@ const cleanState: Element[] = [
 			name: '',
 			disabled: false
 		},
-		label: 'Radio',
-		labelPosition: 'top',
+		label: 'Radio Field',
 		styles: '',
 		uid: '',
 		required: true,
@@ -246,8 +238,7 @@ const cleanState: Element[] = [
 			readOnly: false,
 			disabled: false
 		},
-		label: 'Date',
-		labelPosition: 'top',
+		label: 'Date Field',
 		styles: '',
 		uid: '',
 		required: true
@@ -261,8 +252,7 @@ const cleanState: Element[] = [
 			readOnly: false,
 			disabled: false
 		},
-		label: 'Time',
-		labelPosition: 'top',
+		label: 'Time Field',
 		styles: '',
 		uid: '',
 		required: true

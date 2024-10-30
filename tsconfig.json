@@ -1,33 +1,4 @@
 {
-	"compilerOptions": {
-		"declaration": true,
-		"emitDeclarationOnly": true,
-		"declarationDir": "./dist/types",
-
-		"target": "es5",
-		"useDefineForClassFields": true,
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
-		"module": "esnext",
-		"skipLibCheck": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-
-		/* Linting */
-		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"forceConsistentCasingInFileNames": true,
-		"noFallthroughCasesInSwitch": true,
-
-		/* Bundler mode */
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"allowImportingTsExtensions": true,
-		"isolatedModules": true,
-		"moduleDetection": "force",
-		// "noEmit": true,
-		"jsx": "react-jsx"
-	},
-	"include": ["src"]
+	"files": [],
+	"references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }

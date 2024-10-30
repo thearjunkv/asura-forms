@@ -21,4 +21,7 @@ export type TAlchemyLabContext = {
 
 	data: Element[];
 	setData: Dispatch<SetStateAction<Element[]>>;
+
+	paletteGridView: boolean;
+	setPaletteGridView: Dispatch<SetStateAction<boolean>>;
 };

@@ -3,6 +3,7 @@
 export type TTitle = {
 	elementType: 'Title';
 	text: string;
+	headingLevel: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 	styles: string;
 	uid: string;
@@ -128,7 +129,6 @@ export type ButtonAttrs = {
 
 type Common = {
 	label: string;
-	labelPosition: 'top' | 'left';
 
 	styles: string;
 
@@ -208,7 +208,7 @@ export type TCheckbox = {
 	value: string;
 	checked: boolean;
 	disabled: boolean;
-} & Omit<Common, 'labelPosition'>;
+} & Common;
 
 export type TCheckboxGroup = {
 	elementType: 'CheckboxGroup';

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledPaletteElement = styled.div`
-	margin-top: 0.6em;
 	padding: 0.4em 0.8em;
 	font-size: 0.75rem;
 	font-size: 0.7em;
@@ -37,7 +36,7 @@ export const StyledPaletteElement = styled.div`
 		color: var(--grey-900);
 	}
 
-	&.form-alcmst__palette-element--grid-layout {
+	&.form-alcmst__palette-element--vertical-card {
 		padding: 0.8em;
 		width: 75px;
 		height: 75px;
