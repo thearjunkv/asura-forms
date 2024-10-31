@@ -25,8 +25,8 @@ function App() {
 			<AlchemyLabProvider>
 				<ConfigProvider theme={theme}>
 					<AlchemyLab
-						paletteGridView={true}
-						height={680}
+						// paletteGridView={true}
+						// height={980}
 						onSave={data => {
 							console.log(data);
 							localStorage.setItem('data', JSON.stringify(data));

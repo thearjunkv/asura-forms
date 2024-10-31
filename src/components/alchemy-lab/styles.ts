@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledAlchemyLab = styled.div<{ height?: number }>`
 	height: ${({ height }) => (typeof height === 'number' ? `${height}px` : '650px')};
-	/* border: 3px solid violet; */
 	border: 1px solid var(--grey-300);
 	border-radius: 6px;
 	overflow: hidden;
@@ -39,11 +38,5 @@ export const StyledAlchemyLab = styled.div<{ height?: number }>`
 	.form-alcmst__alchemy-lab-body {
 		height: calc(100% - 50px);
 		display: flex;
-
-		.form-alcmst__workspace-wrapper {
-			width: calc(100% - 200px - 250px); // calc with with with of picker and properties
-			border-right: 1px solid var(--grey-100);
-			border-left: 1px solid var(--grey-100);
-		}
 	}
 `;

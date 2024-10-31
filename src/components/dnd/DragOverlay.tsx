@@ -20,8 +20,8 @@ function DragOverlayWrapper() {
 			});
 		},
 		onDragMove: ({ over }) => {
-			console.log(over);
-			setDraggedOver(over);
+			// console.log(over);
+			// setDraggedOver(over);
 		},
 		onDragEnd: ({ active, over }) => {
 			setDraggedElement(null);

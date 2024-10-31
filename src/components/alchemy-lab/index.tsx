@@ -39,9 +39,7 @@ const AlchemyLab: React.FC<TAlchemyLab> = props => {
 				<div className='form-alcmst__alchemy-lab-body'>
 					<DndContextWrapper>
 						<Palette />
-						<div className='form-alcmst__workspace-wrapper'>
-							<Workspace />
-						</div>
+						<Workspace />
 						<DragOverlayWrapper />
 					</DndContextWrapper>
 					<Properties />

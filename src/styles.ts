@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
         --black: hsl(0, 0%, 0%);
 
         --red-color: #e30000;
+        --red-color-light: #E54C38;
 
         --grey-50: hsl(0, 0%, 97.5%);
         --grey-100: hsl(0, 0%, 95%);

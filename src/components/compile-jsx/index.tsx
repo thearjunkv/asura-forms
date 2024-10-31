@@ -1,15 +1,65 @@
 import { Checkbox, DatePicker, Input, InputNumber, Radio, Select, TimePicker } from 'antd';
 import { Draggable } from '../dnd/Draggable';
 import { StyledCompileJsx } from './styles';
-import { TCompileJsx } from './types';
+import { TBoardElementWrapper, TCompileJsx } from './types';
 import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
 import { cn } from '../../utils';
-import { SpacerIcon } from '../../assets/Icons';
+import { DeleteIcon, SpacerIcon } from '../../assets/Icons';
+import { useDroppable } from '@dnd-kit/core';
+
+const BoardElementWrapper: React.FC<TBoardElementWrapper> = ({ element, isOverlay, children }) => {
+	const { elementType, uid } = element;
+
+	const topHalf = useDroppable({
+		id: `top-half-${uid}`,
+		data: {
+			elementId: uid,
+			elementType
+		}
+	});
+	const bottomHalf = useDroppable({
+		id: `bottom-half-${uid}`,
+		data: {
+			elementId: uid,
+			elementType
+		}
+	});
+
+	return (
+		<>
+			<div
+				ref={topHalf.setNodeRef}
+				className={cn(
+					'form-alcmst__board-element-top',
+					isOverlay && 'form-alcmst__board-element-top--dragging',
+					topHalf.isOver && 'form-alcmst__board-element-top--drag-over'
+				)}
+			></div>
+			{children}
+			<div
+				ref={bottomHalf.setNodeRef}
+				className={cn(
+					'form-alcmst__board-element-bottom',
+					isOverlay && 'form-alcmst__board-element-bottom--dragging',
+					bottomHalf.isOver && 'form-alcmst__board-element-bottom--drag-over'
+				)}
+			></div>
+		</>
+	);
+};
 
 const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
-	const { draggedElement } = useAlchemyLab();
 	const { elementType, uid } = element;
 	let jsxElement: JSX.Element | null = null;
+
+	const { draggedElement } = useAlchemyLab();
+	const sectionDroppable = useDroppable({
+		id: `section-${uid}`,
+		data: {
+			elementId: uid,
+			elementType
+		}
+	});
 
 	// if (elementType === 'Title') jsxElement = <element.headingLevel>{element.text}</element.headingLevel>;
 	// else if (elementType === 'Paragraph') jsxElement = <p>{element.text}</p>;
@@ -55,7 +105,14 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 		case 'Section':
 			jsxElement = (
 				<div className='form-alcmst__element-wrapper'>
-					<div className='form-alcmst__element-section'></div>
+					<div className='form-alcmst__element-section'>
+						{element.children.map(element => (
+							<CompileJsx
+								key={element.uid}
+								element={element}
+							/>
+						))}
+					</div>
 				</div>
 			);
 			break;
@@ -333,7 +390,7 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 	}
 	if (jsxElement === null) return;
 
-	if (draggedElement?.elementId === uid && !isOverlay) return;
+	// if (draggedElement?.elementId === uid && !isOverlay) return;
 
 	return (
 		<Draggable
@@ -342,7 +399,16 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			isPaletteElement={false}
 		>
 			<StyledCompileJsx>
-				<div className='form-alcmst__board-element'>
+				<div
+					{...(elementType === 'Section' ? { ref: sectionDroppable.setNodeRef } : {})}
+					className={cn(
+						'form-alcmst__board-element',
+						isOverlay && 'form-alcmst__board-element--dragging-overlay',
+						draggedElement?.elementId === uid && !isOverlay && 'form-alcmst__board-element--dragging',
+						elementType === 'Section' && 'form-alcmst__board-element--section',
+						sectionDroppable.isOver && 'form-alcmst__board-element--section-drag-over'
+					)}
+				>
 					{elementType === 'Spacer' && (
 						<div className='form-alcmst__board-element-spacer-info'>
 							<div>{SpacerIcon}</div>
@@ -354,19 +420,25 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 							<span>Section Field</span>
 						</div>
 					)}
-					{jsxElement}
-					<div
+					{elementType === 'Section' ? (
+						jsxElement
+					) : (
+						<BoardElementWrapper
+							element={element}
+							isOverlay={isOverlay}
+						>
+							{jsxElement}
+						</BoardElementWrapper>
+					)}
+					<button
 						className={cn(
-							'form-alcmst__board-element-top',
-							isOverlay && 'form-alcmst__board-element-top--dragging'
+							'form-alcmst__board-element-btn-delete',
+							elementType === 'Section' && 'form-alcmst__board-element-btn-delete--section',
+							isOverlay && 'form-alcmst__board-element-btn-delete--dragging'
 						)}
-					></div>
-					<div
-						className={cn(
-							'form-alcmst__board-element-bottom',
-							isOverlay && 'form-alcmst__board-element-bottom--dragging'
-						)}
-					></div>
+					>
+						{DeleteIcon}
+					</button>
 				</div>
 			</StyledCompileJsx>
 		</Draggable>
