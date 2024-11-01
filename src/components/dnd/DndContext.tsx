@@ -1,22 +1,17 @@
-import { DndContext, closestCenter, closestCorners } from '@dnd-kit/core';
+import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core';
 
 type TDndContext = {
 	children: React.ReactNode;
-	collisionDetection?: 'closestCenter' | 'closestCorners';
 };
 
-export function DndContextWrapper({ children, collisionDetection }: TDndContext) {
-	return (
-		<DndContext
-			collisionDetection={
-				collisionDetection === 'closestCenter'
-					? closestCenter
-					: collisionDetection === 'closestCorners'
-					? closestCorners
-					: undefined
-			}
-		>
-			{children}
-		</DndContext>
-	);
+export function DndContextWrapper({ children }: TDndContext) {
+	const mouseSensor = useSensor(MouseSensor, {
+		activationConstraint: {
+			distance: 10
+		}
+	});
+
+	const sensors = useSensors(mouseSensor);
+
+	return <DndContext sensors={sensors}>{children}</DndContext>;
 }

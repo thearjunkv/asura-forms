@@ -3,7 +3,7 @@ import { Draggable } from '../dnd/Draggable';
 import { StyledCompileJsx } from './styles';
 import { TBoardElementWrapper, TCompileJsx } from './types';
 import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
-import { cn } from '../../utils';
+import { clone, cn, remove } from '../../utils';
 import { DeleteIcon, SpacerIcon } from '../../assets/Icons';
 import { useDroppable } from '@dnd-kit/core';
 
@@ -54,7 +54,7 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 	const { elementId, elementType } = element;
 	let jsxElement: JSX.Element | null = null;
 
-	const { draggedElement } = useAlchemyLab();
+	const { data, setData, draggedElement } = useAlchemyLab();
 	const sectionDroppable = useDroppable({
 		id: `section-${elementId}`,
 		data: {
@@ -232,23 +232,31 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			break;
 		}
 		case 'Dropdown': {
-			const { allowMultiSelect, attributes, dataSourceType: _omit, label, required } = element;
+			const { allowMultiSelect, attributes, dataSourceType, label, required } = element;
 			const { disabled, id, name } = attributes;
 
-			jsxElement = (
-				<div
-					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
-				>
-					{label && <label htmlFor={id || elementId}>{label}</label>}
-					<Select
-						data-name={name}
-						data-required={required}
-						id={id || elementId}
-						disabled={disabled}
-						mode={allowMultiSelect ? 'multiple' : 'tags'}
-					/>
-				</div>
-			);
+			if (dataSourceType === 'values') {
+				const { options } = element;
+				jsxElement = (
+					<div
+						className={cn(
+							'form-alcmst__element-wrapper',
+							required && 'form-alcmst__element-wrapper--required'
+						)}
+					>
+						{label && <label htmlFor={id || elementId}>{label}</label>}
+						<Select
+							data-name={name}
+							data-required={required}
+							id={id || elementId}
+							disabled={disabled}
+							options={options.map(({ selected: _omit, ...rest }) => rest)}
+							mode={allowMultiSelect ? 'multiple' : 'tags'}
+						/>
+					</div>
+				);
+			}
+
 			break;
 		}
 		case 'Checkbox': {
@@ -425,6 +433,12 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 							elementType === 'Section' && 'form-alcmst__board-element-btn-delete--section',
 							isOverlay && 'form-alcmst__board-element-btn-delete--dragging'
 						)}
+						onClick={() => {
+							const clonedData = clone(data);
+							const result = remove({ data: clonedData, elementId });
+							if (!result) return;
+							setData(result.updatedData);
+						}}
 					>
 						{DeleteIcon}
 					</button>

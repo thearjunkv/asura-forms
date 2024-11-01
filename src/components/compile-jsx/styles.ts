@@ -180,6 +180,10 @@ export const StyledCompileJsx = styled.div`
 		&.form-alcmst__board-element-btn-delete--dragging {
 			opacity: 0 !important;
 		}
+
+		&:hover {
+			background-color: var(--red-color);
+		}
 	}
 
 	.form-alcmst__board-element-btn-delete--section {

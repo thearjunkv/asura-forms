@@ -3,7 +3,8 @@ import WorkspaceBoard from '../workspace-board';
 import { StyledWorkspace } from './styles';
 import cleanState from '../alchemy-lab/data';
 import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
-import { drop } from '../../utils';
+import { clone, drop, genId, reorder } from '../../utils';
+import { Element } from '../../types';
 
 const Workspace: React.FC = () => {
 	const { data, setData } = useAlchemyLab();
@@ -13,32 +14,54 @@ const Workspace: React.FC = () => {
 			if (!over) return;
 
 			const { elementId, elementType, isPaletteElement } = active.data.current;
-			if (isPaletteElement) {
-				let targetElementId: string = '';
-				let targetSectionId: string = '';
-				let position: 'up' | 'down' = 'up';
 
-				const overId = (over.id as string).split('-')[0];
+			let targetElementId: string = '';
+			let targetSectionId: string = '';
+			let position: 'up' | 'down' = 'up';
 
-				if (overId === 'mainBoard') targetSectionId = overId;
-				else {
-					if (!over.data.current) return;
-					if (overId === 'section') targetSectionId = over.data.current.elementId;
-					else if (overId === 'topHalf' || overId === 'bottomHalf') {
-						targetSectionId = over.data.current.sectionId;
-						targetElementId = over.data.current.elementId;
-					}
+			const overId = (over.id as string).split('-')[0];
+
+			if (overId === 'mainBoard') targetSectionId = overId;
+			else {
+				if (!over.data.current) return;
+				if (overId === 'section') targetSectionId = over.data.current.elementId;
+				else if (overId === 'topHalf' || overId === 'bottomHalf') {
+					targetSectionId = over.data.current.sectionId;
+					targetElementId = over.data.current.elementId;
 				}
+			}
 
-				if (overId === 'topHalf') position = 'up';
-				else position = 'down';
+			if (elementId === targetElementId) return; // same element
+			if (elementId === targetSectionId) return; // same section
 
+			if (overId === 'topHalf') position = 'up';
+			else position = 'down';
+
+			const clonedData = clone(data) as Element[];
+			if (isPaletteElement) {
 				const element = cleanState.find(el => el.elementType === elementType);
 				if (!element) return;
 
-				const updatedData = drop({ data, element, position, targetElementId, targetSectionId });
-				if (!updatedData) return;
+				const clonedElement = clone(element) as Element;
 
+				const updatedData = drop({
+					data: clonedData,
+					element: { ...clonedElement, elementId: genId(), sectionId: targetSectionId },
+					position,
+					targetElementId,
+					targetSectionId
+				});
+				if (!updatedData) return;
+				setData(updatedData);
+			} else {
+				const updatedData = reorder({
+					data: clonedData,
+					elementId,
+					targetElementId,
+					targetSectionId,
+					position
+				});
+				if (!updatedData) return;
 				setData(updatedData);
 			}
 		}
