@@ -16,9 +16,6 @@ export type TAlchemyLabContext = {
 		} | null>
 	>;
 
-	draggedOver: Over | null;
-	setDraggedOver: Dispatch<SetStateAction<Over | null>>;
-
 	data: Element[];
 	setData: Dispatch<SetStateAction<Element[]>>;
 

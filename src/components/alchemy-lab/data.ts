@@ -7,30 +7,39 @@ const cleanState: Element[] = [
 		headingLevel: 'h2',
 
 		styles: '',
-		uid: ''
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Paragraph',
 		text: 'Paragraph Field',
+
 		styles: '',
-		uid: ''
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Separator',
+
 		styles: '',
-		uid: ''
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Spacer',
 		height: '20',
+
 		styles: '',
-		uid: ''
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Section',
 		children: [],
+
 		styles: '',
-		uid: ''
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Name',
@@ -45,9 +54,11 @@ const cleanState: Element[] = [
 			maxLength: 100
 		},
 		label: 'Name Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Address',
@@ -63,9 +74,11 @@ const cleanState: Element[] = [
 			cols: 40
 		},
 		label: 'Address Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Email',
@@ -80,9 +93,11 @@ const cleanState: Element[] = [
 			maxLength: 100
 		},
 		label: 'Email Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'PhoneNumber',
@@ -96,11 +111,13 @@ const cleanState: Element[] = [
 			minLength: 10,
 			maxLength: 15
 		},
+		includeCountryCode: false,
 		label: 'Phone number Field',
-		styles: '',
-		uid: '',
 		required: true,
-		includeCountryCode: false
+
+		styles: '',
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Text',
@@ -115,9 +132,11 @@ const cleanState: Element[] = [
 			maxLength: 100
 		},
 		label: 'Text Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'TextArea',
@@ -133,9 +152,11 @@ const cleanState: Element[] = [
 			cols: 40
 		},
 		label: 'Textarea Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Number',
@@ -150,9 +171,11 @@ const cleanState: Element[] = [
 			max: 100
 		},
 		label: 'Number Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Dropdown',
@@ -161,10 +184,6 @@ const cleanState: Element[] = [
 			name: '',
 			disabled: false
 		},
-		label: 'Dropdown Field',
-		styles: '',
-		uid: '',
-		required: true,
 		allowMultiSelect: false,
 		dataSourceType: 'values',
 		options: [
@@ -174,7 +193,14 @@ const cleanState: Element[] = [
 				selected: false,
 				disabled: false
 			}
-		]
+		],
+
+		label: 'Dropdown Field',
+		required: true,
+
+		styles: '',
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Checkbox',
@@ -182,13 +208,16 @@ const cleanState: Element[] = [
 			type: 'checkbox',
 			name: ''
 		},
-		styles: '',
-		uid: '',
-		required: true,
 		label: 'Option 1',
 		value: 'option_1',
 		checked: false,
-		disabled: false
+		disabled: false,
+
+		required: true,
+
+		styles: '',
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'CheckboxGroup',
@@ -197,9 +226,8 @@ const cleanState: Element[] = [
 			name: ''
 		},
 		label: 'Checkbox Group Field',
-		styles: '',
-		uid: '',
 		required: true,
+
 		options: [
 			{
 				label: 'Option 1',
@@ -207,7 +235,11 @@ const cleanState: Element[] = [
 				checked: false,
 				disabled: false
 			}
-		]
+		],
+
+		styles: '',
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Radio',
@@ -217,9 +249,8 @@ const cleanState: Element[] = [
 			disabled: false
 		},
 		label: 'Radio Field',
-		styles: '',
-		uid: '',
 		required: true,
+
 		options: [
 			{
 				label: 'Option 1',
@@ -227,7 +258,11 @@ const cleanState: Element[] = [
 				checked: false,
 				disabled: false
 			}
-		]
+		],
+
+		styles: '',
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Date',
@@ -239,9 +274,11 @@ const cleanState: Element[] = [
 			disabled: false
 		},
 		label: 'Date Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Time',
@@ -253,9 +290,11 @@ const cleanState: Element[] = [
 			disabled: false
 		},
 		label: 'Time Field',
+		required: true,
+
 		styles: '',
-		uid: '',
-		required: true
+		elementId: '',
+		sectionId: ''
 	},
 	{
 		elementType: 'Button',
@@ -265,8 +304,10 @@ const cleanState: Element[] = [
 			disabled: false,
 			placeholder: 'submit'
 		},
+
 		styles: '',
-		uid: ''
+		elementId: '',
+		sectionId: ''
 	}
 ];
 

@@ -30,8 +30,4 @@ export const StyledWorkspaceBoard = styled.div`
 	&.form-alcmst__workspace-board--hovered {
 		box-shadow: 0 0 0 2px var(--grey-800);
 	}
-
-	.form-alcmst__board-element {
-		margin: 0.5em 0;
-	}
 `;

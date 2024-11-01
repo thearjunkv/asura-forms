@@ -3,15 +3,16 @@ import { Element } from '../../types';
 
 type TDraggable = {
 	children: React.ReactNode;
-	id: string;
+	elementId: string;
 	elementType: Element['elementType'];
 	isPaletteElement: boolean;
 };
 
-export function Draggable({ id, elementType, isPaletteElement, children }: TDraggable) {
+export function Draggable({ elementId, elementType, isPaletteElement, children }: TDraggable) {
 	const { attributes, listeners, setNodeRef } = useDraggable({
-		id,
+		id: elementId,
 		data: {
+			elementId,
 			elementType,
 			isPaletteElement
 		}

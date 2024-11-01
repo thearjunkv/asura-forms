@@ -5,9 +5,9 @@ import CompileJsx from '../compile-jsx';
 import { StyledWorkspaceBoard } from './styles';
 
 const WorkspaceBoard: React.FC = () => {
-	const { draggedElement, data } = useAlchemyLab();
+	const { data } = useAlchemyLab();
 	const { setNodeRef, isOver } = useDroppable({
-		id: 'main-board'
+		id: 'mainBoard'
 	});
 
 	return (
@@ -15,7 +15,7 @@ const WorkspaceBoard: React.FC = () => {
 			ref={setNodeRef}
 			className={cn(
 				'form-alcmst__workspace-board',
-				isOver && draggedElement?.isPaletteElement && 'form-alcmst__workspace-board--hovered',
+				isOver && 'form-alcmst__workspace-board--hovered',
 				data.length === 0 && 'form-alcmst__workspace-board--empty'
 			)}
 		>
@@ -23,7 +23,7 @@ const WorkspaceBoard: React.FC = () => {
 
 			{data.map(element => (
 				<CompileJsx
-					key={element.uid}
+					key={element.elementId}
 					element={element}
 				/>
 			))}

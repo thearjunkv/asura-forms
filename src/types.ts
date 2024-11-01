@@ -1,44 +1,36 @@
+type Common = {
+	styles: string;
+
+	elementId: string;
+	sectionId: string;
+};
+
 // Layout Elements
 
 export type TTitle = {
 	elementType: 'Title';
 	text: string;
 	headingLevel: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-
-	styles: string;
-	uid: string;
-};
+} & Common;
 
 export type TParagraph = {
 	elementType: 'Paragraph';
 	text: string;
-
-	styles: string;
-	uid: string;
-};
+} & Common;
 
 export type TSeparator = {
 	elementType: 'Separator';
-
-	styles: string;
-	uid: string;
-};
+} & Common;
 
 export type TSpacer = {
 	elementType: 'Spacer';
 	height: string;
-
-	styles: string;
-	uid: string;
-};
+} & Common;
 
 export type TSection = {
 	elementType: 'Section';
 	children: Element[];
-
-	styles: string;
-	uid: string;
-};
+} & Common;
 
 // Form Elements
 
@@ -127,49 +119,61 @@ export type ButtonAttrs = {
 	placeholder: string;
 };
 
-type Common = {
-	label: string;
-
-	styles: string;
-
-	uid: string;
-	required: boolean;
-};
-
 export type TName = {
 	elementType: 'Name';
 	attributes: TextAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TAddress = {
 	elementType: 'Address';
 	attributes: TextareaAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TEmail = {
 	elementType: 'Email';
 	attributes: TextAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TPhoneNumber = {
 	elementType: 'PhoneNumber';
 	attributes: TelAttrs;
 	includeCountryCode: boolean;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TText = {
 	elementType: 'Text';
 	attributes: TextAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TTextArea = {
 	elementType: 'TextArea';
 	attributes: TextareaAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TNumber = {
 	elementType: 'Number';
 	attributes: NumberAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type DropdownOptions = {
@@ -183,13 +187,18 @@ export type TDropdown =
 	| ({
 			elementType: 'Dropdown';
 			attributes: SelectAttrs;
+
 			allowMultiSelect: boolean;
 			dataSourceType: 'values';
 			options: DropdownOptions;
+
+			label: string;
+			required: boolean;
 	  } & Common)
 	| ({
 			elementType: 'Dropdown';
 			attributes: SelectAttrs;
+
 			allowMultiSelect: boolean;
 			dataSourceType: 'api';
 			apiConfig: {
@@ -199,6 +208,9 @@ export type TDropdown =
 				labelKey: string;
 				valueKey: string;
 			};
+
+			label: string;
+			required: boolean;
 	  } & Common);
 
 export type TCheckbox = {
@@ -208,6 +220,8 @@ export type TCheckbox = {
 	value: string;
 	checked: boolean;
 	disabled: boolean;
+
+	required: boolean;
 } & Common;
 
 export type TCheckboxGroup = {
@@ -219,6 +233,9 @@ export type TCheckboxGroup = {
 		checked: boolean;
 		disabled: boolean;
 	}[];
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TRadio = {
@@ -230,25 +247,31 @@ export type TRadio = {
 		checked: boolean;
 		disabled: boolean;
 	}[];
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TDate = {
 	elementType: 'Date';
 	attributes: DateAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TTime = {
 	elementType: 'Time';
 	attributes: TimeAttrs;
+
+	label: string;
+	required: boolean;
 } & Common;
 
 export type TButton = {
 	elementType: 'Button';
 	attributes: ButtonAttrs;
-
-	styles: string;
-	uid: string;
-};
+} & Common;
 
 type Temp =
 	| TName

@@ -36,6 +36,8 @@ export const StyledCompileJsx = styled.div`
 	}
 
 	.form-alcmst__board-element {
+		margin: 0.5em 0; // for non-overlay
+
 		padding: 1em;
 		background-color: var(--grey-50);
 		border: 1px solid var(--grey-200);
@@ -53,6 +55,14 @@ export const StyledCompileJsx = styled.div`
 		& > div {
 			width: 100%; // For separator and spacer field
 		}
+	}
+
+	.form-alcmst__board-element--dragging-overlay {
+		margin: 0;
+	}
+
+	.form-alcmst__board-element--section {
+		padding: 2em 1em 0.5em 1em;
 	}
 
 	.form-alcmst__board-element--section-drag-over {
@@ -113,6 +123,17 @@ export const StyledCompileJsx = styled.div`
 		&.form-alcmst__board-element:hover > .form-alcmst__board-element-top,
 		&.form-alcmst__board-element:hover > .form-alcmst__board-element-bottom {
 			background-color: hsla(0, 0%, 100%, 0);
+		}
+	}
+
+	.form-alcmst__board-element--block-hover {
+		&.form-alcmst__board-element:hover > .form-alcmst__board-element-top,
+		&.form-alcmst__board-element:hover > .form-alcmst__board-element-bottom {
+			background-color: hsla(0, 0%, 100%, 0);
+		}
+
+		&.form-alcmst__board-element:hover > .form-alcmst__board-element-btn-delete {
+			opacity: 0;
 		}
 	}
 
@@ -200,7 +221,7 @@ export const StyledCompileJsx = styled.div`
 		left: 0;
 		width: auto;
 		height: auto;
-		padding: 0.2em 0 0 1em;
+		padding: 0.3em 0 0 1em;
 
 		& > span {
 			font-size: 0.8rem;

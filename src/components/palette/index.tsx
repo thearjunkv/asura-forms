@@ -14,7 +14,7 @@ const Palette: React.FC = () => {
 				{layoutElements.map(el => (
 					<Draggable
 						key={el.element}
-						id={el.element}
+						elementId={el.element}
 						elementType={el.element}
 						isPaletteElement={true}
 					>
@@ -27,7 +27,7 @@ const Palette: React.FC = () => {
 				{formElements.map(el => (
 					<Draggable
 						key={el.element}
-						id={el.element}
+						elementId={el.element}
 						elementType={el.element}
 						isPaletteElement={true}
 					>

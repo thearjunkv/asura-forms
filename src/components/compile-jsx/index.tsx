@@ -8,20 +8,22 @@ import { DeleteIcon, SpacerIcon } from '../../assets/Icons';
 import { useDroppable } from '@dnd-kit/core';
 
 const BoardElementWrapper: React.FC<TBoardElementWrapper> = ({ element, isOverlay, children }) => {
-	const { elementType, uid } = element;
+	const { elementId, elementType, sectionId } = element;
 
 	const topHalf = useDroppable({
-		id: `top-half-${uid}`,
+		id: `topHalf-${elementId}`,
 		data: {
-			elementId: uid,
-			elementType
+			elementId,
+			elementType,
+			sectionId
 		}
 	});
 	const bottomHalf = useDroppable({
-		id: `bottom-half-${uid}`,
+		id: `bottomHalf-${elementId}`,
 		data: {
-			elementId: uid,
-			elementType
+			elementId,
+			elementType,
+			sectionId
 		}
 	});
 
@@ -49,29 +51,17 @@ const BoardElementWrapper: React.FC<TBoardElementWrapper> = ({ element, isOverla
 };
 
 const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
-	const { elementType, uid } = element;
+	const { elementId, elementType } = element;
 	let jsxElement: JSX.Element | null = null;
 
 	const { draggedElement } = useAlchemyLab();
 	const sectionDroppable = useDroppable({
-		id: `section-${uid}`,
+		id: `section-${elementId}`,
 		data: {
-			elementId: uid,
+			elementId,
 			elementType
 		}
 	});
-
-	// if (elementType === 'Title') jsxElement = <element.headingLevel>{element.text}</element.headingLevel>;
-	// else if (elementType === 'Paragraph') jsxElement = <p>{element.text}</p>;
-	// else if (elementType === 'Separator') jsxElement = <hr />;
-	// else if (elementType === 'Name')
-	// 	jsxElement = (
-	// <>
-	// 	<label>{element.label}</label>
-	// 	<Input />
-	// </>
-	// 	);
-	// else return;
 
 	switch (elementType) {
 		case 'Title':
@@ -106,10 +96,10 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			jsxElement = (
 				<div className='form-alcmst__element-wrapper'>
 					<div className='form-alcmst__element-section'>
-						{element.children.map(element => (
+						{element.children.map(childElement => (
 							<CompileJsx
-								key={element.uid}
-								element={element}
+								key={childElement.elementId}
+								element={childElement}
 							/>
 						))}
 					</div>
@@ -117,7 +107,7 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			);
 			break;
 		case 'PhoneNumber': {
-			const { attributes, includeCountryCode, label, required, uid } = element;
+			const { attributes, includeCountryCode, label, required } = element;
 			const {
 				disabled,
 				id,
@@ -133,11 +123,11 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 				<div
 					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
 				>
-					{label && <label htmlFor={id || uid}>{label}</label>}
+					{label && <label htmlFor={id || elementId}>{label}</label>}
 					<Input
 						data-name={name}
 						data-required={required}
-						id={id || uid}
+						id={id || elementId}
 						name={name}
 						type={type}
 						placeholder={placeholder}
@@ -163,18 +153,18 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 		case 'Name':
 		case 'Email':
 		case 'Text': {
-			const { attributes, label, required, uid } = element;
+			const { attributes, label, required } = element;
 			const { disabled, id, maxLength: _omit1, minLength: _omit2, name, placeholder, readOnly } = attributes;
 
 			jsxElement = (
 				<div
 					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
 				>
-					{label && <label htmlFor={id || uid}>{label}</label>}
+					{label && <label htmlFor={id || elementId}>{label}</label>}
 					<Input
 						data-name={name}
 						data-required={required}
-						id={id || uid}
+						id={id || elementId}
 						name={name}
 						placeholder={placeholder}
 						readOnly={readOnly}
@@ -186,7 +176,7 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 		}
 		case 'Address':
 		case 'TextArea': {
-			const { attributes, label, required, uid } = element;
+			const { attributes, label, required } = element;
 			const {
 				cols,
 				disabled,
@@ -203,11 +193,11 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 				<div
 					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
 				>
-					{label && <label htmlFor={id || uid}>{label}</label>}
+					{label && <label htmlFor={id || elementId}>{label}</label>}
 					<Input.TextArea
 						data-name={name}
 						data-required={required}
-						id={id || uid}
+						id={id || elementId}
 						name={name}
 						placeholder={placeholder}
 						readOnly={readOnly}
@@ -220,18 +210,18 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			break;
 		}
 		case 'Number': {
-			const { attributes, label, required, uid } = element;
+			const { attributes, label, required } = element;
 			const { disabled, id, max: _omit1, min: _omit2, name, placeholder, readOnly } = attributes;
 
 			jsxElement = (
 				<div
 					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
 				>
-					{label && <label htmlFor={id || uid}>{label}</label>}
+					{label && <label htmlFor={id || elementId}>{label}</label>}
 					<InputNumber
 						data-name={name}
 						data-required={required}
-						id={id || uid}
+						id={id || elementId}
 						name={name}
 						placeholder={placeholder}
 						readOnly={readOnly}
@@ -242,18 +232,18 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			break;
 		}
 		case 'Dropdown': {
-			const { allowMultiSelect, attributes, dataSourceType: _omit, label, required, uid } = element;
+			const { allowMultiSelect, attributes, dataSourceType: _omit, label, required } = element;
 			const { disabled, id, name } = attributes;
 
 			jsxElement = (
 				<div
 					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
 				>
-					{label && <label htmlFor={id || uid}>{label}</label>}
+					{label && <label htmlFor={id || elementId}>{label}</label>}
 					<Select
 						data-name={name}
 						data-required={required}
-						id={id || uid}
+						id={id || elementId}
 						disabled={disabled}
 						mode={allowMultiSelect ? 'multiple' : 'tags'}
 					/>
@@ -327,18 +317,18 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			break;
 		}
 		case 'Date': {
-			const { attributes, label, required, uid } = element;
+			const { attributes, label, required } = element;
 			const { disabled, id, name, readOnly } = attributes;
 
 			jsxElement = (
 				<div
 					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
 				>
-					{label && <label htmlFor={id || uid}>{label}</label>}
+					{label && <label htmlFor={id || elementId}>{label}</label>}
 					<DatePicker
 						data-name={name}
 						data-required={required}
-						id={id || uid}
+						id={id || elementId}
 						name={name}
 						readOnly={readOnly}
 						disabled={disabled}
@@ -348,18 +338,18 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			break;
 		}
 		case 'Time': {
-			const { attributes, label, required, uid } = element;
+			const { attributes, label, required } = element;
 			const { disabled, id, name, readOnly } = attributes;
 
 			jsxElement = (
 				<div
 					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
 				>
-					{label && <label htmlFor={id || uid}>{label}</label>}
+					{label && <label htmlFor={id || elementId}>{label}</label>}
 					<TimePicker
 						data-name={name}
 						data-required={required}
-						id={id || uid}
+						id={id || elementId}
 						name={name}
 						readOnly={readOnly}
 						disabled={disabled}
@@ -390,11 +380,9 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 	}
 	if (jsxElement === null) return;
 
-	// if (draggedElement?.elementId === uid && !isOverlay) return;
-
 	return (
 		<Draggable
-			id={uid}
+			elementId={elementId}
 			elementType={elementType}
 			isPaletteElement={false}
 		>
@@ -404,9 +392,10 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 					className={cn(
 						'form-alcmst__board-element',
 						isOverlay && 'form-alcmst__board-element--dragging-overlay',
-						draggedElement?.elementId === uid && !isOverlay && 'form-alcmst__board-element--dragging',
+						draggedElement?.elementId === elementId && !isOverlay && 'form-alcmst__board-element--dragging',
 						elementType === 'Section' && 'form-alcmst__board-element--section',
-						sectionDroppable.isOver && 'form-alcmst__board-element--section-drag-over'
+						sectionDroppable.isOver && 'form-alcmst__board-element--section-drag-over',
+						draggedElement && 'form-alcmst__board-element--block-hover'
 					)}
 				>
 					{elementType === 'Spacer' && (
