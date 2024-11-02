@@ -83,6 +83,23 @@ export const StyledBoardElement = styled.div`
 		background-color: hsla(0, 0%, 100%, 0) !important; // same in block-hover-effect
 	}
 
+	&.form-alcmst__board-element--section {
+		&:hover > .form-alcmst__board-element-top-half,
+		&:hover > .form-alcmst__board-element-bottom-half {
+			background-color: hsla(0, 0%, 100%, 0) !important;
+		}
+
+		& > .form-alcmst__board-element-top-half {
+			height: 1.5em;
+		}
+
+		& > .form-alcmst__board-element-bottom-half {
+			top: auto;
+			bottom: 0;
+			height: 1.5em;
+		}
+	}
+
 	& > .form-alcmst__board-element-top-half--drag-over::before,
 	& > .form-alcmst__board-element-bottom-half--drag-over::before {
 		content: '';

@@ -83,27 +83,23 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay }) => {
 					<CompileJsx element={element} />
 				)}
 
-				{elementType !== 'Section' && (
-					<div
-						ref={topHalf.setNodeRef}
-						className={cn(
-							'form-alcmst__board-element-top-half',
-							isOverlay && 'form-alcmst__board-element-top-half--drag-overlay',
-							topHalf.isOver && 'form-alcmst__board-element-top-half--drag-over'
-						)}
-					/>
-				)}
+				<div
+					ref={topHalf.setNodeRef}
+					className={cn(
+						'form-alcmst__board-element-top-half',
+						isOverlay && 'form-alcmst__board-element-top-half--drag-overlay',
+						topHalf.isOver && 'form-alcmst__board-element-top-half--drag-over'
+					)}
+				/>
 
-				{elementType !== 'Section' && (
-					<div
-						ref={bottomHalf.setNodeRef}
-						className={cn(
-							'form-alcmst__board-element-bottom-half',
-							isOverlay && 'form-alcmst__board-element-bottom-half--drag-overlay',
-							bottomHalf.isOver && 'form-alcmst__board-element-bottom-half--drag-over'
-						)}
-					/>
-				)}
+				<div
+					ref={bottomHalf.setNodeRef}
+					className={cn(
+						'form-alcmst__board-element-bottom-half',
+						isOverlay && 'form-alcmst__board-element-bottom-half--drag-overlay',
+						bottomHalf.isOver && 'form-alcmst__board-element-bottom-half--drag-over'
+					)}
+				/>
 
 				<button
 					className={cn(
