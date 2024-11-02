@@ -4,7 +4,7 @@ export const StyledWorkspaceBoard = styled.div`
 	min-height: 100%;
 	width: 85%;
 
-	padding: 0.5em 1em;
+	padding: 1em;
 	background-color: var(--white);
 	border: 1px solid var(--white);
 	border-radius: 6px;

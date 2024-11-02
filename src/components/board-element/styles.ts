@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 export const StyledBoardElement = styled.div`
 	&.form-alcmst__board-element {
-		margin: 0.5em 0; // for non-overlay
-
 		padding: 1em;
-		background-color: var(--grey-50);
-		border: 1px solid var(--grey-200);
+		background-color: var(--white);
+		border: 1px solid transparent;
 		border-radius: 6px;
 		cursor: grab;
 
@@ -21,6 +19,10 @@ export const StyledBoardElement = styled.div`
 		& > div {
 			width: 100%; // For separator and spacer field
 		}
+
+		&:hover {
+			border-color: var(--grey-200);
+		}
 	}
 
 	&.form-alcmst__board-element--drag-original {
@@ -28,16 +30,17 @@ export const StyledBoardElement = styled.div`
 	}
 
 	&.form-alcmst__board-element--drag-overlay {
-		margin: 0;
 		opacity: 0.9;
+		border-color: var(--grey-200) !important;
 	}
 
 	&.form-alcmst__board-element--section {
-		padding: 2em 1em 0.5em 1em;
+		padding: 2.5em 1em 1em 1em;
+		border-color: var(--grey-200);
 	}
 
 	&.form-alcmst__board-element--section-drag-over {
-		box-shadow: 0 0 0 2px var(--grey-800);
+		box-shadow: inset 0 0 0 2px var(--grey-800);
 	}
 
 	&.form-alcmst__board-element--drag-original {
@@ -70,13 +73,6 @@ export const StyledBoardElement = styled.div`
 		border-bottom-right-radius: 5px;
 	}
 
-	&.form-alcmst__board-element--drag-original {
-		& .form-alcmst__board-element-top-half--drag-over::before,
-		& .form-alcmst__board-element-bottom-half--drag-over::before {
-			display: none;
-		}
-	}
-
 	&.form-alcmst__board-element:hover > .form-alcmst__board-element-top-half,
 	&.form-alcmst__board-element:hover > .form-alcmst__board-element-bottom-half {
 		background-color: hsla(0, 0%, 100%, 0.6);
@@ -84,7 +80,7 @@ export const StyledBoardElement = styled.div`
 
 	& > .form-alcmst__board-element-top-half--drag-overlay,
 	& > .form-alcmst__board-element-bottom-half--drag-overlay {
-		background-color: hsla(0, 0%, 100%, 0) !important;
+		background-color: hsla(0, 0%, 100%, 0) !important; // same in block-hover-effect
 	}
 
 	& > .form-alcmst__board-element-top-half--drag-over::before,
@@ -105,6 +101,13 @@ export const StyledBoardElement = styled.div`
 
 	& > .form-alcmst__board-element-bottom-half--drag-over::before {
 		bottom: 0;
+	}
+
+	&.form-alcmst__board-element--drag-original {
+		& .form-alcmst__board-element-top-half--drag-over::before,
+		& .form-alcmst__board-element-bottom-half--drag-over::before {
+			display: none;
+		}
 	}
 
 	& > .form-alcmst__board-element-btn-delete {
@@ -128,7 +131,7 @@ export const StyledBoardElement = styled.div`
 		}
 
 		&.form-alcmst__board-element-btn-delete--drag-overlay {
-			opacity: 0 !important;
+			opacity: 0 !important; // same in block-hover-effect
 		}
 
 		&:hover {
@@ -162,6 +165,10 @@ export const StyledBoardElement = styled.div`
 
 		&:hover > .form-alcmst__board-element-btn-delete {
 			opacity: 0;
+		}
+
+		&:hover {
+			border-color: transparent;
 		}
 	}
 
