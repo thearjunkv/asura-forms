@@ -1,8 +1,8 @@
 import { useDroppable } from '@dnd-kit/core';
 import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
 import { cn } from '../../utils';
-import CompileJsx from '../compile-jsx';
 import { StyledWorkspaceBoard } from './styles';
+import BoardElement from '../board-element';
 
 const WorkspaceBoard: React.FC = () => {
 	const { data } = useAlchemyLab();
@@ -22,7 +22,7 @@ const WorkspaceBoard: React.FC = () => {
 			{data.length === 0 && <span className='form-alcmst__workspace-board-drop-message'>Drop here</span>}
 
 			{data.map(element => (
-				<CompileJsx
+				<BoardElement
 					key={element.elementId}
 					element={element}
 				/>

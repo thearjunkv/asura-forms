@@ -70,7 +70,7 @@ const cleanState: Element[] = [
 			disabled: false,
 			minLength: 0,
 			maxLength: 100,
-			rows: 5,
+			rows: 4,
 			cols: 40
 		},
 		label: 'Address Field',

@@ -2,8 +2,8 @@ import { DragOverlay, useDndMonitor } from '@dnd-kit/core';
 import { elements } from '../palette/data';
 import { PaletteElement } from '../palette-element';
 import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
-import CompileJsx from '../compile-jsx';
 import { findElement } from '../../utils';
+import BoardElement from '../board-element';
 
 function DragOverlayWrapper() {
 	const { data, draggedElement, setDraggedElement } = useAlchemyLab();
@@ -42,7 +42,7 @@ function DragOverlayWrapper() {
 			if (!element) return;
 			return (
 				<DragOverlay>
-					<CompileJsx
+					<BoardElement
 						element={element}
 						isOverlay={true}
 					/>

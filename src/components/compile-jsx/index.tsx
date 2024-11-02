@@ -1,67 +1,11 @@
 import { Checkbox, DatePicker, Input, InputNumber, Radio, Select, TimePicker } from 'antd';
-import { Draggable } from '../dnd/Draggable';
 import { StyledCompileJsx } from './styles';
-import { TBoardElementWrapper, TCompileJsx } from './types';
-import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
-import { clone, cn, remove } from '../../utils';
-import { DeleteIcon, SpacerIcon } from '../../assets/Icons';
-import { useDroppable } from '@dnd-kit/core';
+import { TCompileJsx } from './types';
+import { cn } from '../../utils';
 
-const BoardElementWrapper: React.FC<TBoardElementWrapper> = ({ element, isOverlay, children }) => {
-	const { elementId, elementType, sectionId } = element;
-
-	const topHalf = useDroppable({
-		id: `topHalf-${elementId}`,
-		data: {
-			elementId,
-			elementType,
-			sectionId
-		}
-	});
-	const bottomHalf = useDroppable({
-		id: `bottomHalf-${elementId}`,
-		data: {
-			elementId,
-			elementType,
-			sectionId
-		}
-	});
-
-	return (
-		<>
-			<div
-				ref={topHalf.setNodeRef}
-				className={cn(
-					'form-alcmst__board-element-top',
-					isOverlay && 'form-alcmst__board-element-top--dragging',
-					topHalf.isOver && 'form-alcmst__board-element-top--drag-over'
-				)}
-			></div>
-			{children}
-			<div
-				ref={bottomHalf.setNodeRef}
-				className={cn(
-					'form-alcmst__board-element-bottom',
-					isOverlay && 'form-alcmst__board-element-bottom--dragging',
-					bottomHalf.isOver && 'form-alcmst__board-element-bottom--drag-over'
-				)}
-			></div>
-		</>
-	);
-};
-
-const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
+const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 	const { elementId, elementType } = element;
 	let jsxElement: JSX.Element | null = null;
-
-	const { data, setData, draggedElement } = useAlchemyLab();
-	const sectionDroppable = useDroppable({
-		id: `section-${elementId}`,
-		data: {
-			elementId,
-			elementType
-		}
-	});
 
 	switch (elementType) {
 		case 'Title':
@@ -89,20 +33,6 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 			jsxElement = (
 				<div className='form-alcmst__element-wrapper'>
 					<div className='form-alcmst__element-spacer'></div>
-				</div>
-			);
-			break;
-		case 'Section':
-			jsxElement = (
-				<div className='form-alcmst__element-wrapper'>
-					<div className='form-alcmst__element-section'>
-						{element.children.map(childElement => (
-							<CompileJsx
-								key={childElement.elementId}
-								element={childElement}
-							/>
-						))}
-					</div>
 				</div>
 			);
 			break;
@@ -388,64 +318,7 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element, isOverlay }) => {
 	}
 	if (jsxElement === null) return;
 
-	return (
-		<Draggable
-			elementId={elementId}
-			elementType={elementType}
-			isPaletteElement={false}
-		>
-			<StyledCompileJsx>
-				<div
-					{...(elementType === 'Section' ? { ref: sectionDroppable.setNodeRef } : {})}
-					className={cn(
-						'form-alcmst__board-element',
-						isOverlay && 'form-alcmst__board-element--dragging-overlay',
-						draggedElement?.elementId === elementId && !isOverlay && 'form-alcmst__board-element--dragging',
-						elementType === 'Section' && 'form-alcmst__board-element--section',
-						sectionDroppable.isOver && 'form-alcmst__board-element--section-drag-over',
-						draggedElement && 'form-alcmst__board-element--block-hover'
-					)}
-				>
-					{elementType === 'Spacer' && (
-						<div className='form-alcmst__board-element-spacer-info'>
-							<div>{SpacerIcon}</div>
-							<span>Spacer Field {element.height}px</span>
-						</div>
-					)}
-					{elementType === 'Section' && (
-						<div className='form-alcmst__board-element-section-info'>
-							<span>Section Field</span>
-						</div>
-					)}
-					{elementType === 'Section' ? (
-						jsxElement
-					) : (
-						<BoardElementWrapper
-							element={element}
-							isOverlay={isOverlay}
-						>
-							{jsxElement}
-						</BoardElementWrapper>
-					)}
-					<button
-						className={cn(
-							'form-alcmst__board-element-btn-delete',
-							elementType === 'Section' && 'form-alcmst__board-element-btn-delete--section',
-							isOverlay && 'form-alcmst__board-element-btn-delete--dragging'
-						)}
-						onClick={() => {
-							const clonedData = clone(data);
-							const result = remove({ data: clonedData, elementId });
-							if (!result) return;
-							setData(result.updatedData);
-						}}
-					>
-						{DeleteIcon}
-					</button>
-				</div>
-			</StyledCompileJsx>
-		</Draggable>
-	);
+	return <StyledCompileJsx>{jsxElement}</StyledCompileJsx>;
 };
 
 export default CompileJsx;
