@@ -95,7 +95,7 @@ export const StyledBoardElement = styled.div`
 
 		left: 0;
 		width: 100%;
-		height: 0.4em;
+		height: 0.35em;
 		background-color: var(--grey-800);
 	}
 
