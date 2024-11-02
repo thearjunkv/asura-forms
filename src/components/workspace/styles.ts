@@ -4,7 +4,6 @@ export const StyledWorkspace = styled.div`
 	width: calc(100% - 200px - 250px); // calc with with with of picker and properties
 	height: 100%;
 	padding: 1em;
-	overflow: auto;
 
 	background-color: var(--grey-50);
 	border-right: 1px solid var(--grey-100);

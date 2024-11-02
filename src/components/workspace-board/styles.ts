@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledWorkspaceBoard = styled.div`
-	min-height: 100%;
-	width: 85%;
+	height: 100%;
+	width: 90%;
+	overflow: auto;
 
 	padding: 1em;
 	background-color: var(--white);
@@ -11,6 +12,10 @@ export const StyledWorkspaceBoard = styled.div`
 
 	position: relative;
 	transition: box-shadow 120ms ease;
+
+	& > div {
+		min-width: 300px;
+	}
 
 	&.form-alcmst__workspace-board--empty {
 		& .form-alcmst__workspace-board-drop-message {
