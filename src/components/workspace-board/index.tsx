@@ -25,6 +25,7 @@ const WorkspaceBoard: React.FC = () => {
 				<BoardElement
 					key={element.elementId}
 					element={element}
+					nestLevel={0}
 				/>
 			))}
 		</StyledWorkspaceBoard>

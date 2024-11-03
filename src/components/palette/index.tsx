@@ -11,27 +11,31 @@ const Palette: React.FC = () => {
 		<StyledPalette className={cn('form-alcmst__palette', paletteGridView && 'form-alcmst__palette--grid-view')}>
 			<h2>Layout Elements</h2>
 			<div>
-				{layoutElements.map(el => (
+				{layoutElements.map(({ name, text, icon }) => (
 					<Draggable
-						key={el.element}
-						elementId={el.element}
-						elementType={el.element}
-						isPaletteElement={true}
+						key={name}
+						id={name}
+						data={{ elementId: name, elementType: name, isPaletteElement: true }}
 					>
-						<PaletteElement {...el} />
+						<PaletteElement
+							icon={icon}
+							text={text}
+						/>
 					</Draggable>
 				))}
 			</div>
 			<h2>Form Elements</h2>
 			<div>
-				{formElements.map(el => (
+				{formElements.map(({ name, text, icon }) => (
 					<Draggable
-						key={el.element}
-						elementId={el.element}
-						elementType={el.element}
-						isPaletteElement={true}
+						key={name}
+						id={name}
+						data={{ elementId: name, elementType: name, isPaletteElement: true }}
 					>
-						<PaletteElement {...el} />
+						<PaletteElement
+							icon={icon}
+							text={text}
+						/>
 					</Draggable>
 				))}
 			</div>

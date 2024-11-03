@@ -29,12 +29,15 @@ function DragOverlayWrapper() {
 	if (draggedElement) {
 		const { elementId, elementType, isPaletteElement } = draggedElement;
 		if (isPaletteElement) {
-			const element = elements.find(e => e.element === elementType);
+			const element = elements.find(e => e.name === elementType);
 			if (!element) return null;
 
 			return (
 				<DragOverlay>
-					<PaletteElement {...element} />
+					<PaletteElement
+						icon={element.icon}
+						text={element.text}
+					/>
 				</DragOverlay>
 			);
 		} else {
@@ -45,6 +48,7 @@ function DragOverlayWrapper() {
 					<BoardElement
 						element={element}
 						isOverlay={true}
+						nestLevel={0}
 					/>
 				</DragOverlay>
 			);

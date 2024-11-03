@@ -8,6 +8,7 @@ import { Element } from '../../types';
 
 const Workspace: React.FC = () => {
 	const { data, setData } = useAlchemyLab();
+
 	useDndMonitor({
 		onDragEnd: ({ active, over }) => {
 			if (!active.data.current) return;
@@ -66,6 +67,7 @@ const Workspace: React.FC = () => {
 			}
 		}
 	});
+
 	return (
 		<StyledWorkspace className='form-alcmst__workspace'>
 			<WorkspaceBoard />

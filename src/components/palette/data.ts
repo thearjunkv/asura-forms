@@ -23,27 +23,27 @@ import {
 
 export const layoutElements: TPaletteElement[] = [
 	{
-		element: 'Title',
+		name: 'Title',
 		text: 'Title',
 		icon: TitleIcon
 	},
 	{
-		element: 'Paragraph',
+		name: 'Paragraph',
 		text: 'Paragraph',
 		icon: ParagraphIcon
 	},
 	{
-		element: 'Separator',
+		name: 'Separator',
 		text: 'Separator',
 		icon: SeparatorIcon
 	},
 	{
-		element: 'Spacer',
+		name: 'Spacer',
 		text: 'Spacer',
 		icon: SpacerIcon
 	},
 	{
-		element: 'Section',
+		name: 'Section',
 		text: 'Section',
 		icon: SectionIcon
 	}
@@ -51,72 +51,72 @@ export const layoutElements: TPaletteElement[] = [
 
 export const formElements: TPaletteElement[] = [
 	{
-		element: 'Name',
+		name: 'Name',
 		text: 'Name',
 		icon: PersonIcon
 	},
 	{
-		element: 'Address',
+		name: 'Address',
 		text: 'Address',
 		icon: HomeIcon
 	},
 	{
-		element: 'Email',
+		name: 'Email',
 		text: 'Email',
 		icon: MailIcon
 	},
 	{
-		element: 'PhoneNumber',
+		name: 'PhoneNumber',
 		text: 'Phone No.',
 		icon: PhoneIcon
 	},
 	{
-		element: 'Text',
+		name: 'Text',
 		text: 'Text',
 		icon: TextFieldIcon
 	},
 	{
-		element: 'TextArea',
+		name: 'TextArea',
 		text: 'TextArea',
 		icon: TextBoxIcon
 	},
 	{
-		element: 'Number',
+		name: 'Number',
 		text: 'Number',
 		icon: NumberIcon
 	},
 	{
-		element: 'Dropdown',
+		name: 'Dropdown',
 		text: 'Dropdown',
 		icon: SelectIcon
 	},
 	{
-		element: 'Checkbox',
+		name: 'Checkbox',
 		text: 'Checkbox',
 		icon: CheckboxIcon
 	},
 	{
-		element: 'CheckboxGroup',
+		name: 'CheckboxGroup',
 		text: 'Checkbox Group',
 		icon: CheckboxGroupIcon
 	},
 	{
-		element: 'Radio',
+		name: 'Radio',
 		text: 'Radio',
 		icon: RadioIcon
 	},
 	{
-		element: 'Date',
+		name: 'Date',
 		text: 'Date',
 		icon: CalendarIcon
 	},
 	{
-		element: 'Time',
+		name: 'Time',
 		text: 'Time',
 		icon: TimePickerIcon
 	},
 	{
-		element: 'Button',
+		name: 'Button',
 		text: 'Button',
 		icon: CursorClickIcon
 	}

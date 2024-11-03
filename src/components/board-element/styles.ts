@@ -25,13 +25,45 @@ export const StyledBoardElement = styled.div`
 		}
 	}
 
+	& > .form-alcmst__board-element-spacer-info {
+		position: absolute;
+		z-index: 12;
+
+		top: 0;
+		left: 0;
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		& > span {
+			font-size: 0.75rem;
+		}
+	}
+
+	& > .form-alcmst__board-element-section-info {
+		position: absolute;
+		z-index: 12;
+
+		top: 0;
+		left: 0;
+		padding: 0.3em 0 0 1em;
+
+		& > span {
+			font-size: 0.8rem;
+			color: var(--grey-800);
+		}
+	}
+
 	&.form-alcmst__board-element--drag-original {
 		opacity: 0.4;
 	}
 
 	&.form-alcmst__board-element--drag-overlay {
 		opacity: 0.9;
-		border-color: var(--grey-200) !important;
+		border-color: var(--grey-200);
 	}
 
 	&.form-alcmst__board-element--section {
@@ -78,15 +110,10 @@ export const StyledBoardElement = styled.div`
 		background-color: hsla(0, 0%, 100%, 0.6);
 	}
 
-	& > .form-alcmst__board-element-top-half--drag-overlay,
-	& > .form-alcmst__board-element-bottom-half--drag-overlay {
-		background-color: hsla(0, 0%, 100%, 0) !important; // same in block-hover-effect
-	}
-
 	&.form-alcmst__board-element--section {
 		&:hover > .form-alcmst__board-element-top-half,
 		&:hover > .form-alcmst__board-element-bottom-half {
-			background-color: hsla(0, 0%, 100%, 0) !important;
+			background-color: hsla(0, 0%, 100%, 0);
 		}
 
 		& > .form-alcmst__board-element-top-half {
@@ -147,10 +174,6 @@ export const StyledBoardElement = styled.div`
 			font-size: 1.1rem;
 		}
 
-		&.form-alcmst__board-element-btn-delete--drag-overlay {
-			opacity: 0 !important; // same in block-hover-effect
-		}
-
 		&:hover {
 			background-color: var(--red-color);
 		}
@@ -186,38 +209,6 @@ export const StyledBoardElement = styled.div`
 
 		&:hover {
 			border-color: transparent;
-		}
-	}
-
-	& > .form-alcmst__board-element-spacer-info {
-		position: absolute;
-		z-index: 12;
-
-		top: 0;
-		left: 0;
-		height: 100%;
-
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-
-		& > span {
-			font-size: 0.75rem;
-		}
-	}
-
-	& > .form-alcmst__board-element-section-info {
-		position: absolute;
-		z-index: 12;
-
-		top: 0;
-		left: 0;
-		padding: 0.3em 0 0 1em;
-
-		& > span {
-			font-size: 0.8rem;
-			color: var(--grey-800);
 		}
 	}
 `;
