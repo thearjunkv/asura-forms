@@ -1,4 +1,4 @@
-import { TPaletteElement } from './types';
+import { TPaletteElementDataList } from '../../types';
 import {
 	CalendarIcon,
 	CheckboxGroupIcon,
@@ -21,7 +21,7 @@ import {
 	TitleIcon
 } from '../../assets/Icons';
 
-export const layoutElements: TPaletteElement[] = [
+export const layoutElements: TPaletteElementDataList = [
 	{
 		name: 'Title',
 		text: 'Title',
@@ -49,7 +49,7 @@ export const layoutElements: TPaletteElement[] = [
 	}
 ];
 
-export const formElements: TPaletteElement[] = [
+export const formElements: TPaletteElementDataList = [
 	{
 		name: 'Name',
 		text: 'Name',

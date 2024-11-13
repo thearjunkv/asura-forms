@@ -64,6 +64,17 @@ export const StyledBoardElement = styled.div`
 	&.form-alcmst__board-element--drag-overlay {
 		opacity: 0.9;
 		border-color: var(--grey-200);
+
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: 30;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: transparent;
+		}
 	}
 
 	&.form-alcmst__board-element--section {

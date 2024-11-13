@@ -3,7 +3,7 @@ import { StyledPalette } from './styles';
 import { PaletteElement } from '../palette-element';
 import { Draggable } from '../dnd/Draggable';
 import { cn } from '../../utils';
-import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
+import { useAlchemyLab } from '../../context/useAlchemyLab';
 
 const Palette: React.FC = () => {
 	const { paletteGridView } = useAlchemyLab();

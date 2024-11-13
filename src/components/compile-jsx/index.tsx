@@ -1,7 +1,7 @@
 import { Checkbox, DatePicker, Input, InputNumber, Radio, Select, TimePicker } from 'antd';
 import { StyledCompileJsx } from './styles';
-import { TCompileJsx } from './types';
 import { cn } from '../../utils';
+import { TCompileJsx } from '../../types';
 
 const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 	const { elementId, elementType } = element;

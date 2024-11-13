@@ -1,5 +1,5 @@
 import AlchemyLab from './components/alchemy-lab';
-import { AlchemyLabProvider } from './alchemy-lab';
+import { AlchemyLabProvider } from './context/AlchemyLabProvider';
 import { ConfigProvider } from 'antd';
 
 const theme = {

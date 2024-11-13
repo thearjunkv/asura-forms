@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { TAlchemyLab } from './types';
 import { StyledAlchemyLab } from './styles';
-import { Element } from '../../types';
+import { Element, TAlchemyLab } from '../../types';
 import { PreviewIcon, SaveIcon } from '../../assets/Icons';
 import { DndContextWrapper } from '../dnd/DndContext';
 import Properties from '../properties';
@@ -9,7 +8,7 @@ import Palette from '../palette';
 import Workspace from '../workspace';
 import { GlobalStyles } from '../../styles';
 import DragOverlayWrapper from '../dnd/DragOverlay';
-import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
+import { useAlchemyLab } from '../../context/useAlchemyLab';
 
 const AlchemyLab: React.FC<TAlchemyLab> = props => {
 	const [data, setData] = useState<Element[]>(() => props.data || []);

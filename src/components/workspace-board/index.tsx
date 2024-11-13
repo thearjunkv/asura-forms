@@ -1,5 +1,5 @@
 import { useDroppable } from '@dnd-kit/core';
-import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
+import { useAlchemyLab } from '../../context/useAlchemyLab';
 import { cn } from '../../utils';
 import { StyledWorkspaceBoard } from './styles';
 import BoardElement from '../board-element';

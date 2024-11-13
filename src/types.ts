@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 type Common = {
 	styles: string;
 
@@ -303,3 +305,62 @@ type Temp =
 
 // export type FormElement = Partial<Temp>;
 export type Element = Temp;
+
+export type TDndContext = {
+	children: React.ReactNode;
+};
+
+export type TDraggable = {
+	children: React.ReactNode;
+	id: string;
+	data: { elementId: string; elementType: Element['elementType']; isPaletteElement: boolean };
+};
+
+export type TAlchemyLabContext = {
+	draggedElement: {
+		elementId: string;
+		elementType: Element['elementType'];
+		isPaletteElement: boolean;
+	} | null;
+	setDraggedElement: Dispatch<
+		SetStateAction<{
+			elementId: string;
+			elementType: Element['elementType'];
+			isPaletteElement: boolean;
+		} | null>
+	>;
+
+	data: Element[];
+	setData: Dispatch<SetStateAction<Element[]>>;
+
+	paletteGridView: boolean;
+	setPaletteGridView: Dispatch<SetStateAction<boolean>>;
+};
+
+export type TAlchemyLab = {
+	title?: string;
+	paletteGridView?: boolean;
+	height?: number;
+	data?: Element[];
+	onSave: (data: Element[]) => void;
+};
+
+export type TPaletteElement = { text: string; icon: JSX.Element };
+
+export type TPaletteElementDataList = ({ name: Element['elementType'] } & TPaletteElement)[];
+
+export type TBoardElement = {
+	element: Element;
+	isOverlay?: boolean;
+	nestLevel: number;
+};
+
+export type TCompileJsx = {
+	element: Element;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	value?: any;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	onChange?: (e: any) => void;
+};
+
+export type TProperties = { element?: Element };

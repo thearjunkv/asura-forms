@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react';
-import { AlchemyLabContext } from './context';
-import { TAlchemyLabContext } from './types';
-import { Element } from '../types';
+import { AlchemyLabContext } from './AlchemyLabContext';
+import { Element, TAlchemyLabContext } from '../types';
 
 export const AlchemyLabProvider: React.FC<{
 	children: ReactNode;

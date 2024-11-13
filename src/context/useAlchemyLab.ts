@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AlchemyLabContext } from './context';
+import { AlchemyLabContext } from './AlchemyLabContext';
 
 export const useAlchemyLab = () => {
 	const context = useContext(AlchemyLabContext);

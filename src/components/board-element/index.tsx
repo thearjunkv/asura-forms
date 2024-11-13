@@ -1,11 +1,11 @@
 import { useDroppable } from '@dnd-kit/core';
-import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
+import { useAlchemyLab } from '../../context/useAlchemyLab';
 import { StyledBoardElement } from './styles';
-import { TBoardElement } from './types';
 import { Draggable } from '../dnd/Draggable';
 import { clone, cn, remove } from '../../utils';
 import { DeleteIcon, SpacerIcon } from '../../assets/Icons';
 import CompileJsx from '../compile-jsx';
+import { TBoardElement } from '../../types';
 
 const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }) => {
 	const { data, setData, draggedElement } = useAlchemyLab();

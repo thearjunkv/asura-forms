@@ -1,8 +1,9 @@
-import { useAlchemyLab } from '../../alchemy-lab/useAlchemyLab';
+import { useAlchemyLab } from '../../context/useAlchemyLab';
 import { cn } from '../../utils';
+import { TPaletteElement } from '../../types';
 import { StyledPaletteElement } from './styles';
 
-export const PaletteElement: React.FC<{ icon: JSX.Element; text: string }> = ({ icon, text }) => {
+export const PaletteElement: React.FC<TPaletteElement> = ({ icon, text }) => {
 	const { paletteGridView } = useAlchemyLab();
 
 	return (
