@@ -14,6 +14,8 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 	const sectionDroppable = useDroppable({
 		id: `section-${elementId}`,
 		data: {
+			droppableArea: 'section',
+			nestLevel,
 			elementId
 		}
 	});
@@ -21,6 +23,7 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 	const topHalfDroppable = useDroppable({
 		id: `topHalf-${elementId}`,
 		data: {
+			droppableArea: 'topHalf',
 			elementId,
 			sectionId
 		}
@@ -28,6 +31,7 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 	const bottomHalfDroppable = useDroppable({
 		id: `bottomHalf-${elementId}`,
 		data: {
+			droppableArea: 'bottomHalf',
 			elementId,
 			sectionId
 		}
@@ -43,48 +47,62 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 			)}
 
 			{elementType === 'Section' && (
-				<div className='form-alcmst__board-element-section-info'>
-					<span>Section Field</span>
-				</div>
+				<>
+					<div className='form-alcmst__board-element-section-info'>
+						<span>Section Field</span>
+					</div>
+					<div>
+						{element.children.map(childElement => (
+							<BoardElement
+								key={childElement.elementId}
+								element={childElement}
+								isOverlay={isOverlay}
+								nestLevel={nestLevel + 1}
+							/>
+						))}
+					</div>
+				</>
 			)}
 
-			{elementType === 'Section' ? (
-				<div>
-					{element.children.map(childElement => (
-						<BoardElement
-							key={childElement.elementId}
-							element={childElement}
-							isOverlay={isOverlay}
-							nestLevel={nestLevel + 1}
-						/>
-					))}
-				</div>
-			) : elementType === 'Spacer' ? (
-				<></>
-			) : (
-				<CompileJsx element={element} />
-			)}
+			{elementType !== 'Section' && elementType !== 'Spacer' && <CompileJsx element={element} />}
 		</>
 	);
 
-	const topBottomDropAreas = (
-		<>
-			<div
-				ref={topHalfDroppable.setNodeRef}
-				className={cn(
-					'form-alcmst__board-element-top-half',
-					topHalfDroppable.isOver && 'form-alcmst__board-element-top-half--drag-over'
-				)}
-			/>
+	const topHalfDropArea = (
+		<div
+			ref={topHalfDroppable.setNodeRef}
+			className={cn(
+				'form-alcmst__board-element-top-half',
+				topHalfDroppable.isOver && 'form-alcmst__board-element-top-half--drag-over'
+			)}
+		/>
+	);
 
-			<div
-				ref={bottomHalfDroppable.setNodeRef}
-				className={cn(
-					'form-alcmst__board-element-bottom-half',
-					bottomHalfDroppable.isOver && 'form-alcmst__board-element-bottom-half--drag-over'
-				)}
-			/>
-		</>
+	const bottomHalfDropArea = (
+		<div
+			ref={bottomHalfDroppable.setNodeRef}
+			className={cn(
+				'form-alcmst__board-element-bottom-half',
+				bottomHalfDroppable.isOver && 'form-alcmst__board-element-bottom-half--drag-over'
+			)}
+		/>
+	);
+
+	const deleteBtn = (
+		<button
+			className={cn(
+				'form-alcmst__board-element-btn-delete',
+				elementType === 'Section' && 'form-alcmst__board-element-btn-delete--section'
+			)}
+			onClick={() => {
+				const clonedData = clone(data);
+				const result = remove({ data: clonedData, elementId });
+				if (!result) return;
+				setData(result.updatedData);
+			}}
+		>
+			{DeleteIcon}
+		</button>
 	);
 
 	if (isOverlay)
@@ -100,67 +118,27 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 			</StyledBoardElement>
 		);
 
-	if (elementType === 'Section') {
-		return (
-			<Draggable
-				id={elementId}
-				data={{ elementId, elementType, isPaletteElement: false }}
-			>
-				<StyledBoardElement
-					ref={sectionDroppable.setNodeRef}
-					className={cn(
-						'form-alcmst__board-element',
-						draggedElement?.elementId === elementId && 'form-alcmst__board-element--drag-original',
-						elementType === 'Section' && 'form-alcmst__board-element--section',
-						sectionDroppable.isOver && 'form-alcmst__board-element--section-drag-over',
-						draggedElement && 'form-alcmst__board-element--block-hover-effect'
-					)}
-				>
-					{boardElementBody}
-					{topBottomDropAreas}
-					<button
-						className={cn(
-							'form-alcmst__board-element-btn-delete',
-							elementType === 'Section' && 'form-alcmst__board-element-btn-delete--section'
-						)}
-						onClick={() => {
-							const clonedData = clone(data);
-							const result = remove({ data: clonedData, elementId });
-							if (!result) return;
-							setData(result.updatedData);
-						}}
-					>
-						{DeleteIcon}
-					</button>
-				</StyledBoardElement>
-			</Draggable>
-		);
-	}
 	return (
 		<Draggable
 			id={elementId}
 			data={{ elementId, elementType, isPaletteElement: false }}
 		>
 			<StyledBoardElement
+				{...(elementType === 'Section' ? { ref: sectionDroppable.setNodeRef } : {})}
 				className={cn(
 					'form-alcmst__board-element',
 					draggedElement?.elementId === elementId && 'form-alcmst__board-element--drag-original',
-					draggedElement && 'form-alcmst__board-element--block-hover-effect'
+					draggedElement && 'form-alcmst__board-element--block-hover-effect',
+					elementType === 'Section' && 'form-alcmst__board-element--section',
+					elementType === 'Section' &&
+						sectionDroppable.isOver &&
+						'form-alcmst__board-element--section-drag-over'
 				)}
 			>
 				{boardElementBody}
-				{topBottomDropAreas}
-				<button
-					className={cn('form-alcmst__board-element-btn-delete')}
-					onClick={() => {
-						const clonedData = clone(data);
-						const result = remove({ data: clonedData, elementId });
-						if (!result) return;
-						setData(result.updatedData);
-					}}
-				>
-					{DeleteIcon}
-				</button>
+				{topHalfDropArea}
+				{bottomHalfDropArea}
+				{deleteBtn}
 			</StyledBoardElement>
 		</Draggable>
 	);

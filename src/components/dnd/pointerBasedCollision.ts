@@ -6,11 +6,16 @@ export const pointerBasedCollision: CollisionDetection = ({ pointerCoordinates, 
 	if (!pointerCoordinates) return [];
 
 	const collisions = droppableContainers.map((droppable: DroppableContainer) => {
-		const { rect, id } = droppable;
+		const { rect, id, data } = droppable;
 		if (!rect.current) return null;
+		if (!data.current) return null;
 
-		const droppableArea = (id as string).split('-');
-		if (droppableArea[0] === 'topHalf' || droppableArea[0] === 'bottomHalf') threshold = 1;
+		const { droppableArea, nestLevel } = data.current as {
+			droppableArea: 'topHalf' | 'bottomHalf' | 'section' | 'mainBoard';
+			nestLevel?: number;
+		};
+
+		if (droppableArea === 'topHalf' || droppableArea === 'bottomHalf') threshold = 1;
 		else threshold = 0;
 
 		const isWithinBounds =
@@ -20,38 +25,30 @@ export const pointerBasedCollision: CollisionDetection = ({ pointerCoordinates, 
 			pointerCoordinates.y <= rect.current.bottom + threshold;
 
 		if (isWithinBounds) {
-			if (droppableArea[0] === 'section') {
-				const nestLevel = Number(droppableArea[1]);
-				if (isNaN(nestLevel)) console.error('Invalid number in droppableArea');
+			if (droppableArea === 'section') {
+				if (!nestLevel) console.error('nestLevel is missing in droppableArea');
+				else if (isNaN(nestLevel)) console.error('Invalid nestLevel in droppableArea');
 
-				return { id, nestLevel };
+				return { id, droppableArea, nestLevel: nestLevel || 0 };
 			}
-			return { id, nestLevel: 0 };
+			return { id, droppableArea, nestLevel: 0 };
 		}
 		return null;
 	});
 
 	const validCollisions = collisions.filter(collision => collision !== null);
 
-	const topOrBottomHalfCollision = validCollisions.find(collision => {
-		const id = collision.id as string;
-		const droppableArea = id.split('-')[0];
-		return droppableArea === 'topHalf' || droppableArea === 'bottomHalf';
-	});
+	const topOrBottomHalfCollision = validCollisions.find(
+		({ droppableArea }) => droppableArea === 'topHalf' || droppableArea === 'bottomHalf'
+	);
 	if (topOrBottomHalfCollision) return [topOrBottomHalfCollision];
 
 	const sectionCollisions = validCollisions
-		.filter(collision => {
-			const id = collision.id as string;
-			return id.split('-')[0] === 'section';
-		})
+		.filter(({ droppableArea }) => droppableArea === 'section')
 		.sort((a, b) => b.nestLevel - a.nestLevel);
 	if (sectionCollisions.length > 0) return [sectionCollisions[0]];
 
-	const mainBoardCollision = validCollisions.find(collision => {
-		const id = collision.id as string;
-		return id.split('-')[0] === 'mainBoard';
-	});
+	const mainBoardCollision = validCollisions.find(({ droppableArea }) => droppableArea === 'mainBoard');
 	if (mainBoardCollision) return [mainBoardCollision];
 
 	return [];

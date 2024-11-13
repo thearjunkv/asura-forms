@@ -7,7 +7,10 @@ import BoardElement from '../board-element';
 const WorkspaceBoard: React.FC = () => {
 	const { data } = useAlchemyLab();
 	const { setNodeRef, isOver } = useDroppable({
-		id: 'mainBoard'
+		id: 'mainBoard',
+		data: {
+			droppableArea: 'mainBoard'
+		}
 	});
 
 	return (
