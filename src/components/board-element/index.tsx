@@ -1,5 +1,5 @@
 import { useDroppable } from '@dnd-kit/core';
-import { useAlchemyLab } from '../../context/useAlchemyLab';
+import { useAlchemyLab } from '../../hooks/useAlchemyLab';
 import { StyledBoardElement } from './styles';
 import { Draggable } from '../dnd/Draggable';
 import { clone, cn, remove } from '../../utils';

@@ -8,7 +8,7 @@ import Palette from '../palette';
 import Workspace from '../workspace';
 import { GlobalStyles } from '../../styles';
 import DragOverlayWrapper from '../dnd/DragOverlay';
-import { useAlchemyLab } from '../../context/useAlchemyLab';
+import { useAlchemyLab } from '../../hooks/useAlchemyLab';
 
 const AlchemyLab: React.FC<TAlchemyLab> = props => {
 	const [data, setData] = useState<Element[]>(() => props.data || []);

@@ -1,4 +1,4 @@
-import { useAlchemyLab } from '../../context/useAlchemyLab';
+import { useAlchemyLab } from '../../hooks/useAlchemyLab';
 import { cn } from '../../utils';
 import { TPaletteElement } from '../../types';
 import { StyledPaletteElement } from './styles';

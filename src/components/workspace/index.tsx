@@ -2,7 +2,7 @@ import { useDndMonitor } from '@dnd-kit/core';
 import WorkspaceBoard from '../workspace-board';
 import { StyledWorkspace } from './styles';
 import cleanState from '../alchemy-lab/data';
-import { useAlchemyLab } from '../../context/useAlchemyLab';
+import { useAlchemyLab } from '../../hooks/useAlchemyLab';
 import { clone, drop, genId, reorder } from '../../utils';
 import { Element } from '../../types';
 
