@@ -37,9 +37,9 @@ export const StyledPaletteElement = styled.div`
 	}
 
 	&.form-alcmst__palette-element--vertical-card {
-		padding: 0.8em;
 		width: 75px;
 		height: 75px;
+		padding: 0.8em;
 		flex-direction: column;
 		justify-content: center;
 

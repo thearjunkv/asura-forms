@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledWorkspaceBoard = styled.div`
-	height: 100%;
 	width: 90%;
+	height: 100%;
+	padding: 1em;
 	overflow: auto;
 
-	padding: 1em;
 	background-color: var(--white);
 	border: 1px solid var(--white);
 	border-radius: 6px;

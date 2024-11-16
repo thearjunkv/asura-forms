@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledProperties = styled.div`
-	padding: 0.8em;
 	width: 250px;
 	height: 100%;
+	padding: 0.8em;
 	overflow: auto;
 
 	h2 {

@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 export const StyledBoardElement = styled.div`
 	&.form-alcmst__board-element {
+		width: 100%;
+		min-height: 5em;
 		padding: 1em;
+		display: flex;
+		align-items: center;
+
 		background-color: var(--white);
 		border: 1px solid transparent;
 		border-radius: 6px;
@@ -10,11 +15,6 @@ export const StyledBoardElement = styled.div`
 
 		position: relative;
 		z-index: 10;
-
-		min-height: 5em;
-		width: 100%;
-		display: flex;
-		align-items: center;
 
 		& > div {
 			width: 100%; // For separator and spacer field

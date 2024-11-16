@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledPalette = styled.div`
-	padding: 0.8em;
 	width: 200px;
 	height: 100%;
+	padding: 0.8em;
 	overflow: auto;
 
 	h2 {
