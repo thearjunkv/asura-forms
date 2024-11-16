@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledAlchemyLab = styled.div<{ height?: number }>`
+	width: 100%;
 	height: ${({ height }) => (typeof height === 'number' ? `${height}px` : '650px')};
 	border: 1px solid var(--grey-300);
 	border-radius: 6px;

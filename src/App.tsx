@@ -1,6 +1,7 @@
 import AlchemyLab from './components/alchemy-lab';
 import { AlchemyLabProvider } from './context/AlchemyLabProvider';
 import { ConfigProvider } from 'antd';
+import { GlobalStyles } from './styles';
 
 const theme = {
 	token: {
@@ -22,18 +23,20 @@ function App() {
 				padding: '1em'
 			}}
 		>
-			<AlchemyLabProvider>
-				<ConfigProvider theme={theme}>
-					<AlchemyLab
-						// paletteGridView={true}
-						// height={980}
-						onSave={data => {
-							console.log(data);
-							localStorage.setItem('data', JSON.stringify(data));
-						}}
-					/>
-				</ConfigProvider>
-			</AlchemyLabProvider>
+			<GlobalStyles>
+				<AlchemyLabProvider>
+					<ConfigProvider theme={theme}>
+						<AlchemyLab
+							// paletteGridView={true}
+							// height={980}
+							onSave={data => {
+								console.log(data);
+								localStorage.setItem('data', JSON.stringify(data));
+							}}
+						/>
+					</ConfigProvider>
+				</AlchemyLabProvider>
+			</GlobalStyles>
 		</div>
 	);
 }
