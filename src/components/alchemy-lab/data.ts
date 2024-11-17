@@ -29,7 +29,6 @@ const cleanState: Element[] = [
 		elementType: 'Spacer',
 		height: '20',
 
-		styles: '',
 		elementId: '',
 		sectionId: ''
 	},

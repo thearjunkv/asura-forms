@@ -8,7 +8,7 @@ import CompileJsx from '../compile-jsx';
 import { TBoardElement } from '../../types';
 
 const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }) => {
-	const { data, setData, draggedElement } = useAlchemyLab();
+	const { data, setData, draggedElement, setSelectedElement } = useAlchemyLab();
 	const { elementId, elementType, sectionId } = element;
 
 	const sectionDroppable = useDroppable({
@@ -134,6 +134,10 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 						sectionDroppable.isOver &&
 						'form-alcmst__board-element--section-drag-over'
 				)}
+				onClick={e => {
+					e.stopPropagation();
+					setSelectedElement(element);
+				}}
 			>
 				{boardElementBody}
 				{topHalfDropArea}

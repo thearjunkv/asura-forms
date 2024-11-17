@@ -27,7 +27,7 @@ export type TSeparator = {
 export type TSpacer = {
 	elementType: 'Spacer';
 	height: string;
-} & Common;
+} & Omit<Common, 'styles'>;
 
 export type TSection = {
 	elementType: 'Section';
@@ -303,7 +303,7 @@ type Temp =
 // 	}
 // >;
 
-// export type FormElement = Partial<Temp>;
+// export type Element = Partial<Temp>;
 export type Element = Temp;
 
 export type TDndContext = {
@@ -329,6 +329,9 @@ export type TAlchemyLabContext = {
 			isPaletteElement: boolean;
 		} | null>
 	>;
+
+	selectedElement: Element | null;
+	setSelectedElement: Dispatch<SetStateAction<Element | null>>;
 
 	data: Element[];
 	setData: Dispatch<SetStateAction<Element[]>>;
@@ -362,5 +365,3 @@ export type TCompileJsx = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	onChange?: (e: any) => void;
 };
-
-export type TProperties = { element?: Element };

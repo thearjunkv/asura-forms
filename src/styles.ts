@@ -7,9 +7,6 @@ export const GlobalStyles = styled.div`
 	--red-color: hsl(0, 100%, 45%);
 	--red-color-light: hsl(0, 80%, 53%);
 
-	--primary-color: hsl(219, 58%, 66%);
-	--primary-color-light: hsla(219, 58%, 66%, 0.2);
-
 	--grey-50: hsl(0, 0%, 97.5%);
 	--grey-100: hsl(0, 0%, 95%);
 	--grey-200: hsl(0, 0%, 88%);
@@ -59,19 +56,19 @@ export const GlobalStyles = styled.div`
 
 	::-webkit-input-placeholder {
 		// update config provider as well
-		color: var(--grey-500);
+		color: var(--grey-600);
 	}
 
 	:-ms-input-placeholder {
-		color: var(--grey-500);
+		color: var(--grey-600);
 	}
 
 	::-moz-placeholder {
-		color: var(--grey-500);
+		color: var(--grey-600);
 	}
 
 	::placeholder {
-		color: var(--grey-500);
+		color: var(--grey-600);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -160,5 +157,95 @@ export const GlobalStyles = styled.div`
 		content: '*';
 		margin-left: 0.1em;
 		color: var(--red-color);
+	}
+
+	.ant-input,
+	.ant-input-number {
+		width: 100%;
+		height: auto;
+		padding: 0.4em 0.6em;
+		border: 1px solid var(--grey-200);
+		border-radius: 4px;
+
+		font-size: 0.9rem;
+		color: var(--grey-900);
+		text-align: left;
+		line-height: 1.5;
+
+		background-color: var(--white);
+		background-image: none;
+		appearance: none;
+
+		cursor: text;
+		outline: none;
+		transition: outline-color 120ms ease-in;
+
+		box-shadow: none;
+		outline: 2px solid transparent;
+		outline-offset: 2px;
+
+		resize: none;
+
+		&:focus {
+			outline-color: var(--grey-500);
+		}
+
+		&:disabled {
+			background-color: var(--grey-50);
+			cursor: not-allowed;
+		}
+	}
+
+	.ant-input-number {
+		padding: 0;
+		/* overflow: hidden; */
+
+		& .ant-input-number-input {
+			border-radius: 3px;
+			padding: 0.4em 0.6em;
+			box-shadow: none;
+			outline: 2px solid transparent;
+			outline-offset: 2.5px;
+		}
+
+		& .ant-input-number-input:focus {
+			outline-color: var(--grey-500);
+		}
+
+		& .ant-input-number-input:disabled {
+			background-color: var(--grey-50);
+			cursor: not-allowed;
+		}
+
+		& .ant-input-number-handler-wrap {
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			overflow: hidden;
+
+			& > span {
+				height: 50%;
+				border-radius: 0;
+			}
+		}
+
+		& .ant-input-number-handler-up,
+		& .ant-input-number-handler-down {
+			background-color: var(--grey-50);
+			transition: background-color 120ms ease-in;
+		}
+
+		& .ant-input-number-handler-up svg,
+		& .ant-input-number-handler-down svg {
+			fill: var(--grey-600);
+			transition: fill 120ms ease-in;
+		}
+
+		& .ant-input-number-handler-up:hover,
+		& .ant-input-number-handler-down:hover {
+			background-color: var(--grey-100);
+			& svg {
+				fill: var(--grey-800);
+			}
+		}
 	}
 `;

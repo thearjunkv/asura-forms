@@ -6,6 +6,7 @@ export const AlchemyLabProvider: React.FC<{
 	children: ReactNode;
 }> = ({ children }) => {
 	const [draggedElement, setDraggedElement] = useState<TAlchemyLabContext['draggedElement'] | null>(null);
+	const [selectedElement, setSelectedElement] = useState<Element | null>(null);
 	const [data, setData] = useState<Element[]>([]);
 	const [paletteGridView, setPaletteGridView] = useState<boolean>(false);
 
@@ -14,6 +15,8 @@ export const AlchemyLabProvider: React.FC<{
 			value={{
 				draggedElement,
 				setDraggedElement,
+				selectedElement,
+				setSelectedElement,
 				data,
 				setData,
 				paletteGridView,

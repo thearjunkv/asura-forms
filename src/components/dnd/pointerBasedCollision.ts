@@ -26,7 +26,7 @@ export const pointerBasedCollision: CollisionDetection = ({ pointerCoordinates, 
 
 		if (isWithinBounds) {
 			if (droppableArea === 'section') {
-				if (!nestLevel) console.error('nestLevel is missing in droppableArea');
+				if (nestLevel === undefined) console.error('nestLevel is missing in droppableArea');
 				else if (isNaN(nestLevel)) console.error('Invalid nestLevel in droppableArea');
 
 				return { id, droppableArea, nestLevel: nestLevel || 0 };
