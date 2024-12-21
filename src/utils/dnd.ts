@@ -1,13 +1,4 @@
-import { Element, TSection } from './types';
-
-export const genId = () => Date.now() + '-' + Math.random().toString(36).slice(2, 11);
-
-export const genHtmlId = (name: string) => `${name}-${genId()}`;
-
-export const cn = (...classes: (string | undefined | null | boolean)[]) => classes.filter(Boolean).join(' ');
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const clone = (data: any) => JSON.parse(JSON.stringify(data));
+import { Element, TSection } from '../types';
 
 const findSection = (data: Element[], sectionId: string): TSection | null => {
 	for (let i = 0; i < data.length; i++) {

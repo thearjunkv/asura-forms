@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 type Common = {
 	styles: string;
 
@@ -178,42 +176,24 @@ export type TNumber = {
 	required: boolean;
 } & Common;
 
-export type DropdownOptions = {
+export type SelectOptions = {
 	label: string;
 	value: string;
 	selected: boolean;
 	disabled: boolean;
 }[];
 
-export type TDropdown =
-	| ({
-			elementType: 'Dropdown';
-			attributes: SelectAttrs;
+export type TSelect = {
+	elementType: 'Select';
+	attributes: SelectAttrs;
 
-			allowMultiSelect: boolean;
-			dataSourceType: 'values';
-			options: DropdownOptions;
+	allowMultiSelect: boolean;
+	dataSourceType: 'values';
+	options: SelectOptions;
 
-			label: string;
-			required: boolean;
-	  } & Common)
-	| ({
-			elementType: 'Dropdown';
-			attributes: SelectAttrs;
-
-			allowMultiSelect: boolean;
-			dataSourceType: 'api';
-			apiConfig: {
-				url: string;
-				requestHeaders: { [key: string]: string | number | boolean }[];
-				dataPath: string;
-				labelKey: string;
-				valueKey: string;
-			};
-
-			label: string;
-			required: boolean;
-	  } & Common);
+	label: string;
+	required: boolean;
+} & Common;
 
 export type TCheckbox = {
 	elementType: 'Checkbox';
@@ -283,7 +263,7 @@ type Temp =
 	| TText
 	| TTextArea
 	| TNumber
-	| TDropdown
+	| TSelect
 	| TCheckbox
 	| TCheckboxGroup
 	| TRadio
@@ -305,63 +285,3 @@ type Temp =
 
 // export type Element = Partial<Temp>;
 export type Element = Temp;
-
-export type TDndContext = {
-	children: React.ReactNode;
-};
-
-export type TDraggable = {
-	children: React.ReactNode;
-	id: string;
-	data: { elementId: string; elementType: Element['elementType']; isPaletteElement: boolean };
-};
-
-export type TAlchemyLabContext = {
-	draggedElement: {
-		elementId: string;
-		elementType: Element['elementType'];
-		isPaletteElement: boolean;
-	} | null;
-	setDraggedElement: Dispatch<
-		SetStateAction<{
-			elementId: string;
-			elementType: Element['elementType'];
-			isPaletteElement: boolean;
-		} | null>
-	>;
-
-	selectedElement: Element | null;
-	setSelectedElement: Dispatch<SetStateAction<Element | null>>;
-
-	data: Element[];
-	setData: Dispatch<SetStateAction<Element[]>>;
-
-	paletteGridView: boolean;
-	setPaletteGridView: Dispatch<SetStateAction<boolean>>;
-};
-
-export type TAlchemyLab = {
-	title?: string;
-	paletteGridView?: boolean;
-	height?: number;
-	data?: Element[];
-	onSave: (data: Element[]) => void;
-};
-
-export type TPaletteElement = { text: string; icon: JSX.Element };
-
-export type TPaletteElementDataList = ({ name: Element['elementType'] } & TPaletteElement)[];
-
-export type TBoardElement = {
-	element: Element;
-	isOverlay?: boolean;
-	nestLevel: number;
-};
-
-export type TCompileJsx = {
-	element: Element;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	value?: any;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	onChange?: (e: any) => void;
-};

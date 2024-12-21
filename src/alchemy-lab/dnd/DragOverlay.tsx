@@ -1,9 +1,9 @@
 import { DragOverlay, useDndMonitor } from '@dnd-kit/core';
-import { elements } from '../palette/data';
-import { PaletteElement } from '../palette-element';
-import { useAlchemyLab } from '../../hooks/useAlchemyLab';
-import { findElement } from '../../utils';
-import BoardElement from '../board-element';
+import { elements } from '../../data/paletteElements';
+import { findElement } from '../../utils/dnd';
+import { PaletteElement } from '../components/PaletteElement';
+import { BoardElement } from '../components/BoardElement';
+import { useAlchemyLab } from '../hooks/useAlchemyLab';
 
 function DragOverlayWrapper() {
 	const { data, draggedElement, setDraggedElement } = useAlchemyLab();

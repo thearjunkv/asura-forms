@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { AlchemyLabContext } from './AlchemyLabContext';
-import { Element, TAlchemyLabContext } from '../types';
+import { TAlchemyLabContext } from '../types';
+import { Element } from '../../types/Element';
 
 export const AlchemyLabProvider: React.FC<{
 	children: ReactNode;
@@ -8,7 +9,6 @@ export const AlchemyLabProvider: React.FC<{
 	const [draggedElement, setDraggedElement] = useState<TAlchemyLabContext['draggedElement'] | null>(null);
 	const [selectedElement, setSelectedElement] = useState<Element | null>(null);
 	const [data, setData] = useState<Element[]>([]);
-	const [paletteGridView, setPaletteGridView] = useState<boolean>(false);
 
 	return (
 		<AlchemyLabContext.Provider
@@ -18,9 +18,7 @@ export const AlchemyLabProvider: React.FC<{
 				selectedElement,
 				setSelectedElement,
 				data,
-				setData,
-				paletteGridView,
-				setPaletteGridView
+				setData
 			}}
 		>
 			{children}

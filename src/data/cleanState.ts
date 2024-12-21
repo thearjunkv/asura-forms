@@ -1,4 +1,4 @@
-import { Element } from '../../types';
+import { Element } from '../types/Element';
 
 const cleanState: Element[] = [
 	{
@@ -177,7 +177,7 @@ const cleanState: Element[] = [
 		sectionId: ''
 	},
 	{
-		elementType: 'Dropdown',
+		elementType: 'Select',
 		attributes: {
 			id: '',
 			name: '',

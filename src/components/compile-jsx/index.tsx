@@ -1,9 +1,17 @@
 import { Checkbox, DatePicker, Input, InputNumber, Radio, Select, TimePicker } from 'antd';
-import { StyledCompileJsx } from './styles';
-import { cn } from '../../utils';
-import { TCompileJsx } from '../../types';
+import { StyledCompileJsx } from './style';
+import { Element } from '../../types/Element';
+import { cn } from '../../utils/helpers';
 
-const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
+export type TCompileJsx = {
+	element: Element;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	value?: any;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	onChange?: (e: any) => void;
+};
+
+export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 	const { elementId, elementType } = element;
 	let jsxElement: JSX.Element | null = null;
 
@@ -161,32 +169,26 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 			);
 			break;
 		}
-		case 'Dropdown': {
-			const { allowMultiSelect, attributes, dataSourceType, label, required } = element;
+		case 'Select': {
+			const { allowMultiSelect, attributes, label, required } = element;
 			const { disabled, id, name } = attributes;
 
-			if (dataSourceType === 'values') {
-				const { options } = element;
-				jsxElement = (
-					<div
-						className={cn(
-							'form-alcmst__element-wrapper',
-							required && 'form-alcmst__element-wrapper--required'
-						)}
-					>
-						{label && <label htmlFor={id || elementId}>{label}</label>}
-						<Select
-							data-name={name}
-							data-required={required}
-							id={id || elementId}
-							disabled={disabled}
-							options={options.map(({ selected: _omit, ...rest }) => rest)}
-							mode={allowMultiSelect ? 'multiple' : 'tags'}
-						/>
-					</div>
-				);
-			}
-
+			const { options } = element;
+			jsxElement = (
+				<div
+					className={cn('form-alcmst__element-wrapper', required && 'form-alcmst__element-wrapper--required')}
+				>
+					{label && <label htmlFor={id || elementId}>{label}</label>}
+					<Select
+						data-name={name}
+						data-required={required}
+						id={id || elementId}
+						disabled={disabled}
+						options={options.map(({ selected: _omit, ...rest }) => rest)}
+						mode={allowMultiSelect ? 'multiple' : 'tags'}
+					/>
+				</div>
+			);
 			break;
 		}
 		case 'Checkbox': {
@@ -320,5 +322,3 @@ const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 
 	return <StyledCompileJsx>{jsxElement}</StyledCompileJsx>;
 };
-
-export default CompileJsx;

@@ -1,8 +1,8 @@
 import { useDroppable } from '@dnd-kit/core';
-import { useAlchemyLab } from '../../hooks/useAlchemyLab';
-import { cn } from '../../utils';
-import { StyledWorkspaceBoard } from './styles';
-import BoardElement from '../board-element';
+import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { StyledWorkspaceBoard } from '../styles/workspaceBoardStyles';
+import { BoardElement } from './BoardElement';
+import { cn } from '../../utils/helpers';
 
 const WorkspaceBoard: React.FC = () => {
 	const { data } = useAlchemyLab();
