@@ -184,7 +184,6 @@ const cleanState: Element[] = [
 			disabled: false
 		},
 		allowMultiSelect: false,
-		dataSourceType: 'values',
 		options: [
 			{
 				label: 'Option 1',

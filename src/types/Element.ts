@@ -188,7 +188,6 @@ export type TSelect = {
 	attributes: SelectAttrs;
 
 	allowMultiSelect: boolean;
-	dataSourceType: 'values';
 	options: SelectOptions;
 
 	label: string;
