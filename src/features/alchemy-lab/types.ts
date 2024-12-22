@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Element } from '../types/Element';
+import { Element } from '../../types/Element';
 
 export type TAlchemyLabContext = {
 	draggedElement: {

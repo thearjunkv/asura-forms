@@ -1,6 +1,6 @@
 import { DragOverlay, useDndMonitor } from '@dnd-kit/core';
-import { elements } from '../../data/paletteElements';
-import { findElement } from '../../utils/dnd';
+import { elements } from '../../../data/paletteElements';
+import { findElement } from '../../../utils/dnd';
 import { PaletteElement } from '../components/PaletteElement';
 import { BoardElement } from '../components/BoardElement';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';

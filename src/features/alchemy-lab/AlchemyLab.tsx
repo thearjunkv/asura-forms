@@ -1,4 +1,4 @@
-import { GlobalStyles } from '../styles/globalStyles';
+import { GlobalStyles } from '../../styles/globalStyles';
 import { StyledAlchemyLab } from './styles/alchemyLabStyles';
 
 import Palette from './components/Palette';
@@ -6,12 +6,12 @@ import Workspace from './components/Workspace';
 import Properties from './components/Properties';
 
 import { TAlchemyLab } from './types';
-import { PreviewIcon, SaveIcon } from '../assets/Icons';
+import { PreviewIcon, SaveIcon } from '../../assets/Icons';
 
 import { DndContextWrapper } from './dnd/DndContext';
 import DragOverlayWrapper from './dnd/DragOverlay';
 import { AlchemyLabProvider } from './context/AlchemyLabProvider';
-import { Theme } from '../styles/Theme';
+import { Theme } from '../../styles/Theme';
 
 export const AlchemyLab: React.FC<TAlchemyLab> = props => {
 	return (

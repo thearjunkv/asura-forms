@@ -1,6 +1,6 @@
-import { formElements, layoutElements } from '../../data/paletteElements';
+import { formElements, layoutElements } from '../../../data/paletteElements';
 import { Draggable } from '../dnd/Draggable';
-import { cn } from '../../utils/helpers';
+import { cn } from '../../../utils/helpers';
 import { StyledPalette } from '../styles/paletteStyles';
 import { TPalette } from '../types';
 import { PaletteElement } from './PaletteElement';

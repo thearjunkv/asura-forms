@@ -1,10 +1,10 @@
 import { useDroppable } from '@dnd-kit/core';
 import { TBoardElement } from '../types';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
-import { DeleteIcon, SpacerIcon } from '../../assets/Icons';
-import { clone, cn } from '../../utils/helpers';
-import { CompileJsx } from '../../components/compile-jsx';
-import { remove } from '../../utils/dnd';
+import { DeleteIcon, SpacerIcon } from '../../../assets/Icons';
+import { clone, cn } from '../../../utils/helpers';
+import { CompileJsx } from '../../../components/compile-jsx';
+import { remove } from '../../../utils/dnd';
 import { StyledBoardElement } from '../styles/boardElementStyles';
 import { Draggable } from '../dnd/Draggable';
 

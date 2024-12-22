@@ -2,11 +2,11 @@ import { useDndMonitor } from '@dnd-kit/core';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { StyledWorkspace } from '../styles/workspaceStyles';
 import WorkspaceBoard from './WorkspaceBoard';
-import { Element } from '../../types/Element';
-import { clone } from '../../utils/helpers';
-import { drop, reorder } from '../../utils/dnd';
-import { genId } from '../../utils/genUid';
-import cleanState from '../../data/cleanState';
+import { Element } from '../../../types/Element';
+import { clone } from '../../../utils/helpers';
+import { drop, reorder } from '../../../utils/dnd';
+import { genId } from '../../../utils/genUid';
+import cleanState from '../../../data/cleanState';
 
 const Workspace: React.FC = () => {
 	const { data, setData } = useAlchemyLab();

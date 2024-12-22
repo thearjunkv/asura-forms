@@ -1,4 +1,4 @@
-import { AlchemyLab } from './alchemy-lab';
+import { AlchemyLab } from './features/alchemy-lab';
 
 function App() {
 	return (

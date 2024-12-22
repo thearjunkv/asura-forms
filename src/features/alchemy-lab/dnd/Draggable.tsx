@@ -1,5 +1,5 @@
 import { useDraggable } from '@dnd-kit/core';
-import { Element } from '../../types/Element';
+import { Element } from '../../../types/Element';
 
 export type TDraggable = {
 	children: React.ReactNode;
