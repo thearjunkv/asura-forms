@@ -18,7 +18,7 @@ const WorkspaceBoard: React.FC = () => {
 			ref={setNodeRef}
 			className={cn(
 				'form-alcmst__workspace-board',
-				isOver && 'form-alcmst__workspace-board--hovered',
+				isOver && 'form-alcmst__workspace-board--drag-over',
 				data.length === 0 && 'form-alcmst__workspace-board--empty'
 			)}
 		>

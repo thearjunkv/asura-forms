@@ -78,7 +78,7 @@ export const StyledBoardElement = styled.div`
 	}
 
 	&.form-alcmst__board-element--section {
-		padding: 2.5em 1em 1em 1em;
+		padding: 2.4em 1em 1em 1em;
 		border-color: var(--grey-200);
 	}
 
@@ -135,6 +135,16 @@ export const StyledBoardElement = styled.div`
 			top: auto;
 			bottom: 0;
 			height: 1.5em;
+		}
+	}
+
+	&.form-alcmst__board-element--section-filled {
+		& > .form-alcmst__board-element-top-half {
+			height: 2.6em;
+		}
+
+		& > .form-alcmst__board-element-bottom-half {
+			height: 1.2em;
 		}
 	}
 

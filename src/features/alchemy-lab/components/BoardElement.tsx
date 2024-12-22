@@ -133,7 +133,10 @@ export const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nest
 					elementType === 'Section' && 'form-alcmst__board-element--section',
 					elementType === 'Section' &&
 						sectionDroppable.isOver &&
-						'form-alcmst__board-element--section-drag-over'
+						'form-alcmst__board-element--section-drag-over',
+					elementType === 'Section' &&
+						element.children.length > 0 &&
+						'form-alcmst__board-element--section-filled'
 				)}
 				onClick={e => {
 					e.stopPropagation();
