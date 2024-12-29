@@ -1,8 +1,9 @@
 import { useDroppable } from '@dnd-kit/core';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { StyledWorkspaceBoard } from '../styles/workspaceBoardStyles';
-import { BoardElement } from './BoardElement';
+import BoardElement from './BoardElement';
 import { cn } from '../../../utils/helpers';
+import { Form } from 'antd';
 
 const WorkspaceBoard: React.FC = () => {
 	const { data } = useAlchemyLab();
@@ -24,13 +25,15 @@ const WorkspaceBoard: React.FC = () => {
 		>
 			{data.length === 0 && <span className='form-alcmst__workspace-board-drop-message'>Drop here</span>}
 
-			{data.map(element => (
-				<BoardElement
-					key={element.elementId}
-					element={element}
-					nestLevel={0}
-				/>
-			))}
+			<Form layout='vertical'>
+				{data.map(element => (
+					<BoardElement
+						key={element.elementId}
+						element={element}
+						nestLevel={0}
+					/>
+				))}
+			</Form>
 		</StyledWorkspaceBoard>
 	);
 };

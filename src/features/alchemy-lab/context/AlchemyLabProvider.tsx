@@ -3,11 +3,12 @@ import { AlchemyLabContext } from './AlchemyLabContext';
 import { TAlchemyLabContext } from '../types';
 import { Element } from '../../../types/Element';
 
-export const AlchemyLabProvider: React.FC<{
+const AlchemyLabProvider: React.FC<{
 	children: ReactNode;
 }> = ({ children }) => {
 	const [draggedElement, setDraggedElement] = useState<TAlchemyLabContext['draggedElement'] | null>(null);
 	const [selectedElement, setSelectedElement] = useState<Element | null>(null);
+	const [invalidElementProperties, setInvalidElementProperties] = useState<string[]>([]);
 	const [data, setData] = useState<Element[]>([]);
 
 	return (
@@ -17,6 +18,8 @@ export const AlchemyLabProvider: React.FC<{
 				setDraggedElement,
 				selectedElement,
 				setSelectedElement,
+				invalidElementProperties,
+				setInvalidElementProperties,
 				data,
 				setData
 			}}
@@ -25,3 +28,5 @@ export const AlchemyLabProvider: React.FC<{
 		</AlchemyLabContext.Provider>
 	);
 };
+
+export default AlchemyLabProvider;

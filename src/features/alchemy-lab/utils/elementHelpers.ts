@@ -1,4 +1,4 @@
-import { Element, TSection } from '../types';
+import { Element, TSection } from '../../../types/Element';
 
 const findSection = (data: Element[], sectionId: string): TSection | null => {
 	for (let i = 0; i < data.length; i++) {
@@ -140,4 +140,58 @@ export const reorder = ({
 		targetSectionId,
 		position
 	});
+};
+
+export const updateElementInData = ({
+	data,
+	elementId,
+	updatedElement
+}: {
+	data: Element[];
+	elementId: string;
+	updatedElement: Element;
+}) => {
+	const source = findElementAndSection(data, elementId);
+	if (!source) {
+		console.error('Element not found');
+		return;
+	}
+	const { index, sectionArrayList } = source;
+
+	sectionArrayList[index] = updatedElement;
+	return { updatedData: data };
+};
+
+export const validateElementProperties = (element: Element) => {
+	const { elementType } = element;
+	const invalidProperties: string[] = [];
+
+	if (elementType === 'Title' || elementType === 'Paragraph') {
+		if (element.text.trim() === '') invalidProperties.push('text');
+	}
+
+	if (elementType === 'Spacer') {
+		if (typeof element.height !== 'number' || isNaN(element.height) || element.height <= 0)
+			invalidProperties.push('height');
+	}
+
+	if (elementType === 'Section') {
+		if (element.name.trim() === '') invalidProperties.push('name');
+	}
+
+	if ('attributes' in element && 'name' in element.attributes) {
+		if (element.attributes.name.trim() === '') invalidProperties.push('name');
+	}
+
+	if (elementType === 'Checkbox') {
+		if (element.label.trim() === '') invalidProperties.push('label');
+		if (element.value.trim() === '') invalidProperties.push('value');
+	}
+
+	if (elementType === 'Select' || elementType === 'CheckboxGroup' || elementType === 'Radio') {
+		const invalidOptions = element.options.filter(({ label, value }) => label.trim() === '' || value.trim() === '');
+		if (invalidOptions.length > 0) invalidProperties.push('options');
+	}
+
+	return invalidProperties;
 };

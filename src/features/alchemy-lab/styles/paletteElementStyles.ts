@@ -6,15 +6,19 @@ export const StyledPaletteElement = styled.div`
 	font-size: 0.7em;
 	background-color: var(--white);
 	border: 1px solid var(--grey-200);
-	border-radius: 6px;
+	border-radius: 12px;
 	display: flex;
 	align-items: center;
-	transition: background-color 120ms ease;
+	transition: background-color 300ms ease;
 	overflow: hidden;
 	cursor: grab;
 
 	&:hover {
-		background-color: var(--grey-100);
+		background-color: var(--grey-200);
+	}
+
+	&.form-alcmst__palette-element--drag-overlay {
+		background-color: var(--grey-200);
 	}
 
 	div {

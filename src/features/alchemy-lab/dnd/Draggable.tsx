@@ -7,7 +7,7 @@ export type TDraggable = {
 	data: { elementId: string; elementType: Element['elementType']; isPaletteElement: boolean };
 };
 
-export function Draggable({ children, id, data }: TDraggable) {
+function Draggable({ children, id, data }: TDraggable) {
 	const { attributes, listeners, setNodeRef } = useDraggable({ id, data });
 
 	return (
@@ -20,3 +20,5 @@ export function Draggable({ children, id, data }: TDraggable) {
 		</div>
 	);
 }
+
+export default Draggable;

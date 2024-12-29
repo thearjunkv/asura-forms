@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledCompileJsx = styled.div`
+export const StyledCompileJsx = styled.div<{ $customstyles?: string }>`
+	overflow: auto;
+
 	h1,
 	h2,
 	h3,
@@ -43,4 +45,20 @@ export const StyledCompileJsx = styled.div`
 
 	.form-alcmst__element-separator {
 	}
+
+	${props =>
+		props.$customstyles &&
+		css`
+			${props.$customstyles}
+		`}
+`;
+
+export const StyledCompileSectionJsx = styled.div<{ $customstyles?: string }>`
+	overflow: auto;
+	width: auto;
+	${props =>
+		props.$customstyles &&
+		css`
+			${props.$customstyles}
+		`}
 `;

@@ -111,26 +111,77 @@ export const GlobalStyles = styled.div`
 
 	// common styles
 
-	button {
-		padding: 0.25em 0.85em;
-		font-size: 0.82rem;
-		background-color: var(--grey-900);
+	.form-alcmst__btn,
+	.form-alcmst__btn--secondary,
+	.form-alcmst__btn--outlined {
+		padding: 0.4em 1em;
+		font-size: 0.84rem;
 		color: var(--white);
+		background-color: var(--grey-900);
 		border: 1px solid var(--grey-900);
-		border-radius: 6px;
+		border-radius: 50px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
 
-		& svg {
-			margin-right: 0.4em;
-			width: 1.15em;
-			display: flex;
+		&:hover {
+			background-color: var(--grey-800);
+			border-color: var(--grey-800);
+		}
+
+		& > svg {
+			width: 1.2em;
+		}
+
+		& > svg path {
+			fill: var(--white);
+		}
+	}
+
+	.form-alcmst__btn--secondary {
+		color: var(--grey-900);
+		background-color: var(--grey-200);
+		border-color: var(--grey-200);
+
+		&:hover {
+			background-color: var(--grey-300);
+			border-color: var(--grey-300);
 		}
 
 		& svg path {
-			fill: var(--white);
+			fill: var(--grey-900);
+		}
+	}
+
+	.form-alcmst__btn--outlined {
+		color: var(--grey-900);
+		background-color: var(--white);
+
+		&:hover {
+			color: var(--white);
+			background-color: var(--grey-900);
+			border-color: var(--grey-900);
+		}
+	}
+
+	.form-alcmst__required-asterisk::after {
+		content: '*';
+		margin-left: 0.1em;
+		color: var(--red-color);
+	}
+
+	.ant-form-item-required {
+		&::after {
+			content: '*' !important;
+			visibility: visible !important;
+			margin-left: 0.2em !important;
+			color: var(--red-color) !important;
+		}
+
+		&::before {
+			margin: 0 !important;
+			content: '' !important;
 		}
 	}
 
@@ -140,22 +191,12 @@ export const GlobalStyles = styled.div`
 		width: 100%;
 	}
 
-	.form-alcmst__element-wrapper {
-		width: 100%;
-		height: auto;
-	}
-
-	.form-alcmst__element-wrapper > label {
-		display: block;
-		width: 100%;
-		margin-bottom: 0.2em;
+	.ant-input,
+	.ant-select-selector {
 		font-size: 0.9rem;
-		color: var(--grey-900);
 	}
 
-	.form-alcmst__element-wrapper--required > label::after {
-		content: '*';
-		margin-left: 0.1em;
-		color: var(--red-color);
+	.form-alcmst__board-element .ant-form-item {
+		margin-bottom: 0 !important;
 	}
 `;

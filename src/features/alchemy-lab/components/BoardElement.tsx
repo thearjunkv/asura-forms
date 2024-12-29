@@ -3,13 +3,21 @@ import { TBoardElement } from '../types';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { DeleteIcon, SpacerIcon } from '../../../assets/Icons';
 import { clone, cn } from '../../../utils/helpers';
-import { CompileJsx } from '../../../components/compile-jsx';
-import { remove } from '../../../utils/dnd';
+import { CompileJsx, CompileSectionJsx } from '../../../components/compile-jsx';
+import { remove } from '../utils/elementHelpers';
 import { StyledBoardElement } from '../styles/boardElementStyles';
-import { Draggable } from '../dnd/Draggable';
+import Draggable from '../dnd/Draggable';
 
-export const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }) => {
-	const { data, setData, draggedElement, setSelectedElement } = useAlchemyLab();
+const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }) => {
+	const {
+		data,
+		setData,
+		draggedElement,
+		selectedElement,
+		setSelectedElement,
+		invalidElementProperties,
+		setInvalidElementProperties
+	} = useAlchemyLab();
 	const { elementId, elementType, sectionId } = element;
 
 	const sectionDroppable = useDroppable({
@@ -52,7 +60,7 @@ export const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nest
 					<div className='form-alcmst__board-element-section-info'>
 						<span>Section Field</span>
 					</div>
-					<div>
+					<CompileSectionJsx element={element}>
 						{element.children.map(childElement => (
 							<BoardElement
 								key={childElement.elementId}
@@ -61,7 +69,7 @@ export const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nest
 								nestLevel={nestLevel + 1}
 							/>
 						))}
-					</div>
+					</CompileSectionJsx>
 				</>
 			)}
 
@@ -95,11 +103,19 @@ export const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nest
 				'form-alcmst__board-element-btn-delete',
 				elementType === 'Section' && 'form-alcmst__board-element-btn-delete--section'
 			)}
-			onClick={() => {
+			onClick={e => {
+				e.stopPropagation();
+
 				const clonedData = clone(data);
 				const result = remove({ data: clonedData, elementId });
 				if (!result) return;
 				setData(result.updatedData);
+
+				if (!selectedElement) return;
+				if (selectedElement.elementId === elementId) {
+					setSelectedElement(null);
+					if (invalidElementProperties.length > 0) setInvalidElementProperties([]);
+				}
 			}}
 		>
 			{DeleteIcon}
@@ -141,6 +157,9 @@ export const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nest
 				onClick={e => {
 					e.stopPropagation();
 					setSelectedElement(element);
+
+					if (invalidElementProperties.length > 0) setInvalidElementProperties([]);
+					setSelectedElement(() => JSON.parse(JSON.stringify(element)));
 				}}
 			>
 				{boardElementBody}
@@ -151,3 +170,5 @@ export const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nest
 		</Draggable>
 	);
 };
+
+export default BoardElement;

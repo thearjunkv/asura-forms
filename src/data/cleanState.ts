@@ -27,13 +27,14 @@ const cleanState: Element[] = [
 	},
 	{
 		elementType: 'Spacer',
-		height: '20',
+		height: 20,
 
 		elementId: '',
 		sectionId: ''
 	},
 	{
 		elementType: 'Section',
+		name: 'section',
 		children: [],
 
 		styles: '',
@@ -47,8 +48,6 @@ const cleanState: Element[] = [
 			id: '',
 			name: 'name',
 			placeholder: '',
-			readOnly: false,
-			disabled: false,
 			minLength: 0,
 			maxLength: 100
 		},
@@ -65,8 +64,6 @@ const cleanState: Element[] = [
 			id: '',
 			name: 'address',
 			placeholder: '',
-			readOnly: false,
-			disabled: false,
 			minLength: 0,
 			maxLength: 100,
 			rows: 4,
@@ -86,8 +83,6 @@ const cleanState: Element[] = [
 			id: '',
 			name: 'email',
 			placeholder: '',
-			readOnly: false,
-			disabled: false,
 			minLength: 0,
 			maxLength: 100
 		},
@@ -103,10 +98,8 @@ const cleanState: Element[] = [
 		attributes: {
 			type: 'tel',
 			id: '',
-			name: 'phoneNumber',
+			name: 'phone_number',
 			placeholder: '',
-			readOnly: false,
-			disabled: false,
 			minLength: 10,
 			maxLength: 15
 		},
@@ -123,10 +116,8 @@ const cleanState: Element[] = [
 		attributes: {
 			type: 'text',
 			id: '',
-			name: '',
+			name: 'text',
 			placeholder: '',
-			readOnly: false,
-			disabled: false,
 			minLength: 0,
 			maxLength: 100
 		},
@@ -141,10 +132,8 @@ const cleanState: Element[] = [
 		elementType: 'TextArea',
 		attributes: {
 			id: '',
-			name: '',
+			name: 'textarea',
 			placeholder: '',
-			readOnly: false,
-			disabled: false,
 			minLength: 0,
 			maxLength: 100,
 			rows: 5,
@@ -162,10 +151,8 @@ const cleanState: Element[] = [
 		attributes: {
 			type: 'number',
 			id: '',
-			name: '',
+			name: 'number',
 			placeholder: '',
-			readOnly: false,
-			disabled: false,
 			min: 0,
 			max: 100
 		},
@@ -180,20 +167,17 @@ const cleanState: Element[] = [
 		elementType: 'Select',
 		attributes: {
 			id: '',
-			name: '',
-			disabled: false
+			name: 'select'
 		},
 		allowMultiSelect: false,
 		options: [
 			{
 				label: 'Option 1',
-				value: 'option_1',
-				selected: false,
-				disabled: false
+				value: 'option_1'
 			}
 		],
 
-		label: 'Dropdown Field',
+		label: 'Select Field',
 		required: true,
 
 		styles: '',
@@ -204,12 +188,10 @@ const cleanState: Element[] = [
 		elementType: 'Checkbox',
 		attributes: {
 			type: 'checkbox',
-			name: ''
+			name: 'checkbox'
 		},
 		label: 'Option 1',
 		value: 'option_1',
-		checked: false,
-		disabled: false,
 
 		required: true,
 
@@ -221,7 +203,7 @@ const cleanState: Element[] = [
 		elementType: 'CheckboxGroup',
 		attributes: {
 			type: 'checkbox',
-			name: ''
+			name: 'checkbox_group'
 		},
 		label: 'Checkbox Group Field',
 		required: true,
@@ -229,9 +211,7 @@ const cleanState: Element[] = [
 		options: [
 			{
 				label: 'Option 1',
-				value: 'option_1',
-				checked: false,
-				disabled: false
+				value: 'option_1'
 			}
 		],
 
@@ -243,8 +223,7 @@ const cleanState: Element[] = [
 		elementType: 'Radio',
 		attributes: {
 			type: 'radio',
-			name: '',
-			disabled: false
+			name: 'radio'
 		},
 		label: 'Radio Field',
 		required: true,
@@ -252,9 +231,7 @@ const cleanState: Element[] = [
 		options: [
 			{
 				label: 'Option 1',
-				value: 'option_1',
-				checked: false,
-				disabled: false
+				value: 'option_1'
 			}
 		],
 
@@ -267,9 +244,7 @@ const cleanState: Element[] = [
 		attributes: {
 			type: 'date',
 			id: '',
-			name: '',
-			readOnly: false,
-			disabled: false
+			name: 'date'
 		},
 		label: 'Date Field',
 		required: true,
@@ -283,9 +258,7 @@ const cleanState: Element[] = [
 		attributes: {
 			type: 'time',
 			id: '',
-			name: '',
-			readOnly: false,
-			disabled: false
+			name: 'time'
 		},
 		label: 'Time Field',
 		required: true,
@@ -299,7 +272,6 @@ const cleanState: Element[] = [
 		attributes: {
 			type: 'submit',
 			id: '',
-			disabled: false,
 			placeholder: 'submit'
 		},
 

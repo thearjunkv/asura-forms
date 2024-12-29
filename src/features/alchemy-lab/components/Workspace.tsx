@@ -4,12 +4,31 @@ import { StyledWorkspace } from '../styles/workspaceStyles';
 import WorkspaceBoard from './WorkspaceBoard';
 import { Element } from '../../../types/Element';
 import { clone } from '../../../utils/helpers';
-import { drop, reorder } from '../../../utils/dnd';
-import { genId } from '../../../utils/genUid';
+import { drop, reorder } from '../utils/elementHelpers';
+import { genId } from '../../../utils/helpers';
 import cleanState from '../../../data/cleanState';
+import { useRef } from 'react';
 
 const Workspace: React.FC = () => {
 	const { data, setData } = useAlchemyLab();
+	const nameAttrCounts = useRef<{ [key: string]: number }>({
+		Section: 0,
+		Name: 0,
+		Address: 0,
+		Email: 0,
+		PhoneNumber: 0,
+		Text: 0,
+		TextArea: 0,
+		Number: 0,
+		Select: 0,
+		Checkbox: 0,
+		CheckboxGroup: 0,
+		Radio: 0,
+		Date: 0,
+		Time: 0
+	});
+
+	console.log(data);
 
 	useDndMonitor({
 		onDragEnd: ({ active, over }) => {
@@ -46,6 +65,24 @@ const Workspace: React.FC = () => {
 				if (!element) return;
 
 				const clonedElement = clone(element) as Element;
+
+				{
+					const { elementType } = clonedElement;
+					if (
+						elementType !== 'Title' &&
+						elementType !== 'Paragraph' &&
+						elementType !== 'Separator' &&
+						elementType !== 'Spacer' &&
+						elementType !== 'Button'
+					) {
+						nameAttrCounts.current[elementType] += 1;
+						if (elementType === 'Section') {
+							clonedElement.name = `${clonedElement.name}_${nameAttrCounts.current[elementType]}`;
+						} else {
+							clonedElement.attributes.name = `${clonedElement.attributes.name}_${nameAttrCounts.current[elementType]}`;
+						}
+					}
+				}
 
 				const updatedData = drop({
 					data: clonedData,

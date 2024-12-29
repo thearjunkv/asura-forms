@@ -5,7 +5,7 @@ export type TDndContext = {
 	children: React.ReactNode;
 };
 
-export function DndContextWrapper({ children }: TDndContext) {
+function DndContextWrapper({ children }: TDndContext) {
 	const mouseSensor = useSensor(MouseSensor, {
 		activationConstraint: {
 			distance: 10
@@ -23,3 +23,5 @@ export function DndContextWrapper({ children }: TDndContext) {
 		</DndContext>
 	);
 }
+
+export default DndContextWrapper;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledAlchemyLab = styled.div`
 	width: 100%;
 	border: 1px solid var(--grey-300);
-	border-radius: 6px;
+	border-radius: 12px;
 	overflow: hidden;
 
 	.form-alcmst__alchemy-lab-header {

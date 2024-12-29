@@ -17,6 +17,8 @@ export type TAlchemyLabContext = {
 
 	selectedElement: Element | null;
 	setSelectedElement: Dispatch<SetStateAction<Element | null>>;
+	invalidElementProperties: string[];
+	setInvalidElementProperties: Dispatch<SetStateAction<string[]>>;
 
 	data: Element[];
 	setData: Dispatch<SetStateAction<Element[]>>;
@@ -32,7 +34,7 @@ export type TAlchemyLab = {
 
 export type TPalette = { paletteGridView?: boolean };
 
-export type TPaletteElement = { text: string; icon: JSX.Element; paletteGridView?: boolean };
+export type TPaletteElement = { text: string; icon: JSX.Element; paletteGridView?: boolean; isOverlay?: boolean };
 
 export type TPaletteElementDataList = ({ name: Element['elementType'] } & TPaletteElement)[];
 
@@ -41,3 +43,5 @@ export type TBoardElement = {
 	isOverlay?: boolean;
 	nestLevel: number;
 };
+
+export type TPreview = { formTitle: string; isOpen: boolean; onClose: () => void };

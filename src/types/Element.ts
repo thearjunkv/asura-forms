@@ -24,11 +24,12 @@ export type TSeparator = {
 
 export type TSpacer = {
 	elementType: 'Spacer';
-	height: string;
+	height: number;
 } & Omit<Common, 'styles'>;
 
 export type TSection = {
 	elementType: 'Section';
+	name: string;
 	children: Element[];
 } & Common;
 
@@ -39,8 +40,8 @@ export type TextAttrs = {
 	id: string;
 	name: string;
 	placeholder: string;
-	readOnly: boolean;
-	disabled: boolean;
+	// readOnly: boolean;
+	// disabled: boolean;
 	minLength: number;
 	maxLength: number;
 };
@@ -49,8 +50,8 @@ export type TextareaAttrs = {
 	id: string;
 	name: string;
 	placeholder: string;
-	readOnly: boolean;
-	disabled: boolean;
+	// readOnly: boolean;
+	// disabled: boolean;
 	minLength: number;
 	maxLength: number;
 	rows: number;
@@ -62,8 +63,8 @@ export type NumberAttrs = {
 	id: string;
 	name: string;
 	placeholder: string;
-	readOnly: boolean;
-	disabled: boolean;
+	// readOnly: boolean;
+	// disabled: boolean;
 	min: number;
 	max: number;
 };
@@ -73,8 +74,8 @@ export type TelAttrs = {
 	id: string;
 	name: string;
 	placeholder: string;
-	readOnly: boolean;
-	disabled: boolean;
+	// readOnly: boolean;
+	// disabled: boolean;
 	minLength: number;
 	maxLength: number;
 };
@@ -82,7 +83,7 @@ export type TelAttrs = {
 export type SelectAttrs = {
 	id: string;
 	name: string;
-	disabled: boolean;
+	// disabled: boolean;
 };
 
 export type CheckboxAttrs = {
@@ -93,29 +94,29 @@ export type CheckboxAttrs = {
 export type RadioAttrs = {
 	type: 'radio';
 	name: string;
-	disabled: boolean;
+	// disabled: boolean;
 };
 
 export type DateAttrs = {
 	type: 'date';
 	id: string;
 	name: string;
-	readOnly: boolean;
-	disabled: boolean;
+	// readOnly: boolean;
+	// disabled: boolean;
 };
 
 export type TimeAttrs = {
 	type: 'time';
 	id: string;
 	name: string;
-	readOnly: boolean;
-	disabled: boolean;
+	// readOnly: boolean;
+	// disabled: boolean;
 };
 
 export type ButtonAttrs = {
-	type: 'button' | 'reset' | 'submit';
+	type: 'reset' | 'submit';
 	id: string;
-	disabled: boolean;
+	// disabled: boolean;
 	placeholder: string;
 };
 
@@ -179,8 +180,8 @@ export type TNumber = {
 export type SelectOptions = {
 	label: string;
 	value: string;
-	selected: boolean;
-	disabled: boolean;
+	// selected: boolean;
+	// disabled: boolean;
 }[];
 
 export type TSelect = {
@@ -199,8 +200,8 @@ export type TCheckbox = {
 	attributes: CheckboxAttrs;
 	label: string;
 	value: string;
-	checked: boolean;
-	disabled: boolean;
+	// checked: boolean;
+	// disabled: boolean;
 
 	required: boolean;
 } & Common;
@@ -211,8 +212,8 @@ export type TCheckboxGroup = {
 	options: {
 		label: string;
 		value: string;
-		checked: boolean;
-		disabled: boolean;
+		// checked: boolean;
+		// disabled: boolean;
 	}[];
 
 	label: string;
@@ -225,8 +226,8 @@ export type TRadio = {
 	options: {
 		label: string;
 		value: string;
-		checked: boolean;
-		disabled: boolean;
+		// checked: boolean;
+		// disabled: boolean;
 	}[];
 
 	label: string;
@@ -283,4 +284,8 @@ type Temp =
 // >;
 
 // export type Element = Partial<Temp>;
-export type Element = Temp;
+// export type Element = Temp;
+export type Element = Temp & {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[key: string]: any;
+};

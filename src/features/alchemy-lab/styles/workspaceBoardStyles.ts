@@ -6,10 +6,10 @@ export const StyledWorkspaceBoard = styled.div`
 	overflow: auto;
 
 	background-color: var(--white);
-	border-radius: 6px;
+	border-radius: 12px;
 
 	position: relative;
-	transition: box-shadow 120ms ease;
+	transition: box-shadow 300ms ease;
 
 	& > div {
 		min-width: 300px;
@@ -21,7 +21,7 @@ export const StyledWorkspaceBoard = styled.div`
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			font-size: 1.2rem;
+			font-size: 1.04rem;
 			color: var(--grey-600);
 		}
 

@@ -10,11 +10,12 @@ export const StyledBoardElement = styled.div`
 
 		background-color: var(--white);
 		border: 1px solid transparent;
-		border-radius: 6px;
+		border-radius: 12px;
 		cursor: grab;
 
 		position: relative;
 		z-index: 10;
+		overflow: hidden;
 
 		& > div {
 			width: 100%; // For separator and spacer field
@@ -106,14 +107,14 @@ export const StyledBoardElement = styled.div`
 
 	& > .form-alcmst__board-element-top-half {
 		top: 0;
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
+		border-top-left-radius: 12px;
+		border-top-right-radius: 12px;
 	}
 
 	& > .form-alcmst__board-element-bottom-half {
 		top: 50%;
-		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 12px;
+		border-bottom-right-radius: 12px;
 	}
 
 	&.form-alcmst__board-element:hover > .form-alcmst__board-element-top-half,
@@ -182,17 +183,26 @@ export const StyledBoardElement = styled.div`
 		top: 0;
 		right: 0;
 		height: 100%;
+		padding: 0 0.8em;
 		background-color: var(--red-color-light);
-		border-color: var(--red-color-light);
-		border-radius: 5px;
+		border: none;
+		border-radius: 12px;
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		transition: background-color 300ms ease;
 
 		opacity: 0;
 
 		& > svg {
-			margin: 0;
-			font-size: 1.1rem;
+			width: 1.4em;
+		}
+
+		& > svg path {
+			fill: var(--white);
 		}
 
 		&:hover {
@@ -206,11 +216,10 @@ export const StyledBoardElement = styled.div`
 		padding: 0;
 		width: 2em;
 		height: 2em;
-		border-radius: 4px;
+		border-radius: 8px;
 
 		& > svg {
-			margin: 0;
-			font-size: 0.8rem;
+			width: 1.2em;
 		}
 	}
 

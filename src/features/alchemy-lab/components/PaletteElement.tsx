@@ -2,12 +2,13 @@ import { cn } from '../../../utils/helpers';
 import { StyledPaletteElement } from '../styles/paletteElementStyles';
 import { TPaletteElement } from '../types';
 
-export const PaletteElement: React.FC<TPaletteElement> = ({ icon, text, paletteGridView }) => {
+const PaletteElement: React.FC<TPaletteElement> = ({ icon, text, paletteGridView, isOverlay }) => {
 	return (
 		<StyledPaletteElement
 			className={cn(
 				'form-alcmst__palette-element',
-				paletteGridView && 'form-alcmst__palette-element--vertical-card'
+				paletteGridView && 'form-alcmst__palette-element--vertical-card',
+				isOverlay && 'form-alcmst__palette-element--drag-overlay'
 			)}
 		>
 			<div>{icon}</div>
@@ -15,3 +16,5 @@ export const PaletteElement: React.FC<TPaletteElement> = ({ icon, text, paletteG
 		</StyledPaletteElement>
 	);
 };
+
+export default PaletteElement;
