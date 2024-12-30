@@ -1,6 +1,7 @@
 import { cn } from '../../../utils/helpers';
 import { StyledPaletteElement } from '../styles/paletteElementStyles';
-import { TPaletteElement } from '../types';
+
+type TPaletteElement = { text: string; icon: JSX.Element; paletteGridView?: boolean; isOverlay?: boolean };
 
 const PaletteElement: React.FC<TPaletteElement> = ({ icon, text, paletteGridView, isOverlay }) => {
 	return (

@@ -276,15 +276,6 @@ type Temp =
 	| TSpacer
 	| TSection;
 
-// export type FormElement = Partial<
-// 	Temp & {
-// 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// 		[key: string]: any;
-// 	}
-// >;
-
-// export type Element = Partial<Temp>;
-// export type Element = Temp;
 export type Element = Temp & {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[key: string]: any;

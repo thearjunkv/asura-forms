@@ -1,5 +1,4 @@
 import { useDroppable } from '@dnd-kit/core';
-import { TBoardElement } from '../types';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { DeleteIcon, SpacerIcon } from '../../../assets/Icons';
 import { clone, cn } from '../../../utils/helpers';
@@ -7,6 +6,13 @@ import { CompileJsx, CompileSectionJsx } from '../../../components/compile-jsx';
 import { remove } from '../utils/elementHelpers';
 import { StyledBoardElement } from '../styles/boardElementStyles';
 import Draggable from '../dnd/Draggable';
+import { Element } from '../../../types/Element';
+
+type TBoardElement = {
+	element: Element;
+	isOverlay?: boolean;
+	nestLevel: number;
+};
 
 const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }) => {
 	const {

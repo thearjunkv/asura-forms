@@ -31,17 +31,3 @@ export type TAlchemyLab = {
 	data?: Element[];
 	onSave: (data: Element[]) => void;
 };
-
-export type TPalette = { paletteGridView?: boolean };
-
-export type TPaletteElement = { text: string; icon: JSX.Element; paletteGridView?: boolean; isOverlay?: boolean };
-
-export type TPaletteElementDataList = ({ name: Element['elementType'] } & TPaletteElement)[];
-
-export type TBoardElement = {
-	element: Element;
-	isOverlay?: boolean;
-	nestLevel: number;
-};
-
-export type TPreview = { formTitle: string; isOpen: boolean; onClose: () => void };

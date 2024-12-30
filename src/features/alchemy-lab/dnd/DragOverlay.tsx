@@ -1,5 +1,5 @@
 import { DragOverlay, useDndMonitor } from '@dnd-kit/core';
-import { elements } from '../../../data/paletteElements';
+import { paletteElementDataList } from '../data/paletteElementDataList';
 import { findElement } from '../utils/elementHelpers';
 import PaletteElement from '../components/PaletteElement';
 import BoardElement from '../components/BoardElement';
@@ -29,7 +29,7 @@ function DragOverlayWrapper() {
 	if (draggedElement) {
 		const { elementId, elementType, isPaletteElement } = draggedElement;
 		if (isPaletteElement) {
-			const element = elements.find(e => e.name === elementType);
+			const element = paletteElementDataList.find(e => e.name === elementType);
 			if (!element) return null;
 
 			return (

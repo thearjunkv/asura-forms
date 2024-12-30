@@ -55,7 +55,6 @@ export const GlobalStyles = styled.div`
 	}
 
 	::-webkit-input-placeholder {
-		// update config provider as well
 		color: var(--grey-600);
 	}
 
@@ -108,8 +107,6 @@ export const GlobalStyles = styled.div`
 		scrollbar-width: thin;
 		scrollbar-color: var(--grey-300) var(--grey-100);
 	}
-
-	// common styles
 
 	.form-alcmst__btn,
 	.form-alcmst__btn--secondary,

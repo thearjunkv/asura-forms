@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { StyledProperties } from '../styles/propertiesStyles';
-import PropertiesElements from './PropertyElements';
+import PropertyElements from './PropertyElements';
 import { updateElementInData, validateElementProperties } from '../utils/elementHelpers';
 import { clone } from '../../../utils/helpers';
 
@@ -39,8 +39,8 @@ const Properties: React.FC = () => {
 		}
 	}, [selectedElement]);
 
-	const propertiesElements = selectedElement && (
-		<PropertiesElements invalidElementProperties={invalidElementProperties} />
+	const propertyElements = selectedElement && (
+		<PropertyElements invalidElementProperties={invalidElementProperties} />
 	);
 
 	const propertiesEmptyMessage = (
@@ -91,15 +91,18 @@ const Properties: React.FC = () => {
 			className='form-alcmst__properties'
 			onClick={e => e.stopPropagation()}
 		>
-			<header>
+			<div className='form-alcmst__properties-header'>
 				<h2>Element Properties</h2>
-			</header>
+			</div>
 
-			<main ref={propertiesBody}>
-				{selectedElement && propertiesElements}
+			<div
+				ref={propertiesBody}
+				className='form-alcmst__properties-body'
+			>
+				{selectedElement && propertyElements}
 				{!selectedElement && propertiesEmptyMessage}
-			</main>
-			<footer>{selectedElement && propertiesActions}</footer>
+			</div>
+			<div className='form-alcmst__properties-footer'>{selectedElement && propertiesActions}</div>
 		</StyledProperties>
 	);
 };

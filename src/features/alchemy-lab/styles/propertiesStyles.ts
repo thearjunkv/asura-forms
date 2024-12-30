@@ -9,21 +9,18 @@ export const StyledProperties = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	header {
+	.form-alcmst__properties-header {
 		padding: 0.8em;
-		/* border: 1px solid red; */
 	}
 
-	main {
+	.form-alcmst__properties-body {
 		overflow: auto;
 		padding: 0 0.8em;
-		/* border: 1px solid red; */
 	}
 
-	footer {
+	.form-alcmst__properties-footer {
 		margin-top: auto;
 		padding: 0.8em;
-		/* border: 1px solid red; */
 	}
 
 	h2 {

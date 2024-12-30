@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledPreview = styled.section`
+export const StyledPreview = styled.div`
 	position: fixed;
 	z-index: 999;
 	width: 100%;
@@ -41,14 +41,14 @@ export const StyledPreview = styled.section`
 		}
 	}
 
-	header > h1 {
+	.form-alcmst__preview-header > h1 {
 		padding: 0;
 		margin: 0;
 		text-align: center;
 		font-size: 1.2rem;
 	}
 
-	header > button.form-alcmst__btn--secondary {
+	.form-alcmst__preview-header > button.form-alcmst__btn--secondary {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -63,5 +63,10 @@ export const StyledPreview = styled.section`
 		&:hover {
 			background-color: transparent;
 		}
+	}
+
+	.form-alcmst__preview-body {
+		margin-top: 0.8em;
+		padding: 0 0.8em;
 	}
 `;

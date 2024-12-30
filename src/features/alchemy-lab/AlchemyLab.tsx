@@ -14,7 +14,7 @@ import AlchemyLabProvider from './context/AlchemyLabProvider';
 import { Theme } from '../../styles/Theme';
 import Preview from './components/Preview';
 
-export const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height }) => {
+const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height }) => {
 	const [togglePreview, setTogglePreview] = useState<boolean>(false);
 	const formTitle = title || 'Custom Form';
 
@@ -60,3 +60,5 @@ export const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height }) => {
 		</AlchemyLabProvider>
 	);
 };
+
+export default AlchemyLab;

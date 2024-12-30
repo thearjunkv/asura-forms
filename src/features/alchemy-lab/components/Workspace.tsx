@@ -1,13 +1,12 @@
+import { useRef } from 'react';
 import { useDndMonitor } from '@dnd-kit/core';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { StyledWorkspace } from '../styles/workspaceStyles';
 import WorkspaceBoard from './WorkspaceBoard';
 import { Element } from '../../../types/Element';
-import { clone } from '../../../utils/helpers';
+import { clone, genId } from '../../../utils/helpers';
 import { drop, reorder } from '../utils/elementHelpers';
-import { genId } from '../../../utils/helpers';
-import cleanState from '../../../data/cleanState';
-import { useRef } from 'react';
+import { cleanState } from '../../../data/cleanState';
 
 const Workspace: React.FC = () => {
 	const { data, setData } = useAlchemyLab();
@@ -27,8 +26,6 @@ const Workspace: React.FC = () => {
 		Date: 0,
 		Time: 0
 	});
-
-	console.log(data);
 
 	useDndMonitor({
 		onDragEnd: ({ active, over }) => {

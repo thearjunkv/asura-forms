@@ -3,15 +3,11 @@ import { StyledCompileJsx, StyledCompileSectionJsx } from './style';
 import { Element, TSection } from '../../types/Element';
 import { ReactNode } from 'react';
 
-export type TCompileJsx = {
-	element: Element;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	value?: any;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	onChange?: (e: any) => void;
-};
+type TCompileSectionJsx = { element: TSection; children: ReactNode };
 
-export const CompileSectionJsx: React.FC<{ element: TSection; children: ReactNode }> = ({ element, children }) => {
+type TCompileJsx = { element: Element };
+
+export const CompileSectionJsx: React.FC<TCompileSectionJsx> = ({ element, children }) => {
 	return <StyledCompileSectionJsx $customstyles={element.styles}>{children}</StyledCompileSectionJsx>;
 };
 

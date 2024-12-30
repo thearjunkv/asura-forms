@@ -8,7 +8,7 @@ const monochromaticTheme = {
 		colorBgContainer: '#FFFFFF',
 		colorText: 'hsl(0, 0%, 10%)',
 		colorBorder: 'hsl(0, 0%, 88%)',
-		borderRadius: 4,
+		borderRadius: 12,
 		motionDurationFast: '0.1s',
 		motionDurationMid: '0.1s',
 		motionDurationSlow: '0.1s'

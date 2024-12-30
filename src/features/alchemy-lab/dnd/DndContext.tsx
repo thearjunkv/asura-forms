@@ -1,7 +1,7 @@
 import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { pointerBasedCollision } from './pointerBasedCollision';
 
-export type TDndContext = {
+type TDndContext = {
 	children: React.ReactNode;
 };
 

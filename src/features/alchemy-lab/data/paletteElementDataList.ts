@@ -1,4 +1,3 @@
-import { Element } from '../types/Element';
 import {
 	CalendarIcon,
 	CheckboxGroupIcon,
@@ -19,12 +18,12 @@ import {
 	TextFieldIcon,
 	TimePickerIcon,
 	TitleIcon
-} from '../assets/Icons';
-import { TPaletteElement } from '../alchemy-lab/types';
+} from '../../../assets/Icons';
+import { Element } from '../../../types/Element';
 
-export type TPaletteElementDataList = ({ name: Element['elementType'] } & TPaletteElement)[];
+type TPaletteElementDataList = { name: Element['elementType']; text: string; icon: JSX.Element }[];
 
-export const layoutElements: TPaletteElementDataList = [
+export const layoutElementDataList: TPaletteElementDataList = [
 	{
 		name: 'Title',
 		text: 'Title',
@@ -52,7 +51,7 @@ export const layoutElements: TPaletteElementDataList = [
 	}
 ];
 
-export const formElements: TPaletteElementDataList = [
+export const formElementDataList: TPaletteElementDataList = [
 	{
 		name: 'Name',
 		text: 'Name',
@@ -125,4 +124,4 @@ export const formElements: TPaletteElementDataList = [
 	}
 ];
 
-export const elements = [...layoutElements, ...formElements];
+export const paletteElementDataList = [...layoutElementDataList, ...formElementDataList];

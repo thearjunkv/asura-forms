@@ -1,6 +1,6 @@
 import { Element } from '../types/Element';
 
-const cleanState: Element[] = [
+export const cleanState: Element[] = [
 	{
 		elementType: 'Title',
 		text: 'Title Field',
@@ -280,5 +280,3 @@ const cleanState: Element[] = [
 		sectionId: ''
 	}
 ];
-
-export default cleanState;

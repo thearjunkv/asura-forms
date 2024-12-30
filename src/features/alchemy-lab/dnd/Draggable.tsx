@@ -1,7 +1,7 @@
 import { useDraggable } from '@dnd-kit/core';
 import { Element } from '../../../types/Element';
 
-export type TDraggable = {
+type TDraggable = {
 	children: React.ReactNode;
 	id: string;
 	data: { elementId: string; elementType: Element['elementType']; isPaletteElement: boolean };

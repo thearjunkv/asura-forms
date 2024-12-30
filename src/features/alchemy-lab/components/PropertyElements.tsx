@@ -4,7 +4,9 @@ import { Element } from '../../../types/Element';
 import { cn } from '../../../utils/helpers';
 import { AddIcon, XIcon } from '../../../assets/Icons';
 
-const PropertiesElements: React.FC<{ invalidElementProperties: string[] }> = ({ invalidElementProperties }) => {
+type TPropertyElements = { invalidElementProperties: string[] };
+
+const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementProperties }) => {
 	const { selectedElement, setSelectedElement } = useAlchemyLab();
 
 	if (!selectedElement) return null;
@@ -491,4 +493,4 @@ const PropertiesElements: React.FC<{ invalidElementProperties: string[] }> = ({ 
 	return jsxElement;
 };
 
-export default PropertiesElements;
+export default PropertyElements;
