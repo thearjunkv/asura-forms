@@ -4,9 +4,10 @@ import { findElement } from '../utils/elementHelpers';
 import PaletteElement from '../components/PaletteElement';
 import BoardElement from '../components/BoardElement';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { Form } from 'antd';
 
 function DragOverlayWrapper() {
-	const { data, draggedElement, setDraggedElement } = useAlchemyLab();
+	const { formData, draggedElement, setDraggedElement } = useAlchemyLab();
 
 	useDndMonitor({
 		onDragStart: ({ active }) => {
@@ -42,15 +43,17 @@ function DragOverlayWrapper() {
 				</DragOverlay>
 			);
 		} else {
-			const element = findElement(data, elementId);
+			const element = findElement(formData, elementId);
 			if (!element) return;
 			return (
 				<DragOverlay>
-					<BoardElement
-						element={element}
-						isOverlay={true}
-						nestLevel={0}
-					/>
+					<Form layout='vertical'>
+						<BoardElement
+							element={element}
+							isOverlay={true}
+							nestLevel={0}
+						/>
+					</Form>
 				</DragOverlay>
 			);
 		}

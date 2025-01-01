@@ -54,22 +54,6 @@ export const GlobalStyles = styled.div`
 		letter-spacing: inherit;
 	}
 
-	::-webkit-input-placeholder {
-		color: var(--grey-600);
-	}
-
-	:-ms-input-placeholder {
-		color: var(--grey-600);
-	}
-
-	::-moz-placeholder {
-		color: var(--grey-600);
-	}
-
-	::placeholder {
-		color: var(--grey-600);
-	}
-
 	@media (prefers-reduced-motion: reduce) {
 		html:focus-within {
 			scroll-behavior: auto;
@@ -193,7 +177,7 @@ export const GlobalStyles = styled.div`
 		font-size: 0.9rem;
 	}
 
-	.form-alcmst__board-element .ant-form-item {
-		margin-bottom: 0 !important;
+	.ant-form-item {
+		margin-bottom: 0.8em !important;
 	}
 `;

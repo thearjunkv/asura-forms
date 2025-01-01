@@ -16,8 +16,8 @@ type TBoardElement = {
 
 const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }) => {
 	const {
-		data,
-		setData,
+		formData,
+		setFormData,
 		draggedElement,
 		selectedElement,
 		setSelectedElement,
@@ -112,10 +112,10 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 			onClick={e => {
 				e.stopPropagation();
 
-				const clonedData = clone(data);
-				const result = remove({ data: clonedData, elementId });
+				const clonedFormData = clone(formData);
+				const result = remove({ formData: clonedFormData, elementId });
 				if (!result) return;
-				setData(result.updatedData);
+				setFormData(result.updatedFormData);
 
 				if (!selectedElement) return;
 				if (selectedElement.elementId === elementId) {

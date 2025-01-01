@@ -6,7 +6,7 @@ import { cn } from '../../../utils/helpers';
 import { Form } from 'antd';
 
 const WorkspaceBoard: React.FC = () => {
-	const { data } = useAlchemyLab();
+	const { formData } = useAlchemyLab();
 	const { setNodeRef, isOver } = useDroppable({
 		id: 'mainBoard',
 		data: {
@@ -20,13 +20,13 @@ const WorkspaceBoard: React.FC = () => {
 			className={cn(
 				'form-alcmst__workspace-board',
 				isOver && 'form-alcmst__workspace-board--drag-over',
-				data.length === 0 && 'form-alcmst__workspace-board--empty'
+				formData.length === 0 && 'form-alcmst__workspace-board--empty'
 			)}
 		>
-			{data.length === 0 && <span className='form-alcmst__workspace-board-drop-message'>Drop here</span>}
+			{formData.length === 0 && <span className='form-alcmst__workspace-board-drop-message'>Drop here</span>}
 
 			<Form layout='vertical'>
-				{data.map(element => (
+				{formData.map(element => (
 					<BoardElement
 						key={element.elementId}
 						element={element}

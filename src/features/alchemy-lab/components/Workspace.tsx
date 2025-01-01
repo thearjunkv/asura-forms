@@ -9,8 +9,8 @@ import { drop, reorder } from '../utils/elementHelpers';
 import { cleanState } from '../../../data/cleanState';
 
 const Workspace: React.FC = () => {
-	const { data, setData } = useAlchemyLab();
-	const nameAttrCounts = useRef<{ [key: string]: number }>({
+	const { formData, setFormData } = useAlchemyLab();
+	const nameAttrCountsRef = useRef<{ [key: string]: number }>({
 		Section: 0,
 		Name: 0,
 		Address: 0,
@@ -56,7 +56,7 @@ const Workspace: React.FC = () => {
 			if (overId === 'topHalf') position = 'up';
 			else position = 'down';
 
-			const clonedData = clone(data) as Element[];
+			const clonedFormData = clone(formData) as Element[];
 			if (isPaletteElement) {
 				const element = cleanState.find(el => el.elementType === elementType);
 				if (!element) return;
@@ -72,34 +72,34 @@ const Workspace: React.FC = () => {
 						elementType !== 'Spacer' &&
 						elementType !== 'Button'
 					) {
-						nameAttrCounts.current[elementType] += 1;
+						nameAttrCountsRef.current[elementType] += 1;
 						if (elementType === 'Section') {
-							clonedElement.name = `${clonedElement.name}_${nameAttrCounts.current[elementType]}`;
+							clonedElement.name = `${clonedElement.name}_${nameAttrCountsRef.current[elementType]}`;
 						} else {
-							clonedElement.attributes.name = `${clonedElement.attributes.name}_${nameAttrCounts.current[elementType]}`;
+							clonedElement.attributes.name = `${clonedElement.attributes.name}_${nameAttrCountsRef.current[elementType]}`;
 						}
 					}
 				}
 
-				const updatedData = drop({
-					data: clonedData,
+				const updatedFormData = drop({
+					formData: clonedFormData,
 					element: { ...clonedElement, elementId: genId(), sectionId: targetSectionId },
 					position,
 					targetElementId,
 					targetSectionId
 				});
-				if (!updatedData) return;
-				setData(updatedData);
+				if (!updatedFormData) return;
+				setFormData(updatedFormData);
 			} else {
-				const updatedData = reorder({
-					data: clonedData,
+				const updatedFormData = reorder({
+					formData: clonedFormData,
 					elementId,
 					targetElementId,
 					targetSectionId,
 					position
 				});
-				if (!updatedData) return;
-				setData(updatedData);
+				if (!updatedFormData) return;
+				setFormData(updatedFormData);
 			}
 		}
 	});

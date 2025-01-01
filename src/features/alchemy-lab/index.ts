@@ -1,1 +1,1 @@
-export { default as AlchemyLab } from './AlchemyLab';
+export { default as AlchemyLab } from './AlchemyLabWithContext';

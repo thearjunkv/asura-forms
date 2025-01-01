@@ -9,7 +9,7 @@ const AlchemyLabProvider: React.FC<{
 	const [draggedElement, setDraggedElement] = useState<TAlchemyLabContext['draggedElement'] | null>(null);
 	const [selectedElement, setSelectedElement] = useState<Element | null>(null);
 	const [invalidElementProperties, setInvalidElementProperties] = useState<string[]>([]);
-	const [data, setData] = useState<Element[]>([]);
+	const [formData, setFormData] = useState<Element[]>([]);
 
 	return (
 		<AlchemyLabContext.Provider
@@ -20,8 +20,8 @@ const AlchemyLabProvider: React.FC<{
 				setSelectedElement,
 				invalidElementProperties,
 				setInvalidElementProperties,
-				data,
-				setData
+				formData,
+				setFormData
 			}}
 		>
 			{children}

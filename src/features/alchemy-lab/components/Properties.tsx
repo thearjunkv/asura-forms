@@ -2,20 +2,20 @@ import { useEffect, useRef } from 'react';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { StyledProperties } from '../styles/propertiesStyles';
 import PropertyElements from './PropertyElements';
-import { updateElementInData, validateElementProperties } from '../utils/elementHelpers';
+import { updateElementInFormData, validateElementProperties } from '../utils/elementHelpers';
 import { clone } from '../../../utils/helpers';
 
 const Properties: React.FC = () => {
 	const {
-		data,
-		setData,
+		formData,
+		setFormData,
 		selectedElement,
 		setSelectedElement,
 		invalidElementProperties,
 		setInvalidElementProperties
 	} = useAlchemyLab();
-	const propertiesBody = useRef<HTMLDivElement>(null);
-	const prevElement = useRef<string | null>(null);
+	const propertiesBodyRef = useRef<HTMLDivElement>(null);
+	const prevElementRef = useRef<string | null>(null);
 
 	useEffect(() => {
 		const exit = () => {
@@ -30,12 +30,12 @@ const Properties: React.FC = () => {
 	}, [selectedElement, setSelectedElement, invalidElementProperties, setInvalidElementProperties]);
 
 	useEffect(() => {
-		if (selectedElement) prevElement.current = selectedElement.elementId;
+		if (selectedElement) prevElementRef.current = selectedElement.elementId;
 	}, [selectedElement]);
 
 	useEffect(() => {
-		if (selectedElement && prevElement.current !== selectedElement.elementId && propertiesBody.current) {
-			propertiesBody.current.scrollTop = 0;
+		if (selectedElement && prevElementRef.current !== selectedElement.elementId && propertiesBodyRef.current) {
+			propertiesBodyRef.current.scrollTop = 0;
 		}
 	}, [selectedElement]);
 
@@ -60,22 +60,22 @@ const Properties: React.FC = () => {
 						return;
 					}
 					if (invalidElementProperties.length > 0) setInvalidElementProperties([]);
-					const clonedData = clone(data);
-					const response = updateElementInData({
-						data: clonedData,
+					const clonedFormData = clone(formData);
+					const response = updateElementInFormData({
+						formData: clonedFormData,
 						elementId: selectedElement.elementId,
 						updatedElement: selectedElement
 					});
 
 					if (!response) return;
-					setData(response.updatedData);
+					setFormData(response.updatedFormData);
 					setSelectedElement(null);
 				}}
 			>
 				Save
 			</button>
 			<button
-				className='form-alcmst__btn--outlined'
+				className='form-alcmst__btn--secondary'
 				onClick={() => {
 					if (invalidElementProperties.length > 0) setInvalidElementProperties([]);
 					setSelectedElement(null);
@@ -96,7 +96,7 @@ const Properties: React.FC = () => {
 			</div>
 
 			<div
-				ref={propertiesBody}
+				ref={propertiesBodyRef}
 				className='form-alcmst__properties-body'
 			>
 				{selectedElement && propertyElements}

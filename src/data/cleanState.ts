@@ -52,7 +52,7 @@ export const cleanState: Element[] = [
 			maxLength: 100
 		},
 		label: 'Name Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -70,7 +70,7 @@ export const cleanState: Element[] = [
 			cols: 40
 		},
 		label: 'Address Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -87,7 +87,7 @@ export const cleanState: Element[] = [
 			maxLength: 100
 		},
 		label: 'Email Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -105,7 +105,7 @@ export const cleanState: Element[] = [
 		},
 		includeCountryCode: false,
 		label: 'Phone number Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -122,7 +122,7 @@ export const cleanState: Element[] = [
 			maxLength: 100
 		},
 		label: 'Text Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -140,7 +140,7 @@ export const cleanState: Element[] = [
 			cols: 40
 		},
 		label: 'Textarea Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -157,7 +157,7 @@ export const cleanState: Element[] = [
 			max: 100
 		},
 		label: 'Number Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -167,7 +167,8 @@ export const cleanState: Element[] = [
 		elementType: 'Select',
 		attributes: {
 			id: '',
-			name: 'select'
+			name: 'select',
+			placeholder: 'Select an option'
 		},
 		allowMultiSelect: false,
 		options: [
@@ -178,7 +179,7 @@ export const cleanState: Element[] = [
 		],
 
 		label: 'Select Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -193,7 +194,7 @@ export const cleanState: Element[] = [
 		label: 'Option 1',
 		value: 'option_1',
 
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -206,7 +207,7 @@ export const cleanState: Element[] = [
 			name: 'checkbox_group'
 		},
 		label: 'Checkbox Group Field',
-		required: true,
+		required: false,
 
 		options: [
 			{
@@ -226,7 +227,7 @@ export const cleanState: Element[] = [
 			name: 'radio'
 		},
 		label: 'Radio Field',
-		required: true,
+		required: false,
 
 		options: [
 			{
@@ -247,7 +248,7 @@ export const cleanState: Element[] = [
 			name: 'date'
 		},
 		label: 'Date Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',
@@ -261,7 +262,7 @@ export const cleanState: Element[] = [
 			name: 'time'
 		},
 		label: 'Time Field',
-		required: true,
+		required: false,
 
 		styles: '',
 		elementId: '',

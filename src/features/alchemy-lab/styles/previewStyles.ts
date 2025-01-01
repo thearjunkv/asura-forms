@@ -18,7 +18,7 @@ export const StyledPreview = styled.div`
 
 	.form-alcmst__preview-modal {
 		margin-top: 2.5em;
-		padding: 0.8em;
+		padding: 0.8em 1.4em 1.4em;
 		width: 80%;
 		max-width: 600px;
 		height: 100%;
@@ -46,6 +46,7 @@ export const StyledPreview = styled.div`
 		margin: 0;
 		text-align: center;
 		font-size: 1.2rem;
+		color: var(--grey-800);
 	}
 
 	.form-alcmst__preview-header > button.form-alcmst__btn--secondary {
@@ -67,6 +68,23 @@ export const StyledPreview = styled.div`
 
 	.form-alcmst__preview-body {
 		margin-top: 0.8em;
-		padding: 0 0.8em;
+	}
+
+	.form-alcmst__preview-form-response {
+		margin-top: 0.8em;
+		padding: 0.8em;
+		background-color: var(--grey-200);
+		color: var(--grey-800);
+		border-radius: 12px;
+
+		& > h2 {
+			margin: 0 0 0.8em;
+			font-size: 0.9rem;
+		}
+
+		& > pre {
+			margin: 0;
+			font-size: 0.85rem;
+		}
 	}
 `;

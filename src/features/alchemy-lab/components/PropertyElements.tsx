@@ -3,6 +3,7 @@ import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { Element } from '../../../types/Element';
 import { cn } from '../../../utils/helpers';
 import { AddIcon, XIcon } from '../../../assets/Icons';
+import { elementHasOptions } from '../utils/elementHelpers';
 
 type TPropertyElements = { invalidElementProperties: string[] };
 
@@ -24,13 +25,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 		return { ...prev, attributes: { ...prev.attributes, [property]: val } };
 	};
 
-	const elementHasOptions = (element: Element) => {
-		const { elementType } = element;
-		return elementType === 'CheckboxGroup' || elementType === 'Radio' || elementType === 'Select';
-	};
-
-	/* text */
-	if (elementType === 'Title' || elementType === 'Paragraph')
+	if ('text' in selectedElement)
 		jsxElement.push(
 			<div
 				className='form-alcmst__property-element'
@@ -54,22 +49,21 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 			</div>
 		);
 
-	/* name */
-	if (elementType === 'Section')
+	if ('name' in selectedElement)
 		jsxElement.push(
 			<div
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label
-					htmlFor='element_section_name'
+					htmlFor='element_name'
 					className='form-alcmst__required-asterisk'
 				>
 					Name
 				</label>
 				<Input
-					name='element_section_name'
-					id='element_section_name'
+					name='element_name'
+					id='element_name'
 					value={selectedElement.name}
 					onChange={e => setSelectedElement(p => handleRootChange(p, 'name', e.target.value))}
 				/>
@@ -128,9 +122,9 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_type'>Button type</label>
+				<label htmlFor='element_button_type'>Button type</label>
 				<Select
-					id='element_type'
+					id='element_button_type'
 					value={selectedElement.attributes.type}
 					onChange={val => setSelectedElement(p => handleAttrChange(p, 'type', val))}
 					options={['submit', 'reset'].map(option => ({
@@ -148,18 +142,18 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				key={jsxElement.length + 1}
 			>
 				<label
-					htmlFor='element_name'
+					htmlFor='element_attr_name'
 					className='form-alcmst__required-asterisk'
 				>
 					Name
 				</label>
 				<Input
-					name='element_name'
-					id='element_name'
+					name='element_attr_name'
+					id='element_attr_name'
 					value={selectedElement.attributes.name}
 					onChange={e => setSelectedElement(p => handleAttrChange(p, 'name', e.target.value))}
 				/>
-				{invalidElementProperties.includes('name') && (
+				{invalidElementProperties.includes('attributes.name') && (
 					<span className='form-alcmst__property-element--error'>Name is required</span>
 				)}
 			</div>
@@ -183,14 +177,13 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					value={selectedElement.label}
 					onChange={e => setSelectedElement(p => handleRootChange(p, 'label', e.target.value))}
 				/>
-				{elementType === 'Checkbox' && invalidElementProperties.includes('label') && (
+				{invalidElementProperties.includes('label') && (
 					<span className='form-alcmst__property-element--error'>Label is required</span>
 				)}
 			</div>
 		);
 
-	/* value */
-	if (elementType === 'Checkbox')
+	if ('value' in selectedElement)
 		jsxElement.push(
 			<div
 				className='form-alcmst__property-element'
@@ -220,10 +213,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_placeholder'>Placeholder</label>
+				<label htmlFor='element_attr_placeholder'>Placeholder</label>
 				<Input
-					name='element_placeholder'
-					id='element_placeholder'
+					name='element_attr_placeholder'
+					id='element_attr_placeholder'
 					value={selectedElement.attributes.placeholder}
 					onChange={e => setSelectedElement(p => handleAttrChange(p, 'placeholder', e.target.value))}
 				/>
@@ -236,10 +229,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_id'>ID</label>
+				<label htmlFor='element_attr_id'>ID</label>
 				<Input
-					name='element_id'
-					id='element_id'
+					name='element_attr_id'
+					id='element_attr_id'
 					value={selectedElement.attributes.id}
 					onChange={e => setSelectedElement(p => handleAttrChange(p, 'id', e.target.value))}
 				/>
@@ -383,10 +376,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_min_length'>Min length</label>
+				<label htmlFor='element_attr_min_length'>Min length</label>
 				<InputNumber
-					name='element_min_length'
-					id='element_min_length'
+					name='element_attr_min_length'
+					id='element_attr_min_length'
 					value={selectedElement.attributes.minLength}
 					onChange={val => setSelectedElement(p => handleAttrChange(p, 'minLength', val))}
 				/>
@@ -399,10 +392,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_max_length'>Max length</label>
+				<label htmlFor='element_attr_max_length'>Max length</label>
 				<InputNumber
-					name='element_max_length'
-					id='element_max_length'
+					name='element_attr_max_length'
+					id='element_attr_max_length'
 					value={selectedElement.attributes.maxLength}
 					onChange={val => setSelectedElement(p => handleAttrChange(p, 'maxLength', val))}
 				/>
@@ -415,10 +408,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_min'>Minimum value</label>
+				<label htmlFor='element_attr_min'>Minimum value</label>
 				<InputNumber
-					name='element_min'
-					id='element_min'
+					name='element_attr_min'
+					id='element_attr_min'
 					value={selectedElement.attributes.min}
 					onChange={val => setSelectedElement(p => handleAttrChange(p, 'min', val))}
 				/>
@@ -431,10 +424,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_max'>Maximum value</label>
+				<label htmlFor='element_attr_max'>Maximum value</label>
 				<InputNumber
-					name='element_max'
-					id='element_max'
+					name='element_attr_max'
+					id='element_attr_max'
 					value={selectedElement.attributes.max}
 					onChange={val => setSelectedElement(p => handleAttrChange(p, 'max', val))}
 				/>
@@ -447,10 +440,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_rows'>No of rows</label>
+				<label htmlFor='element_attr_rows'>No of rows</label>
 				<InputNumber
-					name='element_rows'
-					id='element_rows'
+					name='element_attr_rows'
+					id='element_attr_rows'
 					value={selectedElement.attributes.rows}
 					onChange={val => setSelectedElement(p => handleAttrChange(p, 'rows', val))}
 				/>
@@ -463,10 +456,10 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 				className='form-alcmst__property-element'
 				key={jsxElement.length + 1}
 			>
-				<label htmlFor='element_cols'>No of cols</label>
+				<label htmlFor='element_attr_cols'>No of cols</label>
 				<InputNumber
-					name='element_cols'
-					id='element_cols'
+					name='element_attr_cols'
+					id='element_attr_cols'
 					value={selectedElement.attributes.cols}
 					onChange={val => setSelectedElement(p => handleAttrChange(p, 'cols', val))}
 				/>

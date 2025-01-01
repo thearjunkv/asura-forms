@@ -1,17 +1,18 @@
-import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select, TimePicker } from 'antd';
+import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select, Space, TimePicker } from 'antd';
 import { StyledCompileJsx, StyledCompileSectionJsx } from './style';
 import { Element, TSection } from '../../types/Element';
 import { ReactNode } from 'react';
+import { countryCodes } from '../../data/countryCodes';
 
 type TCompileSectionJsx = { element: TSection; children: ReactNode };
 
-type TCompileJsx = { element: Element };
+type TCompileJsx = { element: Element; nestedAttrList?: string[] };
 
 export const CompileSectionJsx: React.FC<TCompileSectionJsx> = ({ element, children }) => {
 	return <StyledCompileSectionJsx $customstyles={element.styles}>{children}</StyledCompileSectionJsx>;
 };
 
-export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
+export const CompileJsx: React.FC<TCompileJsx> = ({ element, nestedAttrList }) => {
 	const { elementId, elementType } = element;
 	let jsxElement: JSX.Element | null = null;
 
@@ -39,39 +40,64 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 			const { attributes, includeCountryCode, label, required } = element;
 			const { id, maxLength, minLength, name, placeholder, type } = attributes;
 
-			jsxElement = (
-				<Form.Item
-					label={label || ''}
-					htmlFor={id || elementId}
-					name={attributes.name}
-					rules={[
-						{ required, message: 'This field is required' },
-						{
-							pattern: new RegExp(`^\\d{${minLength},${maxLength}}$`),
-							message: `Phone number must be between ${minLength} and ${maxLength} digits long`
-						}
-					]}
-				>
-					<Input
-						id={id || elementId}
-						name={name}
-						type={type}
-						placeholder={placeholder}
-						addonBefore={
-							!includeCountryCode && (
+			if (includeCountryCode)
+				jsxElement = (
+					<Form.Item label={label || ''}>
+						<Space.Compact block>
+							<Form.Item
+								name={
+									Array.isArray(nestedAttrList)
+										? [...nestedAttrList, `${name}_country_code`]
+										: `${name}_country_code`
+								}
+								rules={[{ required, message: 'Required' }]}
+							>
 								<Select
-									defaultValue='+1'
-									style={{ width: 80 }}
-									options={[
-										{ label: '+1', value: '+1' },
-										{ label: '+91', value: '+91' }
-									]}
+									style={{ width: 140 }}
+									options={countryCodes}
 								/>
-							)
-						}
-					/>
-				</Form.Item>
-			);
+							</Form.Item>
+							<Form.Item
+								name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
+								rules={[
+									{ required, message: 'This field is required' },
+									{
+										pattern: new RegExp(`^\\d{${minLength},${maxLength}}$`),
+										message: `Phone number must be between ${minLength} and ${maxLength} digits long`
+									}
+								]}
+								style={{ width: '100%' }}
+							>
+								<Input
+									id={id || elementId}
+									type={type}
+									placeholder={placeholder}
+								/>
+							</Form.Item>
+						</Space.Compact>
+					</Form.Item>
+				);
+			else
+				jsxElement = (
+					<Form.Item
+						label={label || ''}
+						htmlFor={id || elementId}
+						name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
+						rules={[
+							{ required, message: 'This field is required' },
+							{
+								pattern: new RegExp(`^\\d{${minLength},${maxLength}}$`),
+								message: `Phone number must be between ${minLength} and ${maxLength} digits long`
+							}
+						]}
+					>
+						<Input
+							id={id || elementId}
+							type={type}
+							placeholder={placeholder}
+						/>
+					</Form.Item>
+				);
 			break;
 		}
 		case 'Name':
@@ -84,7 +110,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 				<Form.Item
 					label={label || ''}
 					htmlFor={id || elementId}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[
 						{ required, message: 'This field is required' },
 						{ min: minLength, message: `Minimum length is ${minLength}` },
@@ -94,7 +120,6 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 				>
 					<Input
 						id={id || elementId}
-						name={name}
 						placeholder={placeholder}
 					/>
 				</Form.Item>
@@ -110,7 +135,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 				<Form.Item
 					label={label || ''}
 					htmlFor={id || elementId}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[
 						{ required, message: 'This field is required' },
 						{ min: minLength, message: `Minimum length is ${minLength}` },
@@ -119,7 +144,6 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 				>
 					<Input.TextArea
 						id={id || elementId}
-						name={name}
 						placeholder={placeholder}
 						cols={cols}
 						rows={rows}
@@ -136,17 +160,14 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 				<Form.Item
 					label={label || ''}
 					htmlFor={id || elementId}
-					name={name}
-					rules={[
-						{ required, message: 'This field is required' },
-						{ min: min, message: `Minimum value is ${min}` },
-						{ max: max, message: `Maximum value is ${max}` }
-					]}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
+					rules={[{ required, message: 'This field is required' }]}
 				>
 					<InputNumber
 						id={id || elementId}
-						name={name}
 						placeholder={placeholder}
+						min={min}
+						max={max}
 					/>
 				</Form.Item>
 			);
@@ -154,18 +175,19 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 		}
 		case 'Select': {
 			const { allowMultiSelect, attributes, label, required } = element;
-			const { id, name } = attributes;
+			const { id, name, placeholder } = attributes;
 
 			const { options } = element;
 			jsxElement = (
 				<Form.Item
 					label={label || ''}
 					htmlFor={id || elementId}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[{ required, message: 'This field is required' }]}
 				>
 					<Select
 						id={id || elementId}
+						placeholder={placeholder}
 						options={options.map(({ label, value }) => ({ value, label }))}
 						mode={allowMultiSelect ? 'multiple' : undefined}
 					/>
@@ -180,7 +202,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 			jsxElement = (
 				<Form.Item
 					label={label || ''}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[{ required, message: 'This field is required' }]}
 				>
 					<Checkbox.Group options={[{ label, value }]} />
@@ -195,7 +217,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 			jsxElement = (
 				<Form.Item
 					label={label || ''}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[{ required, message: 'This field is required' }]}
 				>
 					<Checkbox.Group options={options.map(({ label, value }) => ({ label, value }))} />
@@ -210,7 +232,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 			jsxElement = (
 				<Form.Item
 					label={label || ''}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[{ required, message: 'This field is required' }]}
 				>
 					<Radio.Group options={options.map(({ label, value }) => ({ label, value }))} />
@@ -226,7 +248,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 				<Form.Item
 					label={label || ''}
 					htmlFor={id || elementId}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[{ required, message: 'This field is required' }]}
 				>
 					<DatePicker id={id || elementId} />
@@ -242,7 +264,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element }) => {
 				<Form.Item
 					label={label || ''}
 					htmlFor={id || elementId}
-					name={name}
+					name={Array.isArray(nestedAttrList) ? [...nestedAttrList, name] : name}
 					rules={[{ required, message: 'This field is required' }]}
 				>
 					<TimePicker id={id || elementId} />

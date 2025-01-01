@@ -1,8 +1,8 @@
 import { Element, TSection } from '../../../types/Element';
 
-const findSection = (data: Element[], sectionId: string): TSection | null => {
-	for (let i = 0; i < data.length; i++) {
-		const element = data[i];
+const findSection = (formData: Element[], sectionId: string): TSection | null => {
+	for (let i = 0; i < formData.length; i++) {
+		const element = formData[i];
 		if (element.elementId === sectionId && element.elementType === 'Section') {
 			return element;
 		}
@@ -14,9 +14,9 @@ const findSection = (data: Element[], sectionId: string): TSection | null => {
 	return null;
 };
 
-export const findElement = (data: Element[], elementId: string): Element | null => {
-	for (let i = 0; i < data.length; i++) {
-		const element = data[i];
+export const findElement = (formData: Element[], elementId: string): Element | null => {
+	for (let i = 0; i < formData.length; i++) {
+		const element = formData[i];
 		if (element.elementId === elementId) {
 			return element;
 		}
@@ -29,13 +29,13 @@ export const findElement = (data: Element[], elementId: string): Element | null 
 };
 
 function findElementAndSection(
-	data: Element[],
+	formData: Element[],
 	elementId: string
 ): { element: Element; index: number; sectionArrayList: Element[] } | null {
-	for (let i = 0; i < data.length; i++) {
-		const element = data[i];
+	for (let i = 0; i < formData.length; i++) {
+		const element = formData[i];
 		if (element.elementId === elementId) {
-			return { element, index: i, sectionArrayList: data };
+			return { element, index: i, sectionArrayList: formData };
 		}
 		if (element.elementType === 'Section') {
 			const result = findElementAndSection(element.children, elementId);
@@ -46,47 +46,47 @@ function findElementAndSection(
 }
 
 export const drop = ({
-	data,
+	formData,
 	element,
 	targetElementId,
 	targetSectionId,
 	position
 }: {
-	data: Element[];
+	formData: Element[];
 	element: Element;
 	targetElementId: string;
 	targetSectionId: string;
 	position: 'up' | 'down';
 }) => {
 	if (targetSectionId === 'mainBoard' && targetElementId === '') {
-		data.push(element);
-		return data;
+		formData.push(element);
+		return formData;
 	}
 
 	if (targetSectionId === 'mainBoard' && targetElementId !== '') {
-		const index = data.findIndex(({ elementId }) => elementId === targetElementId);
+		const index = formData.findIndex(({ elementId }) => elementId === targetElementId);
 		if (index === -1) {
 			console.error('Target Element not found');
 			return;
 		}
 
-		data.splice(position === 'up' ? index : index + 1, 0, element);
-		return data;
+		formData.splice(position === 'up' ? index : index + 1, 0, element);
+		return formData;
 	}
 
 	if (targetSectionId !== 'mainBoard' && targetElementId === '') {
-		const section = findSection(data, targetSectionId);
+		const section = findSection(formData, targetSectionId);
 		if (!section) {
 			console.error('Target section not found');
 			return;
 		}
 
 		section.children.push(element);
-		return data;
+		return formData;
 	}
 
 	if (targetSectionId !== 'mainBoard' && targetElementId !== '') {
-		const section = findSection(data, targetSectionId);
+		const section = findSection(formData, targetSectionId);
 		if (!section) {
 			console.error('Target section not found');
 			return;
@@ -99,12 +99,12 @@ export const drop = ({
 		}
 
 		section.children.splice(position === 'up' ? index : index + 1, 0, element);
-		return data;
+		return formData;
 	}
 };
 
-export const remove = ({ data, elementId }: { data: Element[]; elementId: string }) => {
-	const source = findElementAndSection(data, elementId);
+export const remove = ({ formData, elementId }: { formData: Element[]; elementId: string }) => {
+	const source = findElementAndSection(formData, elementId);
 	if (!source) {
 		console.error('Element not found');
 		return;
@@ -112,29 +112,29 @@ export const remove = ({ data, elementId }: { data: Element[]; elementId: string
 	const { element, index, sectionArrayList } = source;
 
 	sectionArrayList.splice(index, 1);
-	return { removedElement: element, updatedData: data };
+	return { removedElement: element, updatedFormData: formData };
 };
 
 export const reorder = ({
-	data,
+	formData,
 	elementId,
 	targetElementId,
 	targetSectionId,
 	position
 }: {
-	data: Element[];
+	formData: Element[];
 	elementId: string;
 	targetElementId: string;
 	targetSectionId: string;
 	position: 'up' | 'down';
 }) => {
-	const result = remove({ data, elementId });
+	const result = remove({ formData, elementId });
 	if (!result) {
 		console.error('Element not found');
 		return;
 	}
 	return drop({
-		data,
+		formData,
 		element: { ...result.removedElement, sectionId: targetSectionId },
 		targetElementId,
 		targetSectionId,
@@ -142,16 +142,16 @@ export const reorder = ({
 	});
 };
 
-export const updateElementInData = ({
-	data,
+export const updateElementInFormData = ({
+	formData,
 	elementId,
 	updatedElement
 }: {
-	data: Element[];
+	formData: Element[];
 	elementId: string;
 	updatedElement: Element;
 }) => {
-	const source = findElementAndSection(data, elementId);
+	const source = findElementAndSection(formData, elementId);
 	if (!source) {
 		console.error('Element not found');
 		return;
@@ -159,7 +159,12 @@ export const updateElementInData = ({
 	const { index, sectionArrayList } = source;
 
 	sectionArrayList[index] = updatedElement;
-	return { updatedData: data };
+	return { updatedFormData: formData };
+};
+
+export const elementHasOptions = (element: Element) => {
+	const { elementType } = element;
+	return elementType === 'CheckboxGroup' || elementType === 'Radio' || elementType === 'Select';
 };
 
 export const validateElementProperties = (element: Element) => {
@@ -180,7 +185,7 @@ export const validateElementProperties = (element: Element) => {
 	}
 
 	if ('attributes' in element && 'name' in element.attributes) {
-		if (element.attributes.name.trim() === '') invalidProperties.push('name');
+		if (element.attributes.name.trim() === '') invalidProperties.push('attributes.name');
 	}
 
 	if (elementType === 'Checkbox') {
@@ -188,7 +193,7 @@ export const validateElementProperties = (element: Element) => {
 		if (element.value.trim() === '') invalidProperties.push('value');
 	}
 
-	if (elementType === 'Select' || elementType === 'CheckboxGroup' || elementType === 'Radio') {
+	if (elementHasOptions(element)) {
 		const invalidOptions = element.options.filter(({ label, value }) => label.trim() === '' || value.trim() === '');
 		if (invalidOptions.length > 0) invalidProperties.push('options');
 	}

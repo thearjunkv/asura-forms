@@ -20,14 +20,14 @@ export type TAlchemyLabContext = {
 	invalidElementProperties: string[];
 	setInvalidElementProperties: Dispatch<SetStateAction<string[]>>;
 
-	data: Element[];
-	setData: Dispatch<SetStateAction<Element[]>>;
+	formData: Element[];
+	setFormData: Dispatch<SetStateAction<Element[]>>;
 };
 
 export type TAlchemyLab = {
 	title?: string;
 	paletteGridView?: boolean;
 	height?: number;
-	data?: Element[];
-	onSave: (data: Element[]) => void;
+	formData?: Element[];
+	onSave: (formData: Element[]) => void;
 };

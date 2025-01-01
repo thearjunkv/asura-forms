@@ -83,6 +83,7 @@ export type TelAttrs = {
 export type SelectAttrs = {
 	id: string;
 	name: string;
+	placeholder: string;
 	// disabled: boolean;
 };
 

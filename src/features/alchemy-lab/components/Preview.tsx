@@ -1,13 +1,32 @@
+import { useEffect, useRef, useState } from 'react';
 import { XIcon } from '../../../assets/Icons';
 import { cn } from '../../../utils/helpers';
 import { Manifest } from '../../manifest';
 import { useAlchemyLab } from '../hooks/useAlchemyLab';
 import { StyledPreview } from '../styles/previewStyles';
+import { Form } from 'antd';
 
 type TPreview = { formTitle: string; isOpen: boolean; onClose: () => void };
 
 const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
-	const { data } = useAlchemyLab();
+	const { formData } = useAlchemyLab();
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const [formResponse, setFormResponse] = useState<{ [key: string]: any } | null>(null);
+	const previewModalRef = useRef<HTMLDivElement>(null);
+	const [formInstance] = Form.useForm();
+
+	useEffect(() => {
+		if (isOpen) {
+			formInstance.resetFields();
+			setFormResponse(null);
+		}
+	}, [isOpen, formInstance]);
+
+	useEffect(() => {
+		if (isOpen && previewModalRef.current) {
+			previewModalRef.current.scrollTop = 0;
+		}
+	}, [isOpen]);
 
 	return (
 		<StyledPreview
@@ -15,6 +34,7 @@ const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
 			onClick={onClose}
 		>
 			<div
+				ref={previewModalRef}
 				className='form-alcmst__preview-modal'
 				onClick={e => e.stopPropagation()}
 			>
@@ -28,11 +48,18 @@ const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
 					</button>
 				</div>
 				<div className='form-alcmst__preview-body'>
-					{isOpen && (
+					<div className='form-alcmst__preview-form'>
 						<Manifest
-							data={data}
-							onSubmit={formValues => console.log(formValues)}
+							formInstance={formInstance}
+							formData={formData}
+							onSubmit={formValues => setFormResponse(formValues)}
 						/>
+					</div>
+					{formResponse !== null && (
+						<div className='form-alcmst__preview-form-response'>
+							<h2>Form response</h2>
+							<pre>{JSON.stringify(formResponse, null, 2)}</pre>
+						</div>
 					)}
 				</div>
 			</div>

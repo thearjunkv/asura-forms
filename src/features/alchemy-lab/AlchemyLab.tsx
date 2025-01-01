@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GlobalStyles } from '../../styles/globalStyles';
 import { StyledAlchemyLab } from './styles/alchemyLabStyles';
 
@@ -10,54 +10,72 @@ import { TAlchemyLab } from './types';
 
 import DndContextWrapper from './dnd/DndContext';
 import DragOverlayWrapper from './dnd/DragOverlay';
-import AlchemyLabProvider from './context/AlchemyLabProvider';
 import { Theme } from '../../styles/Theme';
 import Preview from './components/Preview';
+import { useAlchemyLab } from './hooks/useAlchemyLab';
 
-const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height }) => {
+const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onSave, ...props }) => {
 	const [togglePreview, setTogglePreview] = useState<boolean>(false);
 	const formTitle = title || 'Custom Form';
+	const { formData, setFormData } = useAlchemyLab();
+
+	useEffect(() => {
+		if (onSave && typeof onSave !== 'function') console.error('The `onSubmit` prop must be a function.');
+		if (props.formData !== undefined) {
+			if (!Array.isArray(props.formData)) console.error('The `formData` prop must be an array of form elements.');
+			else setFormData(props.formData);
+		}
+	}, [props.formData, onSave, setFormData]);
 
 	return (
-		<AlchemyLabProvider>
-			<Theme>
-				<GlobalStyles>
-					<StyledAlchemyLab
-						className='form-alcmst__alchemy-lab'
-						style={{ height: height ? `${height}px` : '650px' }}
-					>
-						<Preview
-							formTitle={formTitle}
-							isOpen={togglePreview}
-							onClose={() => setTogglePreview(false)}
-						/>
-						<div className='form-alcmst__alchemy-lab-header'>
-							<h1>
-								Form: <span>{formTitle}</span>
-							</h1>
-							<div>
-								<button
-									className='form-alcmst__btn--secondary'
-									onClick={() => setTogglePreview(true)}
-								>
-									Preview
-								</button>
-								<button className='form-alcmst__btn'>Save</button>
-							</div>
+		<Theme>
+			<GlobalStyles>
+				<StyledAlchemyLab
+					className='form-alcmst__alchemy-lab'
+					style={{ height: height ? `${height}px` : '650px' }}
+				>
+					<Preview
+						formTitle={formTitle}
+						isOpen={togglePreview}
+						onClose={() => setTogglePreview(false)}
+					/>
+					<div className='form-alcmst__alchemy-lab-header'>
+						<h1>
+							Form: <span>{formTitle}</span>
+						</h1>
+						<div>
+							<button
+								className='form-alcmst__btn--secondary'
+								onClick={() => setTogglePreview(true)}
+							>
+								Preview
+							</button>
+							<button
+								className='form-alcmst__btn'
+								onClick={() => {
+									try {
+										onSave(formData);
+									} catch (_e) {
+										console.error('the `onSave` is required to save the form data.');
+									}
+								}}
+							>
+								Save
+							</button>
 						</div>
+					</div>
 
-						<div className='form-alcmst__alchemy-lab-body'>
-							<DndContextWrapper>
-								<Palette />
-								<Workspace />
-								<DragOverlayWrapper />
-							</DndContextWrapper>
-							<Properties />
-						</div>
-					</StyledAlchemyLab>
-				</GlobalStyles>
-			</Theme>
-		</AlchemyLabProvider>
+					<div className='form-alcmst__alchemy-lab-body'>
+						<DndContextWrapper>
+							<Palette paletteGridView={paletteGridView} />
+							<Workspace />
+							<DragOverlayWrapper />
+						</DndContextWrapper>
+						<Properties />
+					</div>
+				</StyledAlchemyLab>
+			</GlobalStyles>
+		</Theme>
 	);
 };
 
