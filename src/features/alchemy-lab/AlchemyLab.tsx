@@ -20,7 +20,9 @@ const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onS
 	const { formData, setFormData } = useAlchemyLab();
 
 	useEffect(() => {
-		if (onSave && typeof onSave !== 'function') console.error('The `onSubmit` prop must be a function.');
+		if (onSave === undefined) console.error('the `onSave` prop is required to save the form data.');
+		else if (typeof onSave !== 'function') console.error('The `onSubmit` prop must be a function.');
+
 		if (props.formData !== undefined) {
 			if (!Array.isArray(props.formData)) console.error('The `formData` prop must be an array of form elements.');
 			else setFormData(props.formData);
@@ -55,8 +57,8 @@ const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onS
 								onClick={() => {
 									try {
 										onSave(formData);
-									} catch (_e) {
-										console.error('the `onSave` is required to save the form data.');
+									} catch (e) {
+										console.error(e);
 									}
 								}}
 							>

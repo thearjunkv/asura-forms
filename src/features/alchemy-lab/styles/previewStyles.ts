@@ -70,7 +70,7 @@ export const StyledPreview = styled.div`
 		margin-top: 0.8em;
 	}
 
-	.form-alcmst__preview-form-response {
+	.form-alcmst__preview-form-submission {
 		margin-top: 0.8em;
 		padding: 0.8em;
 		background-color: var(--grey-200);

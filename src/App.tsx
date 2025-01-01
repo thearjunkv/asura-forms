@@ -1,5 +1,5 @@
 import { AlchemyLab } from './features/alchemy-lab';
-import { Manifest } from './features/manifest';
+//import { Manifest } from './features/manifest';
 
 function App() {
 	return (
@@ -8,7 +8,7 @@ function App() {
 				padding: '1em'
 			}}
 		>
-			{/* <AlchemyLab
+			<AlchemyLab
 				// paletteGridView={true}
 				// height={380}
 				// title=''
@@ -17,11 +17,11 @@ function App() {
 					console.log(formData);
 					localStorage.setItem('formData', JSON.stringify(formData));
 				}}
-			/> */}
-			<Manifest
+			/>
+			{/* <Manifest
 				formData={JSON.parse(localStorage.getItem('formData') || '')}
 				onSubmit={values => console.log(values)}
-			/>
+			/> */}
 		</div>
 	);
 }

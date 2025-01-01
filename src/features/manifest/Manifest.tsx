@@ -10,19 +10,21 @@ const Manifest: React.FC<TManifest> = ({ formInstance, onSubmit, ...props }) => 
 	const [formData, setFormData] = useState<Element[]>([]);
 
 	useEffect(() => {
-		if (onSubmit && typeof onSubmit !== 'function') console.error('The `onSubmit` prop must be a function.');
-		if (props.formData !== undefined) {
-			if (!Array.isArray(props.formData)) console.error('The `formData` prop must be an array of form elements.');
-			else setFormData(props.formData);
-		}
+		if (onSubmit === undefined) console.error('the `onSubmit` prop is required to get the form values.');
+		else if (typeof onSubmit !== 'function') console.error('The `onSubmit` prop must be a function.');
+
+		if (props.formData === undefined) console.error('The `formData` prop is required.');
+		else if (!Array.isArray(props.formData))
+			console.error('The `formData` prop must be an array of form elements.');
+		else setFormData(props.formData);
 	}, [props.formData, onSubmit]);
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onFinish = (values: any) => {
 		try {
 			onSubmit(values);
-		} catch (_e) {
-			console.error('the `onSubmit` is required to get the form values.');
+		} catch (e) {
+			console.error(e);
 		}
 	};
 

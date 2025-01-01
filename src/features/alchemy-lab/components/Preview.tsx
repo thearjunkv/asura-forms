@@ -11,14 +11,14 @@ type TPreview = { formTitle: string; isOpen: boolean; onClose: () => void };
 const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
 	const { formData } = useAlchemyLab();
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const [formResponse, setFormResponse] = useState<{ [key: string]: any } | null>(null);
+	const [formSubmission, setFormSubmission] = useState<{ [key: string]: any } | null>(null);
 	const previewModalRef = useRef<HTMLDivElement>(null);
 	const [formInstance] = Form.useForm();
 
 	useEffect(() => {
 		if (isOpen) {
 			formInstance.resetFields();
-			setFormResponse(null);
+			setFormSubmission(null);
 		}
 	}, [isOpen, formInstance]);
 
@@ -52,13 +52,13 @@ const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
 						<Manifest
 							formInstance={formInstance}
 							formData={formData}
-							onSubmit={formValues => setFormResponse(formValues)}
+							onSubmit={formValues => setFormSubmission(formValues)}
 						/>
 					</div>
-					{formResponse !== null && (
-						<div className='form-alcmst__preview-form-response'>
-							<h2>Form response</h2>
-							<pre>{JSON.stringify(formResponse, null, 2)}</pre>
+					{formSubmission !== null && (
+						<div className='form-alcmst__preview-form-submission'>
+							<h2>Form Submission</h2>
+							<pre>{JSON.stringify(formSubmission, null, 2)}</pre>
 						</div>
 					)}
 				</div>
