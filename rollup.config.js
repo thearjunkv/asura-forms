@@ -1,15 +1,11 @@
-import resolve, { nodeResolve } from '@rollup/plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import { dts } from 'rollup-plugin-dts';
 import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import svg from 'rollup-plugin-svg';
 
 const packageJson = require('./package.json');
-const polyfills = {
-	crypto: 'crypto-browserify',
-};
 
 export default [
 	{
@@ -17,33 +13,27 @@ export default [
 		output: [
 			{
 				file: packageJson.main,
-				format: 'cjs',
+				format: 'cjs'
 			},
 			{
 				file: packageJson.module,
-				format: 'es',
-			},
+				format: 'es'
+			}
 		],
 		plugins: [
-			peerDepsExternal(),
+			typescript({ tsconfig: './tsconfig.json', declaration: false }),
 			resolve({
-				preferBuiltins: true,
-				browser: true,
-				alias: polyfills,
+				extensions: ['.js', '.ts', '.tsx']
 			}),
+			peerDepsExternal(),
 			commonjs(),
-			typescript({ tsconfig: './tsconfig.json' }),
-			terser(),
-			svg(),
-			nodeResolve({
-				externals: ['crypto'],
-			}),
+			terser()
 		],
-		external: ['react', 'react-dom', 'styled-components', 'antd', 'node:crypto', 'crypto'],
+		external: Object.keys(packageJson.peerDependencies)
 	},
 	{
 		input: 'src/index.ts',
 		output: [{ file: packageJson.types, format: 'es' }],
-		plugins: [dts()],
-	},
+		plugins: [dts()]
+	}
 ];
