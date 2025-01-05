@@ -1,2 +1,2 @@
 export { AlchemyLab } from './features/alchemy-lab';
-export { Manifest } from './features/manifest';
+export { Manifest } from './features/manifest/';

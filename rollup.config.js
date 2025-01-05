@@ -21,12 +21,12 @@ export default [
 			}
 		],
 		plugins: [
-			typescript({ tsconfig: './tsconfig.json', declaration: false }),
+			peerDepsExternal(),
 			resolve({
 				extensions: ['.js', '.ts', '.tsx']
 			}),
-			peerDepsExternal(),
 			commonjs(),
+			typescript({ tsconfig: './tsconfig.json', declaration: false }),
 			terser()
 		],
 		external: Object.keys(packageJson.peerDependencies)
