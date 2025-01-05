@@ -1,12 +1,12 @@
 import { useDroppable } from '@dnd-kit/core';
-import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { useFormLab } from '../hooks/useFormLab';
 import { StyledWorkspaceBoard } from '../styles/workspaceBoardStyles';
 import BoardElement from './BoardElement';
 import { cn } from '../../../utils/helpers';
 import { Form } from 'antd';
 
 const WorkspaceBoard: React.FC = () => {
-	const { formData } = useAlchemyLab();
+	const { formData } = useFormLab();
 	const { setNodeRef, isOver } = useDroppable({
 		id: 'mainBoard',
 		data: {
@@ -18,12 +18,12 @@ const WorkspaceBoard: React.FC = () => {
 		<StyledWorkspaceBoard
 			ref={setNodeRef}
 			className={cn(
-				'form-alcmst__workspace-board',
-				isOver && 'form-alcmst__workspace-board--drag-over',
-				formData.length === 0 && 'form-alcmst__workspace-board--empty'
+				'asura-forms__workspace-board',
+				isOver && 'asura-forms__workspace-board--drag-over',
+				formData.length === 0 && 'asura-forms__workspace-board--empty'
 			)}
 		>
-			{formData.length === 0 && <span className='form-alcmst__workspace-board-drop-message'>Drop here</span>}
+			{formData.length === 0 && <span className='asura-forms__workspace-board-drop-message'>Drop here</span>}
 
 			<Form layout='vertical'>
 				{formData.map(element => (

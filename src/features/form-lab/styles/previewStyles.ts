@@ -16,7 +16,7 @@ export const StyledPreview = styled.div`
 	justify-content: center;
 	align-items: flex-start;
 
-	.form-alcmst__preview-modal {
+	.asura-forms__preview-modal {
 		margin-top: 2.5em;
 		padding: 0.8em 1.4em 1.4em;
 		width: 80%;
@@ -32,16 +32,16 @@ export const StyledPreview = styled.div`
 		transition: transform 300ms ease;
 	}
 
-	&.form-alcmst__preview--show {
+	&.asura-forms__preview--show {
 		opacity: 1;
 		visibility: visible;
 
-		& > .form-alcmst__preview-modal {
+		& > .asura-forms__preview-modal {
 			transform: translateY(0);
 		}
 	}
 
-	.form-alcmst__preview-header > h1 {
+	.asura-forms__preview-header > h1 {
 		padding: 0;
 		margin: 0;
 		text-align: center;
@@ -49,7 +49,7 @@ export const StyledPreview = styled.div`
 		color: var(--grey-800);
 	}
 
-	.form-alcmst__preview-header > button.form-alcmst__btn--secondary {
+	.asura-forms__preview-header > button.asura-forms__btn--secondary {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -66,11 +66,11 @@ export const StyledPreview = styled.div`
 		}
 	}
 
-	.form-alcmst__preview-body {
+	.asura-forms__preview-body {
 		margin-top: 0.8em;
 	}
 
-	.form-alcmst__preview-form-submission {
+	.asura-forms__preview-form-submission {
 		margin-top: 0.8em;
 		padding: 0.8em;
 		background-color: var(--grey-200);

@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import { GlobalStyles } from '../../styles/globalStyles';
-import { StyledAlchemyLab } from './styles/alchemyLabStyles';
+import { StyledFormLab } from './styles/formLabStyles';
 
 import Palette from './components/Palette';
 import Workspace from './components/Workspace';
 import Properties from './components/Properties';
 
-import { TAlchemyLab } from './types';
+import { TFormLab } from './types';
 
 import DndContextWrapper from './dnd/DndContext';
 import DragOverlayWrapper from './dnd/DragOverlay';
 import { Theme } from '../../styles/Theme';
 import Preview from './components/Preview';
-import { useAlchemyLab } from './hooks/useAlchemyLab';
+import { useFormLab } from './hooks/useFormLab';
 
-const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onSave, ...props }) => {
+const FormLab: React.FC<TFormLab> = ({ title, height, paletteGridView, onSave, ...props }) => {
 	const [togglePreview, setTogglePreview] = useState<boolean>(false);
 	const formTitle = title || 'Custom Form';
-	const { formData, setFormData } = useAlchemyLab();
+	const { formData, setFormData } = useFormLab();
 
 	useEffect(() => {
 		if (onSave === undefined) console.error('the `onSave` prop is required to save the form data.');
@@ -32,8 +32,8 @@ const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onS
 	return (
 		<Theme>
 			<GlobalStyles>
-				<StyledAlchemyLab
-					className='form-alcmst__alchemy-lab'
+				<StyledFormLab
+					className='asura-forms__form-lab'
 					style={{ height: height ? `${height}px` : '650px' }}
 				>
 					<Preview
@@ -41,19 +41,19 @@ const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onS
 						isOpen={togglePreview}
 						onClose={() => setTogglePreview(false)}
 					/>
-					<div className='form-alcmst__alchemy-lab-header'>
+					<div className='asura-forms__form-lab-header'>
 						<h1>
 							Form: <span>{formTitle}</span>
 						</h1>
 						<div>
 							<button
-								className='form-alcmst__btn--secondary'
+								className='asura-forms__btn--secondary'
 								onClick={() => setTogglePreview(true)}
 							>
 								Preview
 							</button>
 							<button
-								className='form-alcmst__btn'
+								className='asura-forms__btn'
 								onClick={() => {
 									try {
 										onSave(formData);
@@ -67,7 +67,7 @@ const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onS
 						</div>
 					</div>
 
-					<div className='form-alcmst__alchemy-lab-body'>
+					<div className='asura-forms__form-lab-body'>
 						<DndContextWrapper>
 							<Palette paletteGridView={paletteGridView} />
 							<Workspace />
@@ -75,10 +75,10 @@ const AlchemyLab: React.FC<TAlchemyLab> = ({ title, height, paletteGridView, onS
 						</DndContextWrapper>
 						<Properties />
 					</div>
-				</StyledAlchemyLab>
+				</StyledFormLab>
 			</GlobalStyles>
 		</Theme>
 	);
 };
 
-export default AlchemyLab;
+export default FormLab;

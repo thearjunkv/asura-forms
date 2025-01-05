@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledBoardElement = styled.div`
-	&.form-alcmst__board-element {
+	&.asura-forms__board-element {
 		width: 100%;
 		min-height: 5em;
 		padding: 1em;
@@ -26,7 +26,7 @@ export const StyledBoardElement = styled.div`
 		}
 	}
 
-	& > .form-alcmst__board-element-spacer-info {
+	& > .asura-forms__board-element-spacer-info {
 		position: absolute;
 		z-index: 12;
 
@@ -44,7 +44,7 @@ export const StyledBoardElement = styled.div`
 		}
 	}
 
-	& > .form-alcmst__board-element-section-info {
+	& > .asura-forms__board-element-section-info {
 		position: absolute;
 		z-index: 12;
 
@@ -58,11 +58,11 @@ export const StyledBoardElement = styled.div`
 		}
 	}
 
-	&.form-alcmst__board-element--drag-original {
+	&.asura-forms__board-element--drag-original {
 		opacity: 0.4;
 	}
 
-	&.form-alcmst__board-element--drag-overlay {
+	&.asura-forms__board-element--drag-overlay {
 		opacity: 0.9;
 		border-color: var(--grey-200);
 
@@ -78,23 +78,23 @@ export const StyledBoardElement = styled.div`
 		}
 	}
 
-	&.form-alcmst__board-element--section {
+	&.asura-forms__board-element--section {
 		padding: 2.4em 1em 1em 1em;
 		border-color: var(--grey-200);
 	}
 
-	&.form-alcmst__board-element--section-drag-over {
+	&.asura-forms__board-element--section-drag-over {
 		box-shadow: inset 0 0 0 2px var(--grey-800);
 	}
 
-	&.form-alcmst__board-element--drag-original {
-		&.form-alcmst__board-element--section-drag-over {
+	&.asura-forms__board-element--drag-original {
+		&.asura-forms__board-element--section-drag-over {
 			box-shadow: none;
 		}
 	}
 
-	& > .form-alcmst__board-element-top-half,
-	& > .form-alcmst__board-element-bottom-half {
+	& > .asura-forms__board-element-top-half,
+	& > .asura-forms__board-element-bottom-half {
 		position: absolute;
 		z-index: 14;
 		overflow: hidden;
@@ -105,52 +105,52 @@ export const StyledBoardElement = styled.div`
 		background-color: hsla(0, 0%, 100%, 0);
 	}
 
-	& > .form-alcmst__board-element-top-half {
+	& > .asura-forms__board-element-top-half {
 		top: 0;
 		border-top-left-radius: 12px;
 		border-top-right-radius: 12px;
 	}
 
-	& > .form-alcmst__board-element-bottom-half {
+	& > .asura-forms__board-element-bottom-half {
 		top: 50%;
 		border-bottom-left-radius: 12px;
 		border-bottom-right-radius: 12px;
 	}
 
-	&.form-alcmst__board-element:hover > .form-alcmst__board-element-top-half,
-	&.form-alcmst__board-element:hover > .form-alcmst__board-element-bottom-half {
+	&.asura-forms__board-element:hover > .asura-forms__board-element-top-half,
+	&.asura-forms__board-element:hover > .asura-forms__board-element-bottom-half {
 		background-color: hsla(0, 0%, 100%, 0.6);
 	}
 
-	&.form-alcmst__board-element--section {
-		&:hover > .form-alcmst__board-element-top-half,
-		&:hover > .form-alcmst__board-element-bottom-half {
+	&.asura-forms__board-element--section {
+		&:hover > .asura-forms__board-element-top-half,
+		&:hover > .asura-forms__board-element-bottom-half {
 			background-color: hsla(0, 0%, 100%, 0);
 		}
 
-		& > .form-alcmst__board-element-top-half {
+		& > .asura-forms__board-element-top-half {
 			height: 1.5em;
 		}
 
-		& > .form-alcmst__board-element-bottom-half {
+		& > .asura-forms__board-element-bottom-half {
 			top: auto;
 			bottom: 0;
 			height: 1.5em;
 		}
 	}
 
-	&.form-alcmst__board-element--section-filled {
-		& > .form-alcmst__board-element-top-half {
+	&.asura-forms__board-element--section-filled {
+		& > .asura-forms__board-element-top-half {
 			height: 2.6em;
 		}
 
-		& > .form-alcmst__board-element-bottom-half {
+		& > .asura-forms__board-element-bottom-half {
 			height: 1.2em;
 		}
 	}
 
-	& > .form-alcmst__board-element-top-half--drag-over::before,
-	& > .form-alcmst__board-element-bottom-half--drag-over::before {
+	& > .asura-forms__board-element-top-half--drag-over::before,
+	& > .asura-forms__board-element-bottom-half--drag-over::before {
 		content: '';
 		position: absolute;
 		z-index: 16;
@@ -161,22 +161,22 @@ export const StyledBoardElement = styled.div`
 		background-color: var(--grey-800);
 	}
 
-	& > .form-alcmst__board-element-top-half--drag-over::before {
+	& > .asura-forms__board-element-top-half--drag-over::before {
 		top: 0;
 	}
 
-	& > .form-alcmst__board-element-bottom-half--drag-over::before {
+	& > .asura-forms__board-element-bottom-half--drag-over::before {
 		bottom: 0;
 	}
 
-	&.form-alcmst__board-element--drag-original {
-		& .form-alcmst__board-element-top-half--drag-over::before,
-		& .form-alcmst__board-element-bottom-half--drag-over::before {
+	&.asura-forms__board-element--drag-original {
+		& .asura-forms__board-element-top-half--drag-over::before,
+		& .asura-forms__board-element-bottom-half--drag-over::before {
 			display: none;
 		}
 	}
 
-	& > .form-alcmst__board-element-btn-delete {
+	& > .asura-forms__board-element-btn-delete {
 		position: absolute;
 		z-index: 18;
 
@@ -210,7 +210,7 @@ export const StyledBoardElement = styled.div`
 		}
 	}
 
-	& > .form-alcmst__board-element-btn-delete--section {
+	& > .asura-forms__board-element-btn-delete--section {
 		top: 0.4em;
 		right: 0.4em;
 		padding: 0;
@@ -223,17 +223,17 @@ export const StyledBoardElement = styled.div`
 		}
 	}
 
-	&.form-alcmst__board-element:hover > .form-alcmst__board-element-btn-delete {
+	&.asura-forms__board-element:hover > .asura-forms__board-element-btn-delete {
 		opacity: 1;
 	}
 
-	&.form-alcmst__board-element--block-hover-effect {
-		&:hover > .form-alcmst__board-element-top-half,
-		&:hover > .form-alcmst__board-element-bottom-half {
+	&.asura-forms__board-element--block-hover-effect {
+		&:hover > .asura-forms__board-element-top-half,
+		&:hover > .asura-forms__board-element-bottom-half {
 			background-color: hsla(0, 0%, 100%, 0);
 		}
 
-		&:hover > .form-alcmst__board-element-btn-delete {
+		&:hover > .asura-forms__board-element-btn-delete {
 			opacity: 0;
 		}
 

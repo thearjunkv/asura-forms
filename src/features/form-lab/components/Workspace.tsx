@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useDndMonitor } from '@dnd-kit/core';
-import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { useFormLab } from '../hooks/useFormLab';
 import { StyledWorkspace } from '../styles/workspaceStyles';
 import WorkspaceBoard from './WorkspaceBoard';
 import { Element } from '../../../types/Element';
@@ -9,7 +9,7 @@ import { drop, reorder } from '../utils/elementHelpers';
 import { cleanState } from '../../../data/cleanState';
 
 const Workspace: React.FC = () => {
-	const { formData, setFormData } = useAlchemyLab();
+	const { formData, setFormData } = useFormLab();
 	const nameAttrCountsRef = useRef<{ [key: string]: number }>({
 		Section: 0,
 		Name: 0,
@@ -105,7 +105,7 @@ const Workspace: React.FC = () => {
 	});
 
 	return (
-		<StyledWorkspace className='form-alcmst__workspace'>
+		<StyledWorkspace className='asura-forms__workspace'>
 			<WorkspaceBoard />
 		</StyledWorkspace>
 	);

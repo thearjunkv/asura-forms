@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const StyledAlchemyLab = styled.div`
+export const StyledFormLab = styled.div`
 	width: 100%;
 	border: 1px solid var(--grey-300);
 	border-radius: 12px;
 	overflow: hidden;
 
-	.form-alcmst__alchemy-lab-header {
+	.asura-forms__form-lab-header {
 		height: 50px;
 		padding: 0.5em 0.5em 0.5em 1em;
 		border-bottom: 1px solid var(--grey-100);
@@ -35,7 +35,7 @@ export const StyledAlchemyLab = styled.div`
 		}
 	}
 
-	.form-alcmst__alchemy-lab-body {
+	.asura-forms__form-lab-body {
 		height: calc(100% - 50px);
 		display: flex;
 	}

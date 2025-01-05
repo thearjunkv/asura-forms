@@ -19,19 +19,19 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element, nestedAttrList }) =
 	switch (elementType) {
 		case 'Title':
 			jsxElement = (
-				<element.headingLevel className='form-alcmst__element-title'>{element.text}</element.headingLevel>
+				<element.headingLevel className='asura-forms__element-title'>{element.text}</element.headingLevel>
 			);
 			break;
 		case 'Paragraph':
-			jsxElement = <p className='form-alcmst__element-paragraph'>{element.text}</p>;
+			jsxElement = <p className='asura-forms__element-paragraph'>{element.text}</p>;
 			break;
 		case 'Separator':
-			jsxElement = <hr className='form-alcmst__element-separator' />;
+			jsxElement = <hr className='asura-forms__element-separator' />;
 			break;
 		case 'Spacer':
 			jsxElement = (
 				<div
-					className='form-alcmst__element-spacer'
+					className='asura-forms__element-spacer'
 					style={{ height: `${element.height}px` }}
 				></div>
 			);
@@ -280,7 +280,7 @@ export const CompileJsx: React.FC<TCompileJsx> = ({ element, nestedAttrList }) =
 					<button
 						type={type}
 						id={id || elementId}
-						className='form-alcmst__btn'
+						className='asura-forms__btn'
 					>
 						{placeholder}
 					</button>

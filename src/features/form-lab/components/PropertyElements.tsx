@@ -1,5 +1,5 @@
 import { Input, InputNumber, Select, Switch } from 'antd';
-import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { useFormLab } from '../hooks/useFormLab';
 import { Element } from '../../../types/Element';
 import { cn } from '../../../utils/helpers';
 import { AddIcon, XIcon } from '../../../assets/Icons';
@@ -8,7 +8,7 @@ import { elementHasOptions } from '../utils/elementHelpers';
 type TPropertyElements = { invalidElementProperties: string[] };
 
 const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementProperties }) => {
-	const { selectedElement, setSelectedElement } = useAlchemyLab();
+	const { selectedElement, setSelectedElement } = useFormLab();
 
 	if (!selectedElement) return null;
 
@@ -28,12 +28,12 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('text' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label
 					htmlFor='element_text'
-					className='form-alcmst__required-asterisk'
+					className='asura-forms__required-asterisk'
 				>
 					Text
 				</label>
@@ -44,7 +44,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					onChange={e => setSelectedElement(p => handleRootChange(p, 'text', e.target.value))}
 				/>
 				{invalidElementProperties.includes('text') && (
-					<span className='form-alcmst__property-element--error'>Text is required</span>
+					<span className='asura-forms__property-element--error'>Text is required</span>
 				)}
 			</div>
 		);
@@ -52,12 +52,12 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('name' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label
 					htmlFor='element_name'
-					className='form-alcmst__required-asterisk'
+					className='asura-forms__required-asterisk'
 				>
 					Name
 				</label>
@@ -68,7 +68,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					onChange={e => setSelectedElement(p => handleRootChange(p, 'name', e.target.value))}
 				/>
 				{invalidElementProperties.includes('name') && (
-					<span className='form-alcmst__property-element--error'>Name is required</span>
+					<span className='asura-forms__property-element--error'>Name is required</span>
 				)}
 			</div>
 		);
@@ -76,7 +76,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('headingLevel' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_heading_level'>Size</label>
@@ -95,12 +95,12 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('height' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label
 					htmlFor='element_height'
-					className='form-alcmst__required-asterisk'
+					className='asura-forms__required-asterisk'
 				>
 					Height
 				</label>
@@ -111,7 +111,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					onChange={val => setSelectedElement(p => handleRootChange(p, 'height', val))}
 				/>
 				{invalidElementProperties.includes('height') && (
-					<span className='form-alcmst__property-element--error'>Enter a valid number</span>
+					<span className='asura-forms__property-element--error'>Enter a valid number</span>
 				)}
 			</div>
 		);
@@ -119,7 +119,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if (elementType === 'Button')
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_button_type'>Button type</label>
@@ -138,12 +138,12 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'name' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label
 					htmlFor='element_attr_name'
-					className='form-alcmst__required-asterisk'
+					className='asura-forms__required-asterisk'
 				>
 					Name
 				</label>
@@ -154,7 +154,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					onChange={e => setSelectedElement(p => handleAttrChange(p, 'name', e.target.value))}
 				/>
 				{invalidElementProperties.includes('attributes.name') && (
-					<span className='form-alcmst__property-element--error'>Name is required</span>
+					<span className='asura-forms__property-element--error'>Name is required</span>
 				)}
 			</div>
 		);
@@ -162,12 +162,12 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('label' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label
 					htmlFor='element_label'
-					className={cn(elementType === 'Checkbox' && 'form-alcmst__required-asterisk')}
+					className={cn(elementType === 'Checkbox' && 'asura-forms__required-asterisk')}
 				>
 					Label
 				</label>
@@ -178,7 +178,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					onChange={e => setSelectedElement(p => handleRootChange(p, 'label', e.target.value))}
 				/>
 				{invalidElementProperties.includes('label') && (
-					<span className='form-alcmst__property-element--error'>Label is required</span>
+					<span className='asura-forms__property-element--error'>Label is required</span>
 				)}
 			</div>
 		);
@@ -186,12 +186,12 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('value' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label
 					htmlFor='element_value'
-					className={cn(selectedElement.elementType === 'Checkbox' && 'form-alcmst__required-asterisk')}
+					className={cn(selectedElement.elementType === 'Checkbox' && 'asura-forms__required-asterisk')}
 				>
 					Value
 				</label>
@@ -202,7 +202,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					onChange={e => setSelectedElement(p => handleRootChange(p, 'value', e.target.value))}
 				/>
 				{invalidElementProperties.includes('value') && (
-					<span className='form-alcmst__property-element--error'>Value is required</span>
+					<span className='asura-forms__property-element--error'>Value is required</span>
 				)}
 			</div>
 		);
@@ -210,7 +210,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'placeholder' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_placeholder'>Placeholder</label>
@@ -226,7 +226,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'id' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_id'>ID</label>
@@ -242,13 +242,13 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if (elementHasOptions(selectedElement)) {
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element form-alcmst__property-element--options'
+				className='asura-forms__property-element asura-forms__property-element--options'
 				key={jsxElement.length + 1}
 			>
-				<div className='form-alcmst__property-element-options-header'>
-					<span className='form-alcmst__required-asterisk'>Options</span>
+				<div className='asura-forms__property-element-options-header'>
+					<span className='asura-forms__required-asterisk'>Options</span>
 					<button
-						className='form-alcmst__btn'
+						className='asura-forms__btn'
 						onClick={() =>
 							setSelectedElement(p => {
 								if (!p) return p;
@@ -259,7 +259,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 						{AddIcon} Add
 					</button>
 				</div>
-				<div className='form-alcmst__property-element-options-body'>
+				<div className='asura-forms__property-element-options-body'>
 					{selectedElement.options.map((option, index) => (
 						<div key={index}>
 							<Input
@@ -299,7 +299,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 								placeholder='Value'
 							/>
 							<button
-								className='form-alcmst__btn--secondary'
+								className='asura-forms__btn--secondary'
 								onClick={() => {
 									if (index === 0) return;
 									setSelectedElement(p => {
@@ -317,7 +317,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 					))}
 				</div>
 				{invalidElementProperties.includes('options') && (
-					<span className='form-alcmst__property-element--error'>
+					<span className='asura-forms__property-element--error'>
 						Please ensure each option has both a label and a value
 					</span>
 				)}
@@ -328,7 +328,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('includeCountryCode' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element form-alcmst__property-element--toggle'
+				className='asura-forms__property-element asura-forms__property-element--toggle'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_include_country_code'>Include country code</label>
@@ -343,7 +343,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('allowMultiSelect' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element form-alcmst__property-element--toggle'
+				className='asura-forms__property-element asura-forms__property-element--toggle'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_allow_multi_select'>Allow multi select</label>
@@ -358,7 +358,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('required' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element form-alcmst__property-element--toggle'
+				className='asura-forms__property-element asura-forms__property-element--toggle'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_required'>Required</label>
@@ -373,7 +373,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'minLength' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_min_length'>Min length</label>
@@ -389,7 +389,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'maxLength' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_max_length'>Max length</label>
@@ -405,7 +405,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'min' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_min'>Minimum value</label>
@@ -421,7 +421,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'max' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_max'>Maximum value</label>
@@ -437,7 +437,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'rows' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_rows'>No of rows</label>
@@ -453,7 +453,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('attributes' in selectedElement && 'cols' in selectedElement.attributes)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_attr_cols'>No of cols</label>
@@ -469,7 +469,7 @@ const PropertyElements: React.FC<TPropertyElements> = ({ invalidElementPropertie
 	if ('styles' in selectedElement)
 		jsxElement.push(
 			<div
-				className='form-alcmst__property-element'
+				className='asura-forms__property-element'
 				key={jsxElement.length + 1}
 			>
 				<label htmlFor='element_styles'>Styles</label>

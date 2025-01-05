@@ -13,7 +13,7 @@ A customizable React form builder with a drag-and-drop interface. The library pr
 ## Installation
 
 ```bash
-npm install form-alchemist
+npm install asura-forms
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install form-alchemist
 #### Builder component
 
 ```javascript
-import { Builder } from 'form-alchemist';
+import { Builder } from 'asura-forms';
 
 function App() {
     // Initial form data (optional), used to edit an existing form
@@ -45,7 +45,7 @@ function App() {
 #### Render component
 
 ```javascript
-import { Render } from 'form-alchemist';
+import { Render } from 'asura-forms';
 
 function App() {
     // Form data generated from the Builder component, passed as a prop to Render.

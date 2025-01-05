@@ -23,7 +23,7 @@ export const StyledPalette = styled.div`
 		margin-top: 0.4em;
 	}
 
-	&.form-alcmst__palette--grid-view > div {
+	&.asura-forms__palette--grid-view > div {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		place-items: center;

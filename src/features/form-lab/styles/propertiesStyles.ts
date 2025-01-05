@@ -9,16 +9,16 @@ export const StyledProperties = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	.form-alcmst__properties-header {
+	.asura-forms__properties-header {
 		padding: 0.8em;
 	}
 
-	.form-alcmst__properties-body {
+	.asura-forms__properties-body {
 		overflow: auto;
 		padding: 0 0.8em;
 	}
 
-	.form-alcmst__properties-footer {
+	.asura-forms__properties-footer {
 		margin-top: auto;
 		padding: 0.8em;
 	}
@@ -30,7 +30,7 @@ export const StyledProperties = styled.div`
 		color: var(--grey-700);
 	}
 
-	span.form-alcmst__properties-no-select {
+	span.asura-forms__properties-no-select {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -42,7 +42,7 @@ export const StyledProperties = styled.div`
 		color: var(--grey-600);
 	}
 
-	.form-alcmst__property-element {
+	.asura-forms__property-element {
 		width: 100%;
 		height: auto;
 
@@ -64,12 +64,12 @@ export const StyledProperties = styled.div`
 		}
 	}
 
-	.form-alcmst__property-element--error {
+	.asura-forms__property-element--error {
 		font-size: 0.82rem;
 		color: var(--red-color);
 	}
 
-	.form-alcmst__property-element--toggle {
+	.asura-forms__property-element--toggle {
 		display: flex;
 		justify-content: space-between;
 
@@ -78,7 +78,7 @@ export const StyledProperties = styled.div`
 		}
 	}
 
-	.form-alcmst__property-element-options-header {
+	.asura-forms__property-element-options-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -98,7 +98,7 @@ export const StyledProperties = styled.div`
 		}
 	}
 
-	.form-alcmst__property-element-options-body {
+	.asura-forms__property-element-options-body {
 		& > div {
 			margin-top: 0.4em;
 			display: flex;
@@ -135,7 +135,7 @@ export const StyledProperties = styled.div`
 		}
 	}
 
-	.form-alcmst__properties-actions {
+	.asura-forms__properties-actions {
 		display: flex;
 		justify-content: center;
 

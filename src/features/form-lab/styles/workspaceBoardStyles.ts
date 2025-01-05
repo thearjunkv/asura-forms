@@ -15,8 +15,8 @@ export const StyledWorkspaceBoard = styled.div`
 		min-width: 300px;
 	}
 
-	&.form-alcmst__workspace-board--empty {
-		& .form-alcmst__workspace-board-drop-message {
+	&.asura-forms__workspace-board--empty {
+		& .asura-forms__workspace-board-drop-message {
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -25,12 +25,12 @@ export const StyledWorkspaceBoard = styled.div`
 			color: var(--grey-600);
 		}
 
-		&.form-alcmst__workspace-board--drag-over .form-alcmst__workspace-board-drop-message {
+		&.asura-forms__workspace-board--drag-over .asura-forms__workspace-board-drop-message {
 			display: none;
 		}
 	}
 
-	&.form-alcmst__workspace-board--drag-over {
+	&.asura-forms__workspace-board--drag-over {
 		box-shadow: 0 0 0 2px var(--grey-800);
 	}
 `;

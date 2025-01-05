@@ -92,9 +92,9 @@ export const GlobalStyles = styled.div`
 		scrollbar-color: var(--grey-300) var(--grey-100);
 	}
 
-	.form-alcmst__btn,
-	.form-alcmst__btn--secondary,
-	.form-alcmst__btn--outlined {
+	.asura-forms__btn,
+	.asura-forms__btn--secondary,
+	.asura-forms__btn--outlined {
 		padding: 0.4em 1em;
 		font-size: 0.84rem;
 		color: var(--white);
@@ -120,7 +120,7 @@ export const GlobalStyles = styled.div`
 		}
 	}
 
-	.form-alcmst__btn--secondary {
+	.asura-forms__btn--secondary {
 		color: var(--grey-900);
 		background-color: var(--grey-200);
 		border-color: var(--grey-200);
@@ -135,7 +135,7 @@ export const GlobalStyles = styled.div`
 		}
 	}
 
-	.form-alcmst__btn--outlined {
+	.asura-forms__btn--outlined {
 		color: var(--grey-900);
 		background-color: var(--white);
 
@@ -146,7 +146,7 @@ export const GlobalStyles = styled.div`
 		}
 	}
 
-	.form-alcmst__required-asterisk::after {
+	.asura-forms__required-asterisk::after {
 		content: '*';
 		margin-left: 0.1em;
 		color: var(--red-color);

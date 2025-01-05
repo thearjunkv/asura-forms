@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { XIcon } from '../../../assets/Icons';
 import { cn } from '../../../utils/helpers';
 import { Manifest } from '../../manifest';
-import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { useFormLab } from '../hooks/useFormLab';
 import { StyledPreview } from '../styles/previewStyles';
 import { Form } from 'antd';
 
 type TPreview = { formTitle: string; isOpen: boolean; onClose: () => void };
 
 const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
-	const { formData } = useAlchemyLab();
+	const { formData } = useFormLab();
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [formSubmission, setFormSubmission] = useState<{ [key: string]: any } | null>(null);
 	const previewModalRef = useRef<HTMLDivElement>(null);
@@ -30,25 +30,25 @@ const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
 
 	return (
 		<StyledPreview
-			className={cn('form-alcmst__preview', isOpen && 'form-alcmst__preview--show')}
+			className={cn('asura-forms__preview', isOpen && 'asura-forms__preview--show')}
 			onClick={onClose}
 		>
 			<div
 				ref={previewModalRef}
-				className='form-alcmst__preview-modal'
+				className='asura-forms__preview-modal'
 				onClick={e => e.stopPropagation()}
 			>
-				<div className='form-alcmst__preview-header'>
+				<div className='asura-forms__preview-header'>
 					<h1>{formTitle}</h1>
 					<button
-						className='form-alcmst__btn--secondary'
+						className='asura-forms__btn--secondary'
 						onClick={onClose}
 					>
 						{XIcon}
 					</button>
 				</div>
-				<div className='form-alcmst__preview-body'>
-					<div className='form-alcmst__preview-form'>
+				<div className='asura-forms__preview-body'>
+					<div className='asura-forms__preview-form'>
 						<Manifest
 							formInstance={formInstance}
 							formData={formData}
@@ -56,7 +56,7 @@ const Preview: React.FC<TPreview> = ({ formTitle, isOpen, onClose }) => {
 						/>
 					</div>
 					{formSubmission !== null && (
-						<div className='form-alcmst__preview-form-submission'>
+						<div className='asura-forms__preview-form-submission'>
 							<h2>Form Submission</h2>
 							<pre>{JSON.stringify(formSubmission, null, 2)}</pre>
 						</div>

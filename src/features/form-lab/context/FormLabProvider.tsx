@@ -1,18 +1,18 @@
 import { ReactNode, useState } from 'react';
-import { AlchemyLabContext } from './AlchemyLabContext';
-import { TAlchemyLabContext } from '../types';
+import { FormLabContext } from './FormLabContext';
+import { TFormLabContext } from '../types';
 import { Element } from '../../../types/Element';
 
-const AlchemyLabProvider: React.FC<{
+const FormLabProvider: React.FC<{
 	children: ReactNode;
 }> = ({ children }) => {
-	const [draggedElement, setDraggedElement] = useState<TAlchemyLabContext['draggedElement'] | null>(null);
+	const [draggedElement, setDraggedElement] = useState<TFormLabContext['draggedElement'] | null>(null);
 	const [selectedElement, setSelectedElement] = useState<Element | null>(null);
 	const [invalidElementProperties, setInvalidElementProperties] = useState<string[]>([]);
 	const [formData, setFormData] = useState<Element[]>([]);
 
 	return (
-		<AlchemyLabContext.Provider
+		<FormLabContext.Provider
 			value={{
 				draggedElement,
 				setDraggedElement,
@@ -25,8 +25,8 @@ const AlchemyLabProvider: React.FC<{
 			}}
 		>
 			{children}
-		</AlchemyLabContext.Provider>
+		</FormLabContext.Provider>
 	);
 };
 
-export default AlchemyLabProvider;
+export default FormLabProvider;

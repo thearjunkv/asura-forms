@@ -1,4 +1,4 @@
-import { AlchemyLab } from './features/alchemy-lab';
+import { FormLab } from './features/form-lab';
 //import { Manifest } from './features/manifest';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 				padding: '1em'
 			}}
 		>
-			<AlchemyLab
+			<FormLab
 				// paletteGridView={true}
 				// height={380}
 				// title=''

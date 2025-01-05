@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Element } from '../../types/Element';
 
-export type TAlchemyLabContext = {
+export type TFormLabContext = {
 	draggedElement: {
 		elementId: string;
 		elementType: Element['elementType'];
@@ -24,7 +24,7 @@ export type TAlchemyLabContext = {
 	setFormData: Dispatch<SetStateAction<Element[]>>;
 };
 
-export type TAlchemyLab = {
+export type TFormLab = {
 	title?: string;
 	paletteGridView?: boolean;
 	height?: number;

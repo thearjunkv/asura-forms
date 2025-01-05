@@ -1,5 +1,5 @@
 import { useDroppable } from '@dnd-kit/core';
-import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { useFormLab } from '../hooks/useFormLab';
 import { DeleteIcon, SpacerIcon } from '../../../assets/Icons';
 import { clone, cn } from '../../../utils/helpers';
 import { CompileJsx, CompileSectionJsx } from '../../../components/compile-jsx';
@@ -23,7 +23,7 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 		setSelectedElement,
 		invalidElementProperties,
 		setInvalidElementProperties
-	} = useAlchemyLab();
+	} = useFormLab();
 	const { elementId, elementType, sectionId } = element;
 
 	const sectionDroppable = useDroppable({
@@ -55,7 +55,7 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 	const boardElementBody = (
 		<>
 			{elementType === 'Spacer' && (
-				<div className='form-alcmst__board-element-spacer-info'>
+				<div className='asura-forms__board-element-spacer-info'>
 					<div>{SpacerIcon}</div>
 					<span>Spacer Field {element.height}px</span>
 				</div>
@@ -63,7 +63,7 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 
 			{elementType === 'Section' && (
 				<>
-					<div className='form-alcmst__board-element-section-info'>
+					<div className='asura-forms__board-element-section-info'>
 						<span>Section Field</span>
 					</div>
 					<CompileSectionJsx element={element}>
@@ -87,8 +87,8 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 		<div
 			ref={topHalfDroppable.setNodeRef}
 			className={cn(
-				'form-alcmst__board-element-top-half',
-				topHalfDroppable.isOver && 'form-alcmst__board-element-top-half--drag-over'
+				'asura-forms__board-element-top-half',
+				topHalfDroppable.isOver && 'asura-forms__board-element-top-half--drag-over'
 			)}
 		/>
 	);
@@ -97,8 +97,8 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 		<div
 			ref={bottomHalfDroppable.setNodeRef}
 			className={cn(
-				'form-alcmst__board-element-bottom-half',
-				bottomHalfDroppable.isOver && 'form-alcmst__board-element-bottom-half--drag-over'
+				'asura-forms__board-element-bottom-half',
+				bottomHalfDroppable.isOver && 'asura-forms__board-element-bottom-half--drag-over'
 			)}
 		/>
 	);
@@ -106,8 +106,8 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 	const deleteBtn = (
 		<button
 			className={cn(
-				'form-alcmst__board-element-btn-delete',
-				elementType === 'Section' && 'form-alcmst__board-element-btn-delete--section'
+				'asura-forms__board-element-btn-delete',
+				elementType === 'Section' && 'asura-forms__board-element-btn-delete--section'
 			)}
 			onClick={e => {
 				e.stopPropagation();
@@ -132,9 +132,9 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 		return (
 			<StyledBoardElement
 				className={cn(
-					'form-alcmst__board-element',
-					'form-alcmst__board-element--drag-overlay',
-					elementType === 'Section' && 'form-alcmst__board-element--section'
+					'asura-forms__board-element',
+					'asura-forms__board-element--drag-overlay',
+					elementType === 'Section' && 'asura-forms__board-element--section'
 				)}
 			>
 				{boardElementBody}
@@ -149,16 +149,16 @@ const BoardElement: React.FC<TBoardElement> = ({ element, isOverlay, nestLevel }
 			<StyledBoardElement
 				{...(elementType === 'Section' ? { ref: sectionDroppable.setNodeRef } : {})}
 				className={cn(
-					'form-alcmst__board-element',
-					draggedElement?.elementId === elementId && 'form-alcmst__board-element--drag-original',
-					draggedElement && 'form-alcmst__board-element--block-hover-effect',
-					elementType === 'Section' && 'form-alcmst__board-element--section',
+					'asura-forms__board-element',
+					draggedElement?.elementId === elementId && 'asura-forms__board-element--drag-original',
+					draggedElement && 'asura-forms__board-element--block-hover-effect',
+					elementType === 'Section' && 'asura-forms__board-element--section',
 					elementType === 'Section' &&
 						sectionDroppable.isOver &&
-						'form-alcmst__board-element--section-drag-over',
+						'asura-forms__board-element--section-drag-over',
 					elementType === 'Section' &&
 						element.children.length > 0 &&
-						'form-alcmst__board-element--section-filled'
+						'asura-forms__board-element--section-filled'
 				)}
 				onClick={e => {
 					e.stopPropagation();

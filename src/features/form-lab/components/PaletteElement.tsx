@@ -7,9 +7,9 @@ const PaletteElement: React.FC<TPaletteElement> = ({ icon, text, paletteGridView
 	return (
 		<StyledPaletteElement
 			className={cn(
-				'form-alcmst__palette-element',
-				paletteGridView && 'form-alcmst__palette-element--vertical-card',
-				isOverlay && 'form-alcmst__palette-element--drag-overlay'
+				'asura-forms__palette-element',
+				paletteGridView && 'asura-forms__palette-element--vertical-card',
+				isOverlay && 'asura-forms__palette-element--drag-overlay'
 			)}
 		>
 			<div>{icon}</div>

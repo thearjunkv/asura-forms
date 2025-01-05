@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useAlchemyLab } from '../hooks/useAlchemyLab';
+import { useFormLab } from '../hooks/useFormLab';
 import { StyledProperties } from '../styles/propertiesStyles';
 import PropertyElements from './PropertyElements';
 import { updateElementInFormData, validateElementProperties } from '../utils/elementHelpers';
@@ -13,7 +13,7 @@ const Properties: React.FC = () => {
 		setSelectedElement,
 		invalidElementProperties,
 		setInvalidElementProperties
-	} = useAlchemyLab();
+	} = useFormLab();
 	const propertiesBodyRef = useRef<HTMLDivElement>(null);
 	const prevElementRef = useRef<string | null>(null);
 
@@ -44,13 +44,13 @@ const Properties: React.FC = () => {
 	);
 
 	const propertiesEmptyMessage = (
-		<span className='form-alcmst__properties-no-select'>Select an element to edit properties.</span>
+		<span className='asura-forms__properties-no-select'>Select an element to edit properties.</span>
 	);
 
 	const propertiesActions = (
-		<div className='form-alcmst__properties-actions'>
+		<div className='asura-forms__properties-actions'>
 			<button
-				className='form-alcmst__btn'
+				className='asura-forms__btn'
 				onClick={() => {
 					if (!selectedElement) return;
 
@@ -75,7 +75,7 @@ const Properties: React.FC = () => {
 				Save
 			</button>
 			<button
-				className='form-alcmst__btn--secondary'
+				className='asura-forms__btn--secondary'
 				onClick={() => {
 					if (invalidElementProperties.length > 0) setInvalidElementProperties([]);
 					setSelectedElement(null);
@@ -88,21 +88,21 @@ const Properties: React.FC = () => {
 
 	return (
 		<StyledProperties
-			className='form-alcmst__properties'
+			className='asura-forms__properties'
 			onClick={e => e.stopPropagation()}
 		>
-			<div className='form-alcmst__properties-header'>
+			<div className='asura-forms__properties-header'>
 				<h2>Element Properties</h2>
 			</div>
 
 			<div
 				ref={propertiesBodyRef}
-				className='form-alcmst__properties-body'
+				className='asura-forms__properties-body'
 			>
 				{selectedElement && propertyElements}
 				{!selectedElement && propertiesEmptyMessage}
 			</div>
-			<div className='form-alcmst__properties-footer'>{selectedElement && propertiesActions}</div>
+			<div className='asura-forms__properties-footer'>{selectedElement && propertiesActions}</div>
 		</StyledProperties>
 	);
 };

@@ -1,5 +1,5 @@
 {
-	"name": "form-alchemist",
+	"name": "asura-forms",
 	"version": "0.0.3",
 	"description": "A React form builder with a drag-and-drop interface, featuring a Builder component to create customizable forms and a Render component to display and validate them dynamically.",
 	"type": "module",
@@ -70,11 +70,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/arjunkv145/form-alchemist.git"
+		"url": "https://github.com/arjunkv145/asura-forms.git"
 	},
-	"homepage": "https://github.com/arjunkv145/form-alchemist#readme",
+	"homepage": "https://github.com/arjunkv145/asura-forms#readme",
 	"bugs": {
-		"url": "https://github.com/arjunkv145/form-alchemist/issues"
+		"url": "https://github.com/arjunkv145/asura-forms/issues"
 	},
 	"engines": {
 		"node": ">=14.0.0"

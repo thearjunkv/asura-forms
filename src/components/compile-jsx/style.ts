@@ -37,13 +37,13 @@ export const StyledCompileJsx = styled.div<{ $customstyles?: string }>`
 		font-size: 0.9rem;
 	}
 
-	.form-alcmst__element-title {
+	.asura-forms__element-title {
 	}
 
-	.form-alcmst__element-paragraph {
+	.asura-forms__element-paragraph {
 	}
 
-	.form-alcmst__element-separator {
+	.asura-forms__element-separator {
 	}
 
 	${props =>

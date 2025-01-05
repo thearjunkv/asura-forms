@@ -17,7 +17,7 @@ export const StyledPaletteElement = styled.div`
 		background-color: var(--grey-200);
 	}
 
-	&.form-alcmst__palette-element--drag-overlay {
+	&.asura-forms__palette-element--drag-overlay {
 		background-color: var(--grey-200);
 	}
 
@@ -40,7 +40,7 @@ export const StyledPaletteElement = styled.div`
 		color: var(--grey-900);
 	}
 
-	&.form-alcmst__palette-element--vertical-card {
+	&.asura-forms__palette-element--vertical-card {
 		width: 75px;
 		height: 75px;
 		padding: 0.8em;

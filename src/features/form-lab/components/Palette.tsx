@@ -8,7 +8,7 @@ type TPalette = { paletteGridView?: boolean };
 
 const Palette: React.FC<TPalette> = ({ paletteGridView }) => {
 	return (
-		<StyledPalette className={cn('form-alcmst__palette', paletteGridView && 'form-alcmst__palette--grid-view')}>
+		<StyledPalette className={cn('asura-forms__palette', paletteGridView && 'asura-forms__palette--grid-view')}>
 			<h2>Layout Elements</h2>
 			<div>
 				{layoutElementDataList.map(({ name, text, icon }) => (
