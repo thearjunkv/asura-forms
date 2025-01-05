@@ -1,6 +1,6 @@
 {
 	"name": "asura-forms",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A React form builder with a drag-and-drop interface, featuring a FormLab component to create customizable forms and a Manifest component to display and validate them dynamically.",
 	"type": "module",
 	"main": "dist/index.js",
@@ -70,7 +70,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thearjunkv/asura-forms.git"
+		"url": "git+https://github.com/thearjunkv/asura-forms.git"
 	},
 	"homepage": "https://github.com/thearjunkv/asura-forms#readme",
 	"bugs": {
