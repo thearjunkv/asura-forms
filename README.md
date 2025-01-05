@@ -1,13 +1,12 @@
-# Form Alchemist
+# asura-forms
 
-A customizable React form builder with a drag-and-drop interface. The library provides a `Builder` component for building forms and a `Render` component for rendering and validating them dynamically. You can create, edit, and save forms with ease using JSON data.
+A React form builder with a drag-and-drop interface. The library provides a `FormLab` component for building forms and a `Manifest` component for rendering and validating them dynamically.
 
 ## Features
 
 -   Drag-and-drop interface for building forms
 -   Support for various form elements like inputs, checkboxes, radio buttons, etc.
 -   Dynamic form rendering with validation
--   Ability to save and load form data in JSON format
 -   Easy integration with your existing React project
 
 ## Installation
@@ -18,23 +17,26 @@ npm install asura-forms
 
 ## Usage
 
-#### Builder component
+#### FormLab component
 
 ```javascript
-import { Builder } from 'asura-forms';
+import { FormLab } from 'asura-forms';
 
 function App() {
     // Initial form data (optional), used to edit an existing form
     const formData = [];
   
     // Callback function to handle form saving
-    const onSave = formJsonData => {
-	    console.log('Form saved:', formJsonData);
-	    // Handle or store form JSON data
+    const onSave = formData => {
+	    console.log('Form saved:', formData);
+	    // Handle or store form data
     };
 
     return (
-        <Builder
+        <FormLab
+            title='Form name'
+            paletteGridView={true} // Displays the sidebar elements in grid style
+            height={700} 
             formData={formData}
             onSave={onSave}
         />
@@ -42,16 +44,16 @@ function App() {
 }
 ```
 
-#### Render component
+#### Manifest component
 
 ```javascript
-import { Render } from 'asura-forms';
+import { Manifest } from 'asura-forms';
 
 function App() {
-    // Form data generated from the Builder component, passed as a prop to Render.
+    // Form data generated from the FormLab component, passed as a prop to Manifest component.
     const formData = [];
 
-    // Callback function to handle form submission; formValues contains the user's input data.
+    // Callback function to handle form submission.
     const onSubmit = formValues => {
         console.log(formValues);
     };
@@ -67,7 +69,8 @@ function App() {
                 borderRadius: '5px',
             }}
         >
-            <Render
+            <Manifest
+                formInstance={formInstance} // ant form instance (optional)
                 formData={formData}
                 onSubmit={onSubmit}
             />

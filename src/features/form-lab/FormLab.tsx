@@ -34,7 +34,7 @@ const FormLab: React.FC<TFormLab> = ({ title, height, paletteGridView, onSave, .
 			<GlobalStyles>
 				<StyledFormLab
 					className='asura-forms__form-lab'
-					style={{ height: height ? `${height}px` : '650px' }}
+					style={{ height: height && typeof height === 'number' ? `${height}px` : '650px' }}
 				>
 					<Preview
 						formTitle={formTitle}

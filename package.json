@@ -1,7 +1,7 @@
 {
 	"name": "asura-forms",
-	"version": "0.0.3",
-	"description": "A React form builder with a drag-and-drop interface, featuring a Builder component to create customizable forms and a Render component to display and validate them dynamically.",
+	"version": "1.0.0",
+	"description": "A React form builder with a drag-and-drop interface, featuring a FormLab component to create customizable forms and a Manifest component to display and validate them dynamically.",
 	"type": "module",
 	"main": "dist/index.js",
 	"module": "dist/index.es.js",
@@ -34,7 +34,7 @@
 		"validation"
 	],
 	"author": "Arjun K V",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"@dnd-kit/core": "^6.2.0",
 		"@eslint/js": "^9.13.0",
