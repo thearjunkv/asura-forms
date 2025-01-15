@@ -1,15 +1,17 @@
-# asura-forms
+# Asura Forms
 
-A React form builder with a drag-and-drop interface. The library provides a `FormLab` component for building forms and a `Manifest` component for rendering and validating them dynamically.
+A React form builder with a drag-and-drop interface. The library provides a FormLab component for building customizable forms and a Manifest component for rendering, validation, and handling form submission.
 
-## Features
+### Peer Dependencies
+This package requires the following peer dependencies:
 
--   Drag-and-drop interface for building forms
--   Support for various form elements like inputs, checkboxes, radio buttons, etc.
--   Dynamic form rendering with validation
--   Easy integration with your existing React project
+- `react` (version >=16.8)
+- `react-dom` (version >=16.8)
+- `styled-components` (version ^6.0.0)
+- `antd` (version ^5.0.0)
+- `@dnd-kit/core` (version ^6.0.0)
 
-## Installation
+### Installation
 
 ```bash
 npm install asura-forms
@@ -28,15 +30,15 @@ function App() {
   
     // Callback function to handle form saving
     const onSave = formData => {
-	    console.log('Form saved:', formData);
-	    // Handle or store form data
+	    console.log(formData);
     };
 
     return (
         <FormLab
             title='Form name'
             paletteGridView={true} // Displays the sidebar elements in grid style
-            height={700} 
+            height={700}
+            themeOverride={} // Antd theme config
             formData={formData}
             onSave={onSave}
         />
@@ -71,6 +73,7 @@ function App() {
         >
             <Manifest
                 formInstance={formInstance} // ant form instance (optional)
+                themeOverride={} // Antd theme config
                 formData={formData}
                 onSubmit={onSubmit}
             />
