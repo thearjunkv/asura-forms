@@ -21,7 +21,7 @@ export const StyledPreview = styled.div`
 		padding: 0.8em 1.4em 1.4em;
 		width: 80%;
 		max-width: 600px;
-		height: 100%;
+		height: auto;
 		max-height: calc(100% - 2.5em - 2.5em);
 		background-color: var(--white);
 		border-radius: 12px;

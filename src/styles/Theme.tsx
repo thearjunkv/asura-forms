@@ -1,6 +1,11 @@
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, ThemeConfig } from 'antd';
 
-const monochromaticTheme = {
+type TTheme = {
+	children: React.ReactNode;
+	themeOverride?: ThemeConfig;
+};
+
+const defaultMonochromaticTheme: ThemeConfig = {
 	token: {
 		colorPrimary: 'hsl(0, 0%, 15%)',
 		colorInfo: 'hsl(0, 0%, 15%)',
@@ -15,6 +20,13 @@ const monochromaticTheme = {
 	}
 };
 
-export const Theme = ({ children }: { children: React.ReactNode }) => {
-	return <ConfigProvider theme={monochromaticTheme}>{children}</ConfigProvider>;
+export const Theme = ({ children, themeOverride }: TTheme) => {
+	const mergedTheme = {
+		...themeOverride,
+		token: {
+			...defaultMonochromaticTheme,
+			...themeOverride?.token
+		}
+	};
+	return <ConfigProvider theme={mergedTheme}>{children}</ConfigProvider>;
 };

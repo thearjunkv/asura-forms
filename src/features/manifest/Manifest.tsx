@@ -6,7 +6,7 @@ import { Element } from '../../types/Element';
 import { Theme } from '../../styles/Theme';
 import { GlobalStyles } from '../../styles/globalStyles';
 
-const Manifest: React.FC<TManifest> = ({ formInstance, onSubmit, ...props }) => {
+const Manifest: React.FC<TManifest> = ({ formInstance, onSubmit, themeOverride, ...props }) => {
 	const [formData, setFormData] = useState<Element[]>([]);
 
 	useEffect(() => {
@@ -30,7 +30,7 @@ const Manifest: React.FC<TManifest> = ({ formInstance, onSubmit, ...props }) => 
 
 	return (
 		<GlobalStyles>
-			<Theme>
+			<Theme themeOverride={themeOverride}>
 				<Form
 					layout='vertical'
 					form={formInstance}

@@ -14,7 +14,7 @@ import { Theme } from '../../styles/Theme';
 import Preview from './components/Preview';
 import { useFormLab } from './hooks/useFormLab';
 
-const FormLab: React.FC<TFormLab> = ({ title, height, paletteGridView, onSave, ...props }) => {
+const FormLab: React.FC<TFormLab> = ({ title, height, paletteGridView, onSave, themeOverride, ...props }) => {
 	const [togglePreview, setTogglePreview] = useState<boolean>(false);
 	const formTitle = title || 'Custom Form';
 	const { formData, setFormData } = useFormLab();
@@ -30,8 +30,8 @@ const FormLab: React.FC<TFormLab> = ({ title, height, paletteGridView, onSave, .
 	}, [props.formData, onSave, setFormData]);
 
 	return (
-		<Theme>
-			<GlobalStyles>
+		<GlobalStyles>
+			<Theme themeOverride={themeOverride}>
 				<StyledFormLab
 					className='asura-forms__form-lab'
 					style={{ height: height && typeof height === 'number' ? `${height}px` : '650px' }}
@@ -76,8 +76,8 @@ const FormLab: React.FC<TFormLab> = ({ title, height, paletteGridView, onSave, .
 						<Properties />
 					</div>
 				</StyledFormLab>
-			</GlobalStyles>
-		</Theme>
+			</Theme>
+		</GlobalStyles>
 	);
 };
 

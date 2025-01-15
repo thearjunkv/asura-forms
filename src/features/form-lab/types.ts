@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Element } from '../../types/Element';
+import { ThemeConfig } from 'antd';
 
 export type TFormLabContext = {
 	draggedElement: {
@@ -28,6 +29,7 @@ export type TFormLab = {
 	title?: string;
 	paletteGridView?: boolean;
 	height?: number;
+	themeOverride?: ThemeConfig;
 	formData?: Element[];
 	onSave: (formData: Element[]) => void;
 };

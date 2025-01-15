@@ -16,6 +16,7 @@ export const StyledProperties = styled.div`
 	.asura-forms__properties-body {
 		overflow: auto;
 		padding: 0 0.8em;
+		padding-bottom: 0.15em;
 	}
 
 	.asura-forms__properties-footer {
