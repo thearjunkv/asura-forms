@@ -22,7 +22,6 @@ export const GlobalStyles = styled.div`
 	width: 100%;
 	height: auto;
 
-	background-color: var(--white);
 	color: var(--grey-900);
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	font-size: 1rem;

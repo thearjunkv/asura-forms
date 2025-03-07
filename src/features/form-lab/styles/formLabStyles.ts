@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledFormLab = styled.div`
 	width: 100%;
+	background-color: var(--white);
 	border: 1px solid var(--grey-300);
 	border-radius: 12px;
 	overflow: hidden;
